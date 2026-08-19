@@ -1,0 +1,59 @@
+site_name: 从零读懂 DeepSeek Harness
+site_description: 一本写给不读代码的人的 DeepSeek Harness 学习书
+site_author: makewheels
+docs_dir: docs
+
+theme:
+  name: material
+  language: zh
+  font: false
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: 切换夜间模式
+  features:
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - toc.follow
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+extra_css:
+  - extra.css
+
+nav:
+  - 首页: index.md
+  - 第一部分 初见:
+    - 第1章 什么是 Agent Harness: ch01.md
+    - 第2章 5 分钟跑起来: ch02.md
+    - 第3章 俯瞰地图: ch03.md
+  - 第二部分 解剖器官:
+    - 第4章 一切皆插件: ch04.md
+    - 第5章 一次对话的完整旅程: ch05.md
+    - 第6章 工具执行流水线: ch06.md
+    - 第7章 目标与计划: ch07.md
+    - 第8章 上下文工程: ch08.md
+  - 第三部分 手脚与外设:
+    - 第9章 安全的手脚: ch09.md
+    - 第10章 连接外部世界: ch10.md
+  - 第四部分 自己动手:
+    - 第11章 你的第一个插件: ch11.md
+    - 第12章 组装自己的 agent: ch12.md
+    - 第13章 后记 能从 dsh 偷师什么: ch13.md

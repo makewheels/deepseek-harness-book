@@ -1,0 +1,47 @@
+/* 全书大字号排版（读者偏好：正文 17.5px 起） */
+.md-content {
+  font-size: 17.5px;
+}
+
+.md-typeset {
+  font-size: 17.5px;
+  line-height: 1.85;
+}
+
+.md-typeset h1 {
+  font-size: 32px;
+}
+
+.md-typeset h2 {
+  font-size: 25px;
+}
+
+.md-typeset h3 {
+  font-size: 21px;
+}
+
+.md-typeset h4 {
+  font-size: 18.5px;
+}
+
+.md-typeset code {
+  font-size: 15.5px;
+}
+
+.md-typeset pre code {
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.md-typeset table:not([class]) {
+  font-size: 16px;
+}
+
+.md-typeset blockquote {
+  font-size: 16.5px;
+}
+
+/* 正文区放宽 */
+.md-grid {
+  max-width: 1440px;
+}
