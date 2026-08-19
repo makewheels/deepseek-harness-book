@@ -1,0 +1,23 @@
+<svg viewBox="0 0 780 350" width="780" xmlns="http://www.w3.org/2000/svg" font-family="'Microsoft YaHei','PingFang SC',sans-serif">
+  <defs>
+    <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5c6bc0"/>
+    </marker>
+  </defs>
+  <rect width="780" height="350" fill="#ffffff"/>
+  <rect x="90" y="284" width="400" height="52" rx="10" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
+  <text x="290" y="316" text-anchor="middle" font-size="15" fill="#20242e">① profile 里列出的组合包（dsh-base → dsh-web-app …）</text>
+  <rect x="90" y="222" width="400" height="52" rx="10" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
+  <text x="290" y="254" text-anchor="middle" font-size="15" fill="#20242e">② profile 自己的 cordis.patch.yml</text>
+  <rect x="90" y="160" width="400" height="52" rx="10" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
+  <text x="290" y="192" text-anchor="middle" font-size="15" fill="#20242e">③ home 级 cordis.patch.yml（$DSH_HOME）</text>
+  <rect x="90" y="98" width="400" height="52" rx="10" fill="#fff8e1" stroke="#f9a825" stroke-width="1.8"/>
+  <text x="290" y="130" text-anchor="middle" font-size="15" fill="#20242e">④ 启动时 --patch 指定的覆盖层</text>
+  <line x1="52" y1="310" x2="52" y2="130" stroke="#9aa4d6" stroke-width="1.6" marker-end="url(#arw)"/>
+  <text x="42" y="225" text-anchor="middle" font-size="13.5" fill="#5a6072" transform="rotate(-90 42 225)">应用顺序</text>
+  <text x="290" y="66" text-anchor="middle" font-size="14.5" fill="#b26a00">后应用的层可以按 id 替换前面任何一层的配置</text>
+  <line x1="494" y1="200" x2="560" y2="200" stroke="#5c6bc0" stroke-width="1.8" marker-end="url(#arw)"/>
+  <rect x="564" y="158" width="196" height="84" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.8"/>
+  <text x="662" y="192" text-anchor="middle" font-size="16" font-weight="bold" fill="#20242e">最终配置树</text>
+  <text x="662" y="220" text-anchor="middle" font-size="13.5" fill="#5a6072">--dump-config 可查看</text>
+</svg>

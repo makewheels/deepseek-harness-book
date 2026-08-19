@@ -1,0 +1,27 @@
+<svg viewBox="0 0 980 180" width="980" xmlns="http://www.w3.org/2000/svg" font-family="'Microsoft YaHei','PingFang SC',sans-serif">
+  <defs>
+    <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5c6bc0"/>
+    </marker>
+  </defs>
+  <rect width="980" height="180" fill="#ffffff"/>
+  <rect x="10" y="34" width="215" height="110" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
+  <text x="117" y="66" text-anchor="middle" font-size="16" font-weight="bold" fill="#20242e">① 拿钥匙</text>
+  <text x="117" y="94" text-anchor="middle" font-size="14" fill="#5a6072">DeepSeek 开放平台</text>
+  <text x="117" y="118" text-anchor="middle" font-size="14" fill="#5a6072">创建 API key</text>
+  <rect x="265" y="34" width="215" height="110" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
+  <text x="372" y="66" text-anchor="middle" font-size="16" font-weight="bold" fill="#20242e">② 插钥匙</text>
+  <text x="372" y="94" text-anchor="middle" font-size="14" fill="#5a6072">设置 → 模型</text>
+  <text x="372" y="118" text-anchor="middle" font-size="14" fill="#5a6072">粘贴并保存</text>
+  <rect x="520" y="34" width="215" height="110" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
+  <text x="627" y="66" text-anchor="middle" font-size="16" font-weight="bold" fill="#20242e">③ 选车库</text>
+  <text x="627" y="94" text-anchor="middle" font-size="14" fill="#5a6072">添加并选中</text>
+  <text x="627" y="118" text-anchor="middle" font-size="14" fill="#5a6072">一个工作区目录</text>
+  <rect x="775" y="34" width="195" height="110" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
+  <text x="872" y="66" text-anchor="middle" font-size="16" font-weight="bold" fill="#20242e">④ 点火</text>
+  <text x="872" y="94" text-anchor="middle" font-size="14" fill="#5a6072">输入框可用</text>
+  <text x="872" y="118" text-anchor="middle" font-size="14" fill="#5a6072">开始对话</text>
+  <line x1="227" y1="89" x2="261" y2="89" stroke="#5c6bc0" stroke-width="1.8" marker-end="url(#arw)"/>
+  <line x1="482" y1="89" x2="516" y2="89" stroke="#5c6bc0" stroke-width="1.8" marker-end="url(#arw)"/>
+  <line x1="737" y1="89" x2="771" y2="89" stroke="#5c6bc0" stroke-width="1.8" marker-end="url(#arw)"/>
+</svg>
