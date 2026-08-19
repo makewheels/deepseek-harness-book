@@ -1,6 +1,7 @@
 site_name: 从零读懂 DeepSeek Harness
 site_description: 一本写给不读代码的人的 DeepSeek Harness 学习书
 site_author: makewheels
+site_url: https://makewheels.github.io/deepseek-harness-book/
 docs_dir: docs
 
 theme:
@@ -30,7 +31,11 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.highlight
   - pymdownx.inlinehilite
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
