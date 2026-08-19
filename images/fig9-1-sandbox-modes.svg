@@ -1,0 +1,13 @@
+<svg viewBox="0 0 760 340" width="760" xmlns="http://www.w3.org/2000/svg" font-family="'Microsoft YaHei','PingFang SC',sans-serif">
+  <rect width="760" height="340" fill="#ffffff"/>
+  <rect x="30" y="30" width="700" height="270" rx="20" fill="#fdf3f2" stroke="#e57373" stroke-width="1.8"/>
+  <text x="54" y="62" font-size="16" font-weight="bold" fill="#b03a3a">danger-full-access：整机随便动</text>
+  <text x="54" y="86" font-size="13.5" fill="#5a6072">不设防模式——dsh 不参与，直接按原样执行</text>
+  <rect x="110" y="106" width="540" height="166" rx="16" fill="#fff8e1" stroke="#f9a825" stroke-width="1.8"/>
+  <text x="134" y="136" font-size="15.5" font-weight="bold" fill="#20242e">workspace-write：工作区内可写</text>
+  <text x="134" y="160" font-size="13.5" fill="#5a6072">只许写你选中的工作区 + 一个临时区域，出了圈就拦</text>
+  <rect x="200" y="182" width="360" height="72" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.8"/>
+  <text x="380" y="212" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#20242e">read-only：只读</text>
+  <text x="380" y="236" text-anchor="middle" font-size="13.5" fill="#5a6072">全看得见，一个字改不了</text>
+  <text x="380" y="322" text-anchor="middle" font-size="14.5" fill="#5a6072">沙箱三档：越靠内，管得越严</text>
+</svg>

@@ -1,0 +1,13 @@
+<svg viewBox="0 0 760 330" width="760" xmlns="http://www.w3.org/2000/svg" font-family="'Microsoft YaHei','PingFang SC',sans-serif">
+  <rect width="760" height="330" fill="#ffffff"/>
+  <rect x="40" y="36" width="680" height="254" rx="18" fill="#fafbff" stroke="#5c6bc0" stroke-width="1.8"/>
+  <text x="64" y="68" font-size="16" font-weight="bold" fill="#20242e">goal 目标卡：这次会话的目标是什么</text>
+  <text x="64" y="92" font-size="13.5" fill="#5a6072">四个阶段：进行中 · 暂停 · 被阻塞 · 完成；阻塞必须写明理由</text>
+  <rect x="120" y="112" width="520" height="150" rx="14" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
+  <text x="144" y="142" font-size="15.5" font-weight="bold" fill="#20242e">plan 蓝图：这个任务打算怎么干</text>
+  <text x="144" y="166" font-size="13.5" fill="#5a6072">先出方案给你过目，评审通过才正式开工</text>
+  <rect x="220" y="188" width="320" height="56" rx="12" fill="#fff8e1" stroke="#f9a825" stroke-width="1.8"/>
+  <text x="380" y="212" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#20242e">todo 待办清单</text>
+  <text x="380" y="234" text-anchor="middle" font-size="13.5" fill="#b26a00">眼下这一步做什么，做完打勾</text>
+  <text x="380" y="312" text-anchor="middle" font-size="14.5" fill="#5a6072">三层"防跑偏"外存：越外圈，管得越长远</text>
+</svg>
