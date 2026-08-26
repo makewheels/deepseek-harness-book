@@ -1,26 +1,48 @@
-<svg viewBox="0 0 900 300" width="900" xmlns="http://www.w3.org/2000/svg" font-family="'Microsoft YaHei','PingFang SC',sans-serif">
-  <rect width="900" height="300" fill="#ffffff"/>
-  <text x="450" y="34" text-anchor="middle" font-size="17" font-weight="bold" fill="#20242e">官方 cookbook：五张菜谱</text>
-  <rect x="30" y="60" width="160" height="120" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
-  <text x="110" y="96" text-anchor="middle" font-size="15" font-weight="bold" fill="#20242e">加一个工具</text>
-  <text x="110" y="122" text-anchor="middle" font-size="13" fill="#5a6072">给模型多一双手</text>
-  <text x="110" y="142" text-anchor="middle" font-size="13" fill="#5a6072">adding-a-tool</text>
-  <rect x="210" y="60" width="160" height="120" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
-  <text x="290" y="96" text-anchor="middle" font-size="15" font-weight="bold" fill="#20242e">加模型适配器</text>
-  <text x="290" y="122" text-anchor="middle" font-size="13" fill="#5a6072">换一个大脑供应商</text>
-  <text x="290" y="142" text-anchor="middle" font-size="13" fill="#5a6072">adding-an-llm-adapter</text>
-  <rect x="390" y="60" width="160" height="120" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
-  <text x="470" y="96" text-anchor="middle" font-size="15" font-weight="bold" fill="#20242e">加设置卡片</text>
-  <text x="470" y="122" text-anchor="middle" font-size="13" fill="#5a6072">界面上多一格配置</text>
-  <text x="470" y="142" text-anchor="middle" font-size="13" fill="#5a6072">adding-a-settings-card</text>
-  <rect x="570" y="60" width="160" height="120" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
-  <text x="650" y="96" text-anchor="middle" font-size="15" font-weight="bold" fill="#20242e">加会话节点</text>
-  <text x="650" y="122" text-anchor="middle" font-size="13" fill="#5a6072">对话里多一种消息</text>
-  <text x="650" y="142" text-anchor="middle" font-size="13" fill="#5a6072">adding-a-conversation-node</text>
-  <rect x="750" y="60" width="120" height="120" rx="12" fill="#fff8e1" stroke="#f9a825" stroke-width="1.8"/>
-  <text x="810" y="96" text-anchor="middle" font-size="15" font-weight="bold" fill="#20242e">加整个包</text>
-  <text x="810" y="122" text-anchor="middle" font-size="13" fill="#b26a00">新零件进仓库</text>
-  <text x="810" y="142" text-anchor="middle" font-size="12.5" fill="#5a6072">adding-a-package</text>
-  <text x="450" y="222" text-anchor="middle" font-size="14.5" fill="#5a6072">都放在官方仓库 docs/cookbook/，中文齐全，照着做即可</text>
-  <text x="450" y="252" text-anchor="middle" font-size="14.5" fill="#5a6072">入门路线：先照 cordis 七课的第 1 课写 hello 插件，再挑一张菜谱</text>
+<svg viewBox="0 0 900 470" width="900" xmlns="http://www.w3.org/2000/svg" font-family="'Microsoft YaHei','PingFang SC',sans-serif">
+  <rect width="900" height="470" fill="#ffffff"/>
+  <text x="450" y="34" text-anchor="middle" font-size="17" font-weight="bold" fill="#20242e">官方 cookbook：九篇实操手册</text>
+
+  <text x="40" y="78" font-size="14.5" font-weight="bold" fill="#5c6bc0">给 harness 加能力</text>
+  <rect x="40" y="92" width="195" height="96" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
+  <text x="137" y="124" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#20242e">加一个工具</text>
+  <text x="137" y="148" text-anchor="middle" font-size="13.5" fill="#5a6072">给模型多一双手</text>
+  <text x="137" y="170" text-anchor="middle" font-size="13.5" fill="#5a6072">adding-a-tool</text>
+  <rect x="251" y="92" width="195" height="96" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
+  <text x="348" y="124" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#20242e">加设置卡片</text>
+  <text x="348" y="148" text-anchor="middle" font-size="13.5" fill="#5a6072">配置上设置页</text>
+  <text x="348" y="170" text-anchor="middle" font-size="13.5" fill="#5a6072">adding-a-settings-card</text>
+  <rect x="462" y="92" width="195" height="96" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
+  <text x="559" y="124" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#20242e">加模型适配器</text>
+  <text x="559" y="148" text-anchor="middle" font-size="13.5" fill="#5a6072">接入新模型提供方</text>
+  <text x="559" y="170" text-anchor="middle" font-size="13.5" fill="#5a6072">adding-an-llm-adapter</text>
+  <rect x="673" y="92" width="195" height="96" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
+  <text x="770" y="124" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#20242e">加会话节点</text>
+  <text x="770" y="148" text-anchor="middle" font-size="13.5" fill="#5a6072">聊天视图加业务消息</text>
+  <text x="770" y="170" text-anchor="middle" font-size="13.5" fill="#5a6072">adding-a-conversation-node</text>
+
+  <text x="40" y="226" font-size="14.5" font-weight="bold" fill="#5c6bc0">往仓库加包</text>
+  <rect x="40" y="240" width="195" height="96" rx="12" fill="#fff8e1" stroke="#f9a825" stroke-width="1.8"/>
+  <text x="137" y="272" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#20242e">加 workspace 包</text>
+  <text x="137" y="296" text-anchor="middle" font-size="13.5" fill="#b26a00">新零件进官方仓库</text>
+  <text x="137" y="318" text-anchor="middle" font-size="13.5" fill="#b26a00">adding-a-package</text>
+  <rect x="251" y="240" width="195" height="96" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
+  <text x="348" y="272" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#20242e">加 vendored 包</text>
+  <text x="348" y="296" text-anchor="middle" font-size="13.5" fill="#5a6072">上游包按源码引入</text>
+  <text x="348" y="318" text-anchor="middle" font-size="13.5" fill="#5a6072">adding-a-vendored-package</text>
+  <rect x="462" y="240" width="195" height="96" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
+  <text x="559" y="272" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#20242e">扩展形态参考</text>
+  <text x="559" y="296" text-anchor="middle" font-size="13.5" fill="#5a6072">工具/钩子等插件模式</text>
+  <text x="559" y="318" text-anchor="middle" font-size="13.5" fill="#5a6072">extension-cookbook</text>
+
+  <text x="40" y="374" font-size="14.5" font-weight="bold" fill="#5c6bc0">维护者工作流</text>
+  <rect x="40" y="388" width="300" height="66" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
+  <text x="190" y="416" text-anchor="middle" font-size="14" font-weight="bold" fill="#20242e">skill 周期维护</text>
+  <text x="190" y="438" text-anchor="middle" font-size="13.5" fill="#5a6072">maintaining-dsh-code-review</text>
+  <rect x="356" y="388" width="300" height="66" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
+  <text x="506" y="416" text-anchor="middle" font-size="14" font-weight="bold" fill="#20242e">堆叠 PR 评审应对</text>
+  <text x="506" y="438" text-anchor="middle" font-size="13.5" fill="#5a6072">responding-to-pr-review-on-a-stack</text>
+
+  <text x="700" y="296" font-size="14" fill="#5a6072">都在官方仓库</text>
+  <text x="700" y="320" font-size="14" fill="#5a6072">docs/cookbook/ 下，</text>
+  <text x="700" y="344" font-size="14" fill="#5a6072">中文齐全，照着做即可</text>
 </svg>

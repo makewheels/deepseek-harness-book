@@ -1,45 +1,42 @@
-<svg viewBox="0 0 940 470" width="940" xmlns="http://www.w3.org/2000/svg" font-family="'Microsoft YaHei','PingFang SC',sans-serif">
-  <rect width="940" height="470" fill="#ffffff"/>
-  <text x="470" y="36" text-anchor="middle" font-size="18" font-weight="bold" fill="#20242e">从 dsh 偷师的十件事</text>
-  <rect x="30" y="60" width="170" height="170" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
-  <text x="115" y="100" text-anchor="middle" font-size="15" font-weight="bold" fill="#20242e">一切皆插件</text>
-  <text x="115" y="130" text-anchor="middle" font-size="12.5" fill="#5a6072">没有特权内核</text>
-  <text x="115" y="150" text-anchor="middle" font-size="12.5" fill="#5a6072">连司机都能换</text>
-  <rect x="215" y="60" width="170" height="170" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
-  <text x="300" y="100" text-anchor="middle" font-size="15" font-weight="bold" fill="#20242e">只认接口</text>
-  <text x="300" y="130" text-anchor="middle" font-size="12.5" fill="#5a6072">seam 三角色</text>
-  <text x="300" y="150" text-anchor="middle" font-size="12.5" fill="#5a6072">换提供方无感</text>
-  <rect x="400" y="60" width="170" height="170" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
-  <text x="485" y="100" text-anchor="middle" font-size="15" font-weight="bold" fill="#20242e">一切都记账</text>
-  <text x="485" y="130" text-anchor="middle" font-size="12.5" fill="#5a6072">日志是唯一真源</text>
-  <text x="485" y="150" text-anchor="middle" font-size="12.5" fill="#5a6072">模型可见即已记录</text>
-  <rect x="585" y="60" width="170" height="170" rx="12" fill="#fff8e1" stroke="#f9a825" stroke-width="1.8"/>
-  <text x="670" y="100" text-anchor="middle" font-size="15" font-weight="bold" fill="#20242e">失败显形</text>
-  <text x="670" y="130" text-anchor="middle" font-size="12.5" fill="#b26a00">施工牌、partial</text>
-  <text x="670" y="150" text-anchor="middle" font-size="12.5" fill="#b26a00">不假装成功</text>
-  <rect x="770" y="60" width="140" height="170" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
-  <text x="840" y="100" text-anchor="middle" font-size="15" font-weight="bold" fill="#20242e">可逆性</text>
-  <text x="840" y="130" text-anchor="middle" font-size="12.5" fill="#5a6072">卸载即回滚</text>
-  <text x="840" y="150" text-anchor="middle" font-size="12.5" fill="#5a6072">边开边换胎</text>
-  <rect x="30" y="250" width="170" height="170" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
-  <text x="115" y="290" text-anchor="middle" font-size="15" font-weight="bold" fill="#20242e">保守默认</text>
-  <text x="115" y="320" text-anchor="middle" font-size="12.5" fill="#5a6072">没人回答审批</text>
-  <text x="115" y="340" text-anchor="middle" font-size="12.5" fill="#5a6072">就按拒绝处理</text>
-  <rect x="215" y="250" width="170" height="170" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
-  <text x="300" y="290" text-anchor="middle" font-size="15" font-weight="bold" fill="#20242e">欠债驱动</text>
-  <text x="300" y="320" text-anchor="middle" font-size="12.5" fill="#5a6072">turn/step 循环</text>
-  <text x="300" y="340" text-anchor="middle" font-size="12.5" fill="#5a6072">不欠了才收工</text>
-  <rect x="400" y="250" width="170" height="170" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
-  <text x="485" y="290" text-anchor="middle" font-size="15" font-weight="bold" fill="#20242e">三明治叠层</text>
-  <text x="485" y="320" text-anchor="middle" font-size="12.5" fill="#5a6072">bundle 加 patch</text>
-  <text x="485" y="340" text-anchor="middle" font-size="12.5" fill="#5a6072">后叠的说了算</text>
-  <rect x="585" y="250" width="170" height="170" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
-  <text x="670" y="290" text-anchor="middle" font-size="15" font-weight="bold" fill="#20242e">防跑偏外存</text>
-  <text x="670" y="320" text-anchor="middle" font-size="12.5" fill="#5a6072">todo / plan / goal</text>
-  <text x="670" y="340" text-anchor="middle" font-size="12.5" fill="#5a6072">目标写到模型外</text>
-  <rect x="770" y="250" width="140" height="170" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
-  <text x="840" y="290" text-anchor="middle" font-size="15" font-weight="bold" fill="#20242e">小桌工程</text>
-  <text x="840" y="320" text-anchor="middle" font-size="12.5" fill="#5a6072">spill 进仓库</text>
-  <text x="840" y="340" text-anchor="middle" font-size="12.5" fill="#5a6072">旧账压摘要</text>
-  <text x="470" y="452" text-anchor="middle" font-size="14" fill="#5a6072">这十条不只属于 dsh——它们是这一代 agent 产品的通用构造智慧</text>
+<svg viewBox="0 0 940 480" width="940" xmlns="http://www.w3.org/2000/svg" font-family="'Microsoft YaHei','PingFang SC',sans-serif">
+  <rect width="940" height="480" fill="#ffffff"/>
+  <text x="470" y="36" text-anchor="middle" font-size="18" font-weight="bold" fill="#20242e">从 dsh 偷师的六件事</text>
+
+  <rect x="30" y="60" width="280" height="160" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
+  <text x="170" y="100" text-anchor="middle" font-size="15" font-weight="bold" fill="#20242e">1. 守则先行</text>
+  <text x="170" y="132" text-anchor="middle" font-size="13.5" fill="#5a6072">AGENTS.md 一条条短规则</text>
+  <text x="170" y="156" text-anchor="middle" font-size="13.5" fill="#5a6072">自包含，各链归属</text>
+  <text x="170" y="184" text-anchor="middle" font-size="13.5" fill="#5c6bc0">先写一页，宁短勿全</text>
+
+  <rect x="330" y="60" width="280" height="160" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
+  <text x="470" y="100" text-anchor="middle" font-size="15" font-weight="bold" fill="#20242e">2. 每个变更带笔记</text>
+  <text x="470" y="132" text-anchor="middle" font-size="13.5" fill="#5a6072">七百多篇 Agent Note</text>
+  <text x="470" y="156" text-anchor="middle" font-size="13.5" fill="#5a6072">与变更同一个 PR</text>
+  <text x="470" y="184" text-anchor="middle" font-size="13.5" fill="#5c6bc0">四状态流转，归档即冻结</text>
+
+  <rect x="630" y="60" width="280" height="160" rx="12" fill="#fff8e1" stroke="#f9a825" stroke-width="1.8"/>
+  <text x="770" y="100" text-anchor="middle" font-size="15" font-weight="bold" fill="#20242e">3. 备选方案写下来</text>
+  <text x="770" y="132" text-anchor="middle" font-size="13.5" fill="#b26a00">"它击败了什么"是强制章节</text>
+  <text x="770" y="156" text-anchor="middle" font-size="13.5" fill="#b26a00">不记录 = 邀请反复争论</text>
+  <text x="770" y="184" text-anchor="middle" font-size="13.5" fill="#b26a00">否决的提案也留档</text>
+
+  <rect x="30" y="245" width="280" height="160" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
+  <text x="170" y="285" text-anchor="middle" font-size="15" font-weight="bold" fill="#20242e">4. 机器管机械</text>
+  <text x="170" y="317" text-anchor="middle" font-size="13.5" fill="#5a6072">29 个 verify-* 门禁脚本</text>
+  <text x="170" y="341" text-anchor="middle" font-size="13.5" fill="#5a6072">本地快检查，全矩阵归 CI</text>
+  <text x="170" y="369" text-anchor="middle" font-size="13.5" fill="#5c6bc0">语义留给人评审</text>
+
+  <rect x="330" y="245" width="280" height="160" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
+  <text x="470" y="285" text-anchor="middle" font-size="15" font-weight="bold" fill="#20242e">5. 一个事实一个家</text>
+  <text x="470" y="317" text-anchor="middle" font-size="13.5" fill="#5a6072">术语表：一义一词</text>
+  <text x="470" y="341" text-anchor="middle" font-size="13.5" fill="#5a6072">文档分层，字数有预算</text>
+  <text x="470" y="369" text-anchor="middle" font-size="13.5" fill="#5c6bc0">别处只放链接</text>
+
+  <rect x="630" y="245" width="280" height="160" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
+  <text x="770" y="285" text-anchor="middle" font-size="15" font-weight="bold" fill="#20242e">6. 不变量可执行</text>
+  <text x="770" y="317" text-anchor="middle" font-size="13.5" fill="#5a6072">227 个 invariant.ts</text>
+  <text x="770" y="341" text-anchor="middle" font-size="13.5" fill="#5a6072">模型可见即已记录</text>
+  <text x="770" y="369" text-anchor="middle" font-size="13.5" fill="#5c6bc0">口头承诺变报错检查</text>
+
+  <text x="470" y="452" text-anchor="middle" font-size="14" fill="#5a6072">每一条都挂在仓库里看得见的证据上</text>
 </svg>

@@ -1,22 +1,27 @@
-<svg viewBox="0 0 800 300" width="800" xmlns="http://www.w3.org/2000/svg" font-family="'Microsoft YaHei','PingFang SC',sans-serif">
+<svg viewBox="0 0 860 400" width="860" xmlns="http://www.w3.org/2000/svg" font-family="'Microsoft YaHei','PingFang SC',sans-serif">
   <defs>
     <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="#5c6bc0"/>
     </marker>
   </defs>
-  <rect width="800" height="300" fill="#ffffff"/>
-  <rect x="40" y="24" width="400" height="240" rx="14" fill="#fafbff" stroke="#9aa4d6" stroke-width="1.6" stroke-dasharray="7 5"/>
-  <text x="240" y="52" text-anchor="middle" font-size="15" font-weight="bold" fill="#5a6072">web profile（官方配方）</text>
-  <rect x="75" y="72" width="330" height="72" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
-  <text x="240" y="102" text-anchor="middle" font-size="16" font-weight="bold" fill="#20242e">dsh-web-app</text>
-  <text x="240" y="128" text-anchor="middle" font-size="14" fill="#5a6072">网页界面包</text>
-  <line x1="240" y1="184" x2="240" y2="152" stroke="#5c6bc0" stroke-width="1.8" marker-end="url(#arw)"/>
-  <text x="256" y="172" font-size="13" fill="#5a6072">叠加在…之上</text>
-  <rect x="75" y="184" width="330" height="72" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
-  <text x="240" y="212" text-anchor="middle" font-size="16" font-weight="bold" fill="#20242e">dsh-base</text>
-  <text x="240" y="238" text-anchor="middle" font-size="14" fill="#5a6072">基础零件包：模型适配 · 工具 · 沙箱 · 审批</text>
-  <line x1="444" y1="150" x2="536" y2="150" stroke="#5c6bc0" stroke-width="1.8" marker-end="url(#arw)"/>
-  <rect x="540" y="114" width="230" height="72" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
-  <text x="655" y="144" text-anchor="middle" font-size="16" font-weight="bold" fill="#20242e">跑起来的 dsh web</text>
-  <text x="655" y="170" text-anchor="middle" font-size="14" fill="#5a6072">http://127.0.0.1:3080</text>
+  <rect width="860" height="400" fill="#ffffff"/>
+  <rect x="40" y="22" width="470" height="352" rx="14" fill="#fafbff" stroke="#9aa4d6" stroke-width="1.6" stroke-dasharray="7 5"/>
+  <text x="275" y="50" text-anchor="middle" font-size="15" font-weight="bold" fill="#5a6072">web profile 的配置树（自下而上叠加，后盖先）</text>
+  <rect x="85" y="296" width="380" height="60" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
+  <text x="275" y="322" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#20242e">dsh-base（每个 profile 的第一层）</text>
+  <text x="275" y="344" text-anchor="middle" font-size="13.5" fill="#5a6072">模型适配 · 工具 · 持久化 · 沙箱与审批 · 凭据</text>
+  <rect x="85" y="222" width="380" height="60" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
+  <text x="275" y="248" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#20242e">dsh-web-app</text>
+  <text x="275" y="270" text-anchor="middle" font-size="13.5" fill="#5a6072">浏览器应用：网页界面的那一半</text>
+  <rect x="85" y="148" width="380" height="60" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
+  <text x="275" y="174" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#20242e">profile 自己的 cordis.patch.yml</text>
+  <text x="275" y="196" text-anchor="middle" font-size="13.5" fill="#5a6072">你在这个 profile 里的改装</text>
+  <rect x="85" y="74" width="380" height="60" rx="12" fill="#fff8e1" stroke="#f9a825" stroke-width="1.8"/>
+  <text x="275" y="100" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#20242e">home 级 patch 与 --patch 覆盖层</text>
+  <text x="275" y="122" text-anchor="middle" font-size="13.5" fill="#b26a00">最后叠加，优先级最高</text>
+  <line x1="514" y1="200" x2="586" y2="200" stroke="#5c6bc0" stroke-width="1.8" marker-end="url(#arw)"/>
+  <text x="550" y="188" text-anchor="middle" font-size="13" fill="#5a6072">组装</text>
+  <rect x="590" y="160" width="240" height="80" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
+  <text x="710" y="192" text-anchor="middle" font-size="16" font-weight="bold" fill="#20242e">跑起来的 dsh web</text>
+  <text x="710" y="218" text-anchor="middle" font-size="13.5" fill="#5a6072">http://127.0.0.1:3080</text>
 </svg>
