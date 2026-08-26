@@ -1,0 +1,35 @@
+<svg viewBox="0 0 900 400" width="900" xmlns="http://www.w3.org/2000/svg" font-family="'Microsoft YaHei','PingFang SC',sans-serif">
+  <defs>
+    <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5c6bc0"/>
+    </marker>
+  </defs>
+  <rect width="900" height="400" fill="#ffffff"/>
+  <text x="450" y="34" text-anchor="middle" font-size="17" font-weight="bold" fill="#20242e">skill 的两步走：先给目录，按需装正文</text>
+
+  <rect x="40" y="70" width="360" height="240" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="2"/>
+  <text x="220" y="102" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#20242e">第 1 步｜目录（常驻）</text>
+  <text x="220" y="134" text-anchor="middle" font-size="13.5" fill="#5a6072">模型看到的只有清单：</text>
+  <rect x="70" y="150" width="300" height="34" rx="12" fill="#ffffff" stroke="#5c6bc0" stroke-width="1.4"/>
+  <text x="220" y="172" text-anchor="middle" font-size="13.5" fill="#20242e">pdf — 如何处理 PDF 文件</text>
+  <rect x="70" y="194" width="300" height="34" rx="12" fill="#ffffff" stroke="#5c6bc0" stroke-width="1.4"/>
+  <text x="220" y="216" text-anchor="middle" font-size="13.5" fill="#20242e">code-review — 评审代码的规矩</text>
+  <rect x="70" y="238" width="300" height="34" rx="12" fill="#ffffff" stroke="#5c6bc0" stroke-width="1.4"/>
+  <text x="220" y="260" text-anchor="middle" font-size="13.5" fill="#20242e">…… 只有名字 + 一句话</text>
+  <text x="220" y="296" text-anchor="middle" font-size="13.5" fill="#b26a00">正文不进上下文，不占书桌</text>
+
+  <rect x="500" y="70" width="360" height="240" rx="12" fill="#fff8e1" stroke="#f9a825" stroke-width="2"/>
+  <text x="680" y="102" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#20242e">第 2 步｜加载（按需）</text>
+  <text x="680" y="134" text-anchor="middle" font-size="13.5" fill="#5a6072">干到那份活，模型才调用 skill 工具：</text>
+  <rect x="530" y="150" width="300" height="34" rx="12" fill="#ffffff" stroke="#f9a825" stroke-width="1.4"/>
+  <text x="680" y="172" text-anchor="middle" font-size="13.5" fill="#20242e">skill({ name: "pdf" })</text>
+  <text x="680" y="212" text-anchor="middle" font-size="13.5" fill="#5a6072">↓ 注册表找回胜出的那份</text>
+  <rect x="530" y="228" width="300" height="34" rx="12" fill="#ffffff" stroke="#f9a825" stroke-width="1.4"/>
+  <text x="680" y="250" text-anchor="middle" font-size="13.5" fill="#20242e">完整正文进入上下文</text>
+  <text x="680" y="296" text-anchor="middle" font-size="13.5" fill="#b26a00">一次只装一捆，用完不欠账</text>
+
+  <line x1="404" y1="190" x2="496" y2="190" stroke="#5c6bc0" stroke-width="2" marker-end="url(#arw)"/>
+  <text x="450" y="176" text-anchor="middle" font-size="13.5" fill="#5a6072">需要时</text>
+
+  <text x="450" y="352" text-anchor="middle" font-size="14" fill="#5a6072">目录在每次模型步骤前按需刷新；目录有变才补发新清单，正文永远按需进场</text>
+</svg>

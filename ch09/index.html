@@ -718,6 +718,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#capability-seam" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        能力的接口：capability seam 的三角色
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -740,10 +751,21 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#landlock-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        landlock-run：先限制自己，再执行
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        诚实的"部分设防"
+        先选地盘：边界跟着调用走
       
     </span>
   </a>
@@ -754,7 +776,7 @@
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        每次调用一张边界条
+        审批预设与"模型反问"
       
     </span>
   </a>
@@ -1030,6 +1052,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#capability-seam" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        能力的接口：capability seam 的三角色
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1052,10 +1085,21 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#landlock-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        landlock-run：先限制自己，再执行
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        诚实的"部分设防"
+        先选地盘：边界跟着调用走
       
     </span>
   </a>
@@ -1066,7 +1110,7 @@
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        每次调用一张边界条
+        审批预设与"模型反问"
       
     </span>
   </a>
@@ -1135,9 +1179,11 @@
 
 
 <h1 id="9">第9章 安全的手脚<a class="headerlink" href="#9" title="Permanent link">&para;</a></h1>
+<p>你让 agent "清理一下构建缓存"，它痛快地写出一条删除目录的命令。</p>
+<p>你盯着这条命令看了三秒：路径写对了还好，万一错一个字符，删掉工作区之外的东西怎么办？手是最危险的器官——<strong>能改文件的那一刻，它就有了闯祸的能力</strong>。问题从来不是"要不要给手"，而是"怎么给它画圈"。</p>
 <blockquote>
 <p><strong>阅读提示</strong>
-手是最危险的器官——能改文件的那一刻，就有了闯祸的能力。这一章看 dsh 怎么给手脚上规矩：四只手是哪些、沙箱三档怎么分、每台电脑的锁法为什么不一样。</p>
+这一章看 dsh 给手脚立的规矩：四只手各是谁、能力接口的三种角色、沙箱三档、每台电脑不同的锁、"先选地盘"的设计哲学，以及审批和"模型反问"怎么收尾。</p>
 </blockquote>
 <h2 id="_1">四只手<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>先认全 dsh 的四只手（表9-1）：</p>
@@ -1147,125 +1193,294 @@
 <tr>
 <th>零件</th>
 <th>干什么</th>
-<th>类比</th>
+<th>一个安全细节</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>fs</td>
-<td>读写文件、找文件</td>
-<td>翻抽屉</td>
+<td><a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/fs/README.zh.md">fs</a></td>
+<td>读、写、编辑文件，glob/grep 检索</td>
+<td>文件读写不设超时——截止时限只会杀掉操作系统仍会完成的工作</td>
 </tr>
 <tr>
-<td>shell / subprocess</td>
-<td>执行命令（受管进程组）</td>
-<td>干活的手</td>
+<td><a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/shell/README.zh.md">shell + subprocess</a></td>
+<td>执行命令、管理后台进程</td>
+<td>每次调用都是全新的 <code>bash -c</code>，不保留任何 shell 状态</td>
 </tr>
 <tr>
-<td>terminal</td>
-<td>持久终端会话</td>
-<td>一直开着的工位</td>
+<td><a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/terminal/README.zh.md">terminal</a></td>
+<td>持久终端会话（伪终端）</td>
+<td>每项操作都要求"恰好是发起它的那个 agent"，别的 agent 碰不了</td>
 </tr>
 <tr>
-<td>code-runtime</td>
-<td>跑代码片段</td>
-<td>随手做实验</td>
+<td><a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/code-runtime/README.zh.md">code-runtime</a></td>
+<td>跑模型写的小程序，捕获它打印和返回的内容</td>
+<td>运行时可替换，消费方不动</td>
 </tr>
 </tbody>
 </table>
-<p>每一只手都受两套规矩管：<strong>第 6 章的审批</strong>管"干之前问不问你"，本章的<strong>沙箱</strong>管"就算许了干，能碰到多大范围"。双保险。</p>
+<p>每一只手都受两套规矩管：<strong>审批</strong>（第 6 章的关卡①）管"干之前问不问你"，本章的<strong>沙箱</strong>管"就算许了干，能碰到多大范围"。双保险。</p>
+<p>还有个共同的底座细节：命令执行前，环境先"洗澡"。<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/subprocess/README.zh.md">子进程基底</a> 会把形似凭据的环境变量（名字含 KEY、PASSWORD、SECRET、TOKEN 的）一律抹掉，再交给命令——密钥不能顺着环境漏进 shell。</p>
+<h2 id="capability-seam">能力的接口：capability seam 的三角色<a class="headerlink" href="#capability-seam" title="Permanent link">&para;</a></h2>
+<p>dsh 把每一项可替换的能力都拆成三种角色，官方叫它 <strong>seam</strong>（接缝）。第 3 章提过"只认接口、不认实现"，这里看它的标准件——用 shell 组当样板（表9-2）：</p>
+<p><strong>表9-2 shell 组的三个角色</strong></p>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>包</th>
+<th>干什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Service Definition</td>
+<td><a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/shell/shell/README.zh.md"><code>dsh-shell</code></a></td>
+<td>定义"执行器该做什么"：前台跑命令、后台起进程；不规定怎么做</td>
+</tr>
+<tr>
+<td>Service Provider（本地）</td>
+<td><a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/shell/bash-local/README.zh.md"><code>dsh-bash-local</code></a></td>
+<td>在本机起受管子进程执行</td>
+</tr>
+<tr>
+<td>Service Provider（沙箱）</td>
+<td><a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/shell/bash-sandbox/README.zh.md"><code>dsh-bash-sandbox</code></a></td>
+<td>沿用本地机制，但每次执行前先过沙箱限制</td>
+</tr>
+<tr>
+<td>Consumer</td>
+<td><code>dsh-tool-bash</code></td>
+<td>面向模型的 bash 工具，只认接口，不认识任何提供方</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="capability seam 的三角色" src="../images/fig9-2-seam-roles.svg" /></p>
+<p><strong>图9-2 用 shell 组看 seam 三角色</strong></p>
+<p>三角色的纪律：</p>
+<ul>
+<li><strong>定义不依赖实现。</strong> <code>dsh-shell</code> 只描述词汇和约定，绝不 import 任何后端；</li>
+<li><strong>消费方不认识提供方。</strong> <code>dsh-tool-bash</code> 只调用接口 <code>ctx.shell</code>；它探测到执行器声明了"我走沙箱"这项能力时，才向模型公布升权字段——工具不关心笼子是本地沙箱还是别的什么；</li>
+<li><strong>加一种实现，就是多一个提供方。</strong> <a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/architecture.zh.md">架构文档</a>的原话是：添加一项能力，意味着把三个角色一并设计。</li>
+</ul>
+<p>拆分的红利在哪？<strong>换一个提供方，消费方一行不改</strong>。想给所有命令上沙箱？把组合里的 <code>dsh-bash-local</code> 换成 <code>dsh-bash-sandbox</code> 就行——模型用的还是同一个 <code>bash</code> 工具，连工具说明都会自动带上沙箱升权的指引。</p>
 <h2 id="_2">沙箱三档<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>沙箱管的是<strong>文件系统</strong>上的手脚范围，分三档（图9-1）：</p>
+<p>沙箱管的是<strong>文件系统</strong>上的手脚范围，词汇只有三个词（图9-1）：</p>
 <p><img alt="沙箱三档" src="../images/fig9-1-sandbox-modes.svg" /></p>
 <p><strong>图9-1 沙箱三档，越靠内越严</strong></p>
-<p><strong>表9-2 三档对照</strong></p>
+<p><strong>表9-3 三档对照</strong></p>
 <table>
 <thead>
 <tr>
 <th>档位</th>
 <th>能干什么</th>
+<th>备注</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>read-only</td>
+<td><code>read-only</code></td>
 <td>全看得见，一个字改不了</td>
+<td>默认档；<code>/dev</code> 里只放行 <code>/dev/null</code>，所以 <code>&gt;/dev/null</code> 还能用</td>
 </tr>
 <tr>
-<td>workspace-write</td>
-<td>只能写你选中的工作区 + 一个临时区域</td>
+<td><code>workspace-write</code></td>
+<td>只能写工作区 + 一个平台临时区域</td>
+<td>出了圈就拦</td>
 </tr>
 <tr>
-<td>danger-full-access</td>
-<td>不设防——注意：这档<strong>不经过沙箱</strong>，直接按原样执行</td>
+<td><code>danger-full-access</code></td>
+<td>不设防</td>
+<td>这档<strong>从不咨询沙箱提供方</strong>，命令按原样执行</td>
 </tr>
 </tbody>
 </table>
-<p>第三档的名字本身就是警告：<code>danger-</code> 开头。它不是"更宽的沙箱"，而是"没有沙箱"。</p>
-<p>还有一个边界要说清：沙箱只管文件。<strong>网络和进程可见性不在这套词汇里</strong>——别指望它拦网络请求。</p>
+<p>三个词要读准：</p>
+<ul>
+<li><strong>默认是只读。</strong> 部署不填，就是 <code>read-only</code>——故障安全的方向是"更严"，不是"更松"。</li>
+<li><strong>第三档不是"更宽的沙箱"，而是"没有沙箱"。</strong> 名字以 <code>danger-</code> 开头，本身就是警告。</li>
+<li><strong>词汇只覆盖文件操作。</strong> 网络不在其中，进程可见性也不承诺——别指望这套词汇拦网络请求，那需要别的机制（见文末思考题）。</li>
+</ul>
 <h2 id="_3">每台电脑，锁法不同<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>同一个"三档"概念，落到不同操作系统，用的是各家自己的锁（表9-3）：</p>
-<p><strong>表9-3 四种平台的沙箱实现</strong></p>
+<p>同一个"三档"概念，落到不同操作系统，用的是各家自己的锁（表9-4）：</p>
+<p><strong>表9-4 四种平台的沙箱实现</strong></p>
 <table>
 <thead>
 <tr>
 <th>平台</th>
 <th>用的锁</th>
+<th>怎么锁</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Linux</td>
-<td>bwrap / Landlock</td>
+<td>Linux（首选）</td>
+<td>bwrap</td>
+<td>只读挂载宿主根目录、全新 <code>/dev</code>、私有 PID 命名空间；写档另加临时 <code>/tmp</code> 和工作区绑定挂载</td>
+</tr>
+<tr>
+<td>Linux（备选）</td>
+<td>Landlock</td>
+<td>用自带的 <code>landlock-run</code> 启动器，下一节细讲</td>
 </tr>
 <tr>
 <td>macOS</td>
 <td>Seatbelt</td>
+<td>默认放行、写操作白名单；只读档只放行 <code>/dev/null</code>，写档加工作区、<code>/tmp</code> 和每用户临时区</td>
 </tr>
 <tr>
 <td>Windows</td>
 <td>ACL 受限令牌</td>
+<td>每个工作区一个写入标识；会话私有临时目录另发一套可撤销的授权</td>
 </tr>
 </tbody>
 </table>
-<h2 id="_4">诚实的"部分设防"<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<p>有个细节很见品格。沙箱后端要自我报告设防的完整度，只有两种答案：</p>
-<ul>
-<li><strong>full</strong>：这档承诺的每一条，我都管住了</li>
-<li><strong>partial</strong>：我只能管住其中一部分</li>
-</ul>
-<p>比如 Windows 的 ACL 方案，因为系统本身的 Everyone 权限和硬链接边界，做不到滴水不漏——dsh <strong>不假装完美</strong>，如实报告 partial。需要绝对边界的场景，看到这个标记就该自己想办法（比如换容器），而不是被"已沙箱"三个字安慰。</p>
-<h2 id="_5">每次调用一张边界条<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<p>沙箱策略不是全局开关，而是<strong>每次调用单独解析</strong>：每条命令带着自己那张边界条上场。</p>
-<p>所以同一时刻，不同会话可以跑在不同档位上；同一次被拒后的"批准重试"，也是一张新的、更宽的边界条。边界跟着调用走，不跟着进程走。</p>
+<p>两条铁律贯穿所有平台（由 <a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/sandbox/sandbox-local/README.zh.md">本地后端</a> 执行）：</p>
+<p><strong>失败关闭。</strong> 探测不到任何可用后端时，命令<strong>拒绝执行</strong>，错误信息直接告诉你该修什么——装 bubblewrap、换支持 Landlock 的内核、修 <code>sandbox-exec</code>，或者干脆显式改用 <code>danger-full-access</code>。绝不静默地"那就别关笼子了"。</p>
+<p><strong>诚实报告。</strong> 每个后端要自报设防的完整度，只有两种答案：<code>full</code>（承诺的每一条都管住了）或 <code>partial</code>（只管住一部分）。比如 Windows 的受限令牌为了完成进程初始化必须保留 Everyone 权限，外部授予 Everyone 写的对象仍可写，NTFS 硬链接还能让工作区内外指向同一个文件对象——dsh 不假装完美，如实报告 <code>partial</code>。需要绝对边界的场景，看到这个标记就该换更重的隔离，而不是被"已沙箱"三个字安慰。</p>
+<h2 id="landlock-run">landlock-run：先限制自己，再执行<a class="headerlink" href="#landlock-run" title="Permanent link">&para;</a></h2>
+<p>Linux 备选档用的启动器值得单独看一眼。它放在仓库的 <a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/native/landlock-run/README.zh.md">native/ 目录</a>——dsh 仅有的平台原生组件。</p>
+<p><code>landlock-run</code> 是一个"先限制自身、再执行"的小程序：约 300 行 C11，静态链接，直接对着内核接口写。工作方式三个关键词（表9-5）：</p>
+<p><strong>表9-5 landlock-run 的三个关键词</strong></p>
+<table>
+<thead>
+<tr>
+<th>关键词</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>先限制，后执行</td>
+<td>先给自己装上文件系统允许清单（哪些路径只读、哪些可读写），再执行被包装的命令</td>
+</tr>
+<tr>
+<td>规则继承</td>
+<td>规则集跨执行继承——命令及其派生的<strong>每一个</strong>进程都在限制下运行</td>
+</tr>
+<tr>
+<td>失败关闭</td>
+<td>内核管不住，就不运行命令直接退出</td>
+</tr>
+</tbody>
+</table>
+<p>妙处还有一句：<strong>笼子只关命令，不关狱卒</strong>——发起调用的 dsh 自己不受限制。</p>
+<p>它的边界也很诚实：要求内核 5.13 以上，内核能力的新旧决定自报 <code>full</code> 还是 <code>partial</code>；探测还有第三档 <code>unusable</code>。二进制按架构预发布（x64/arm64），装不上就是装不上，不提供现场编译的侥幸。</p>
+<p>它还定了一条诊断约定：<strong>退出码 125 加一行特定致命诊断</strong>，才归因为"启动器自己坏了"；否则一律按命令自己的结果处理。沙箱的问题和命令的问题，必须分得清。</p>
+<h2 id="_4">先选地盘：边界跟着调用走<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>还记得第 2 章的"先选车库"吗？不选工作区，输入框就是灰的。那不是界面矫情，是本章这套规矩的地基。</p>
+<p>dsh 给沙箱政策设了唯一的归属位置（<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/sandbox/sandbox-policy/README.zh.md">sandbox-policy</a>），设计分三层（表9-6）：</p>
+<p><strong>表9-6 先选地盘，三条设计</strong></p>
+<table>
+<thead>
+<tr>
+<th>设计</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>地盘一次选定</td>
+<td>会话创建时记下的工作区根目录<strong>不可变</strong>；这个会话每次调用的可写范围都以它为锚</td>
+</tr>
+<tr>
+<td>换档必留痕</td>
+<td>运行时切换档位 = 往会话日志追加一条事件；重启后回放，档位原样恢复；两个会话各记各的账</td>
+</tr>
+<tr>
+<td>边界跟着调用走</td>
+<td>每次调用单独解析一张完整边界条：<strong>显式批准 &gt; 会话最后一次切换 &gt; 部署默认</strong></td>
+</tr>
+</tbody>
+</table>
+<p>第三条最要紧。同一时刻，不同会话可以跑在不同档位上；一次被拒后的"批准重试"，也只是换一张更宽的边界条重新调用——<strong>已批准的升权不改变任何进程状态，只改变这一次调用的政策</strong>。</p>
+<p>模型也不被蒙在鼓里：每次请求前，当前政策（什么档、工作区在哪）会作为上下文告诉它。它拿到的是"此刻的规矩"，而不是一份能力清单让它自己琢磨。</p>
+<h2 id="_5">审批预设与"模型反问"<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>手脚的最后一道规矩在人这边（表9-7）：</p>
+<p><strong>表9-7 人机协作三件</strong></p>
+<table>
+<thead>
+<tr>
+<th>零件</th>
+<th>干什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/interaction/permission-presets/README.zh.md">权限预设</a></td>
+<td>把"沙箱档位"和"审批策略"打包成一组，界面上是一个选择器</td>
+</tr>
+<tr>
+<td><a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/interaction/user-approval/README.zh.md">审批</a></td>
+<td>一次性授权：批一次，只管这一次</td>
+</tr>
+<tr>
+<td><a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/interaction/tool-ask-user/README.zh.md">模型反问</a></td>
+<td>模型缺信息时，带着选项来问你</td>
+</tr>
+</tbody>
+</table>
+<p><strong>权限预设</strong>出厂两组：<code>workspace-write</code> 配"要审批"，<code>danger-full-access</code> 配"从不审批"——档位和问不问捆在一起选，省得配出自相矛盾的组合。预设在<strong>会话创建时固定</strong>：之后你再改默认值，也影响不到已经开着的会话。</p>
+<p><strong>审批</strong>的词汇只有两个词：<code>ask</code> 或 <code>never</code>。批就是<strong>一次</strong>——没有"永远允许"，没有记住规则；<code>never</code> 档下需要审批的操作直接拒绝。而最重要的保守纪律第 6 章讲过了：<strong>没人能回答时，按拒绝处理</strong>。</p>
+<p><strong>模型反问</strong>（<code>ask_user_question</code> 工具）是这套规矩的柔性一面：模型拿不准时，可以带着问题和选项来问——每个选项带说明，推荐项标注后放第一位，还能多选。你答完，答案原样回到循环。注意边界：<strong>被委派出去干活的子代理不能代主人向你提问</strong>——问题必须由和你直接对话的那个 agent 发出。</p>
 <h2 id="_6">更大的笼子：把整只手伸到别处<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
-<p>沙箱 seam（接口）还有兄弟实现：<strong>容器、微型虚拟机、远程执行</strong>。</p>
-<p>妙处在哪？文件系统和进程这两只手共享同一个"执行世界"——把这个世界的坐标指向远程沙箱，bash、终端、LSP 会<strong>一起搬过去</strong>，不用为每种手单独改造。第 4 章"只认接口、不认实现"的红利，这里兑现了。</p>
+<p>沙箱接口有个明确的边界声明：<strong>只管与宿主共享文件系统和内核的子进程</strong>。想要更强的隔离——容器、微型虚拟机、远程执行——怎么办？</p>
+<p>官方的回答很 dsh：它们<strong>不是这个接口的另一个后端</strong>，而是整组替换（表9-8）。</p>
+<p><strong>表9-8 两种隔离路径</strong></p>
+<table>
+<thead>
+<tr>
+<th>路径</th>
+<th>做法</th>
+<th>隔离到什么程度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>沙箱后端</td>
+<td>在现有接口内选一个平台锁</td>
+<td>子进程与宿主共享内核和文件系统，只圈住文件操作</td>
+</tr>
+<tr>
+<td>整组替换</td>
+<td>把命令执行与文件系统两个能力的提供方，换成同一套指向远端的实现</td>
+<td>整个执行世界搬到别处</td>
+</tr>
+</tbody>
+</table>
+<p>妙处在"执行世界"这个词：文件系统和进程提供方共享同一个执行世界。把这个世界的坐标指向远端，bash、终端、语言服务会<strong>一起搬过去</strong>，不用为每只手单独改造。第 4 章"只认接口、不认实现"的红利，在这里兑现了。</p>
 <h2 id="_7">🧪 本章实验<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <blockquote>
 <p><strong>实验 9-1 ★｜撞一次墙</strong>
 目标：亲眼看到沙箱拦截。
-步骤：工作区外放一个空文件夹，让 agent 往里面写个文件（注意挑无害的内容）。
-验收：写入被拦下或要求升级审批；agent 会解释原因。</p>
+步骤：工作区外放一个空文件夹，让 agent 往里面写个文件（挑无害的内容）。
+验收：写入被拦下，工具结果里出现"当前模式下文件访问被拒"一类的标记，或先弹出审批；agent 会解释原因，而不是硬闯。</p>
 <p><strong>实验 9-2 ★★｜查你的档位</strong>
 目标：弄清当前会话跑在哪一档。
-步骤：翻设置里的权限/沙箱配置，或让 agent 自报它现在的文件系统边界。
-验收：你能说出当前是 read-only 还是 workspace-write，以及工作区根在哪。</p>
+步骤：直接问 agent"你现在的文件政策是什么、工作区根在哪"，或查权限设置。
+验收：它能说出当前档位（默认 <code>read-only</code>）和工作区根路径——这些是每次请求前就摆在它桌上的上下文。</p>
+<p><strong>实验 9-3 ★★｜让模型反问你</strong>
+目标：触发一次 <code>ask_user_question</code>。
+步骤：给一个故意二选一的任务（比如"用方案 A 或 B 整理这个目录"，不说明选哪个）。
+验收：弹出带选项的提问；你选择后，它按所选执行。</p>
 </blockquote>
 <h2 id="_8">🤔 思考题<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
 <ol>
-<li>★ 为什么"danger-full-access 不经过沙箱"比"沙箱放宽到最大"是更诚实的设计？</li>
-<li>★ 沙箱后端自报 partial 而不假装 full——这对用户的信任意味着什么？</li>
-<li>★★ 把执行世界指向远程沙箱，"手"就安全了吗？还有什么会跟着过去？</li>
+<li>★ 为什么"danger-full-access 从不咨询沙箱提供方"比"把沙箱放宽到最大"是更诚实的设计？</li>
+<li>★ 沙箱后端自报 <code>partial</code> 而不假装 <code>full</code>——这对用户的信任意味着什么？</li>
+<li>★★ 沙箱词汇只管文件操作。真要拦网络请求，你会把它加在哪一层？（提示：想想 seam 的三角色）</li>
+<li>★★ 为什么"已批准的升权"要做成"拿更宽的边界条重新调用一次"，而不是给当前进程松绑？</li>
+<li>★★★ 把执行世界指向远程沙箱，"手"就安全了吗？还有什么会跟着过去？</li>
 </ol>
 <h2 id="_9">📝 小结<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>四只手</strong>——fs、shell/subprocess、terminal、code-runtime</li>
-<li><strong>双保险</strong>——审批管"问不问"，沙箱管"碰多大"</li>
-<li><strong>三档</strong>——read-only / workspace-write / danger-full-access（第三档 = 没有沙箱）</li>
-<li><strong>沙箱只管文件</strong>，网络和进程可见性不在词汇内</li>
-<li><strong>诚实报告</strong>——full 或 partial，不假装完美</li>
-<li><strong>每次调用一张边界条</strong>；更大的笼子是容器/远程执行，接口同款</li>
+<li><strong>四只手</strong>——fs、shell/subprocess、terminal、code-runtime；环境先洗澡，凭据不下传</li>
+<li><strong>capability seam 三角色</strong>——定义立约、提供方实现、消费方只认接口；shell 组是样板，换提供方不动消费方</li>
+<li><strong>三档</strong>——read-only（默认）/ workspace-write / danger-full-access；第三档 = 没有沙箱；词汇只管文件</li>
+<li><strong>每台电脑一把锁</strong>——Linux bwrap/Landlock、macOS Seatbelt、Windows 受限令牌；失败关闭，诚实自报 full/partial</li>
+<li><strong>landlock-run</strong>——先限制自己再执行，规则跨执行继承；笼子只关命令，不关狱卒</li>
+<li><strong>先选地盘</strong>——工作区根不可变；换档必留痕；边界跟着调用走，不跟着进程走</li>
+<li><strong>人这边</strong>——预设捆住档位与审批；授权只有一次；没人回答 = 拒绝；模型可以带着选项反问</li>
 </ul>
 <p>下一章，看 agent 怎么把手伸出电脑，连接外部世界。➡️ <a href="../ch10/">第10章 连接外部世界</a></p>
 

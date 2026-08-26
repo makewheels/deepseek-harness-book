@@ -583,7 +583,7 @@
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        递话的三种姿势
+        重启了，还能接着跑
       
     </span>
   </a>
@@ -594,7 +594,7 @@
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🧪 本章实验
+        递话的三种姿势
       
     </span>
   </a>
@@ -605,7 +605,7 @@
   <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🤔 思考题
+        🧪 本章实验
       
     </span>
   </a>
@@ -614,6 +614,17 @@
       
         <li class="md-nav__item">
   <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🤔 思考题
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
         📝 小结
@@ -1055,7 +1066,7 @@
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        递话的三种姿势
+        重启了，还能接着跑
       
     </span>
   </a>
@@ -1066,7 +1077,7 @@
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🧪 本章实验
+        递话的三种姿势
       
     </span>
   </a>
@@ -1077,7 +1088,7 @@
   <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🤔 思考题
+        🧪 本章实验
       
     </span>
   </a>
@@ -1086,6 +1097,17 @@
       
         <li class="md-nav__item">
   <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🤔 思考题
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
         📝 小结
@@ -1115,34 +1137,113 @@
 <h1 id="5">第5章 一次对话的完整旅程<a class="headerlink" href="#5" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>阅读提示</strong>
-第 2 章你看到了 agent 给出的答案。这一章打开黑盒：从你按下回车，到答案出现，dsh 内部到底发生了什么。两个新词：<strong>轮次</strong>和<strong>步骤</strong>。</p>
+第 2 章你看到了 agent 给出的答案。这一章打开黑盒：从你按下回车到答案出现，dsh 内部到底发生了什么。两个新词：<strong>轮次</strong>和<strong>步骤</strong>；一条铁律：<strong>模型可见即已记录</strong>。</p>
 </blockquote>
 <h2 id="_1">轮次和步骤：一次对话的度量衡<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>先定义两个词，全书通用：</p>
-<ul>
-<li><strong>步骤（step）</strong>：一次模型请求，加上这次请求里它调用的工具</li>
-<li><strong>轮次（turn）</strong>：零个或多个步骤的集合。领到第一条输入时打开，不再欠任何工作时关闭</li>
-</ul>
+<p>先定义几个词。dsh 官方有一份<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/glossary.zh.md">术语表</a>，给每个概念规定了唯一叫法，本书照抄（表5-1）。</p>
+<p><strong>表5-1 一次对话的度量衡</strong></p>
+<table>
+<thead>
+<tr>
+<th>词</th>
+<th>官方定义</th>
+<th>大白话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>轮次（turn）</td>
+<td>会话中一次对已接纳输入的排空过程，在模型及其工具停止工作或终止策略介入后结束</td>
+<td>你说一句，它干一串，收工一次</td>
+</tr>
+<tr>
+<td>步骤（step）</td>
+<td>一次模型请求，以及由模型响应引发的工具执行；一个轮次包含零个或多个步骤</td>
+<td>一次"想 + 干"</td>
+</tr>
+<tr>
+<td>Round</td>
+<td>承载一个轮次的外层策略迭代，例如一个 Goal Round 或一次全新尝试</td>
+<td>轮次外面还套着的大循环</td>
+</tr>
+</tbody>
+</table>
 <p><img alt="轮次与步骤的关系" src="../images/fig5-1-turn-step.svg" /></p>
 <p><strong>图5-1 轮次与步骤的关系</strong></p>
-<p>为什么这么分？因为"你问一句它答一句"只是最简单的情形。真实干活时，agent 常常要来回好几步：查一次文件、再跑一次命令、再改一处代码——每一步都是一次"想 + 干"，合起来才是一个完整的轮次。</p>
+<p>为什么这么分？因为"你问一句它答一句"只是最简单的情形。真实干活时，agent 常常要来回好几步：查一次文件、再跑一次命令、再改一处代码——每一下来回都是一个步骤、一次"想 + 干"，合起来才是一个完整的轮次（图5-1）。</p>
+<p>特别记住轮次的开与关：<strong>它在领取首条输入之前打开，在不再欠下任何工作时关闭</strong>。"欠工作"三个字是本章主线的发动机，马上就会讲到。</p>
+<p>Round 则是轮次外面的一层——比如 Goal Round 是"为当前目标接纳的一次续行周期"，会被同会话驱动器具体化为一个由目标触发的轮次；同一会话里无关的人类轮次不消耗它的上限。这个词第 7 章才用得到，现在只需知道：轮次外面可能还套着更大的循环。</p>
 <h2 id="_2">一个轮次的完整流程<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>官方架构文档给出了轮次的时序（图5-2），后面两章的所有细节都挂在这条线上。</p>
 <p><img alt="一个轮次的完整流程" src="../images/fig5-2-turn-flow.svg" /></p>
 <p><strong>图5-2 一个轮次的完整流程</strong></p>
-<p>流程里藏着三个值得注意的设计：</p>
-<ul>
-<li><strong>pre-step 关卡</strong>：消息进模型之前，插件可以改写甚至拒绝它。首次领取就被拒？那也照样关一个轮次、记一笔日志——<strong>尝试过就要留痕</strong></li>
-<li><strong>每步先记账</strong>：<code>step/start</code> 时，你的消息先追加进日志，然后才从日志派生出给模型看的历史</li>
-<li><strong>欠债驱动循环</strong>：工具欠着新的模型请求、或者又来了新输入，就开下一个步骤；什么都不欠了，<code>turn/end</code></li>
-</ul>
+<p>整张图可以压缩成八拍（表5-2）。</p>
+<p><strong>表5-2 轮次的八拍</strong></p>
+<table>
+<thead>
+<tr>
+<th>拍</th>
+<th>发生什么</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>turn/start</code></td>
+<td>打开一个轮次；这是持久事件，直接写入账本</td>
+</tr>
+<tr>
+<td>2</td>
+<td>领取输入</td>
+<td>从收件箱取走：全部待处理的"下一步"输入 + 一条排队消息</td>
+</tr>
+<tr>
+<td>3</td>
+<td>组装弹药</td>
+<td>插件注册的提示词片段与工具 schema，每个步骤都重新读一遍</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>agent/pre-step</code> 关卡</td>
+<td>监听器可以改写已领取的消息，也可以直接拒绝</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>step/start</code> 先记账</td>
+<td>进入步骤的消息以 <code>user/message</code> 追加进账本，<strong>然后</strong>才从账本派生出模型历史</td>
+</tr>
+<tr>
+<td>6</td>
+<td>请求模型</td>
+<td><code>agent/request</code> → <code>llm/stream</code> → 流式碎片 <code>assistant/chunk</code> → 完整的 <code>assistant/message</code></td>
+</tr>
+<tr>
+<td>7</td>
+<td>执行工具</td>
+<td>每个 <code>tool/call</code> 过三道关卡，结果以 <code>tool/result</code> 写回账本（第 6 章细讲）</td>
+</tr>
+<tr>
+<td>8</td>
+<td>清欠</td>
+<td>工具欠着新的请求，或来了新输入 → 领取、开下一个步骤；什么都不欠 → <code>turn/end</code></td>
+</tr>
+</tbody>
+</table>
+<p>流程里有三个设计值得停下来。</p>
+<p><strong>第一，pre-step 关卡。</strong> <code>agent/pre-step</code> 决定模型看到什么：监听器可以改写已领取的消息，也可以直接拒绝。首次领取被拒绝、或被改写为空时，<strong>系统仍会关闭一个不含步骤的持久轮次</strong>——什么都没干，但账本记下了"试过"。</p>
+<p><strong>第二，每步先记账。</strong>注意第 5 拍的顺序：你的消息先追加进账本，然后才从账本派生出给模型看的历史——"派生"只从这一本账里读。这个顺序就是本章铁律的落地方式。</p>
+<p><strong>第三，空回答也留痕。</strong> <code>assistant/message</code> 会记录每一次成功的提供方调用，<strong>包括返回空内容或以 <code>max-tokens</code> 结束的调用</strong>。空内容不会进入派生历史，但该事件仍保留用量。模型答没答、答了什么，账本一笔不丢。</p>
+<p>轮次关闭前的最后一道关卡是 serial 事件 <code>agent/turn-stopping</code>：有异议的监听器可以当场发起纠偏，机器重读收件箱再跑一个步骤；没人异议，才真正收工。官方的说法很酷：<strong>结果由数据决定，所以监听器的顺序改变不了结局</strong>。</p>
 <h2 id="_3">两种事件：账本的和实时的<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>dsh 里的"事件"分两种，选错地方是新手第一个坑（表5-1）：</p>
-<p><strong>表5-1 两种事件域</strong></p>
+<p>第 3 章讲过事件分三个域。站在本章时序的视角看，它们其实是两种（表5-3）——选错地方，是新手踩的第一个坑。</p>
+<p><strong>表5-3 两种事件域</strong></p>
 <table>
 <thead>
 <tr>
 <th>类型</th>
-<th>特点</th>
+<th>去向</th>
+<th>生命周期</th>
 <th>例子</th>
 <th>什么时候用</th>
 </tr>
@@ -1150,28 +1251,76 @@
 <tbody>
 <tr>
 <td>会话事件（账本）</td>
-<td>写进日志，永久保存，重启还在</td>
-<td><code>turn/start</code> <code>user/message</code> <code>assistant/*</code> <code>tool/*</code></td>
+<td>追加进日志，并通过 <code>session/event</code> 广播</td>
+<td>永久，重载后还在</td>
+<td><code>turn/*</code> <code>step/*</code> <code>user/message</code> <code>assistant/*</code> <code>tool/*</code></td>
 <td>这个事实必须在重载后仍然存在</td>
 </tr>
 <tr>
 <td>实时事件（广播）</td>
-<td>只活在当下，不落账</td>
-<td><code>agent/*</code> <code>fs/*</code> <code>tools/*</code></td>
+<td>直接发给监听器，不落账</td>
+<td>只活在当下</td>
+<td><code>agent/*</code> <code>fs/*</code> <code>tools/*</code> <code>telemetry/*</code></td>
 <td>观察或拦截正在进行的工作</td>
 </tr>
 </tbody>
 </table>
-<p>其中一种实时事件很特殊，叫 <strong>waterfall（瀑布）</strong>：消息像传令一样经过一排负责人，每人都要显式说"继续"才能传到下一个。图5-2 里的 pre-step、模型请求、三道工具关卡，全是瀑布事件。</p>
+<p>官方原话："<code>turn/*</code>、<code>step/*</code>、<code>user/message</code>、<code>assistant/*</code> 和 <code>tool/*</code> 是持久会话事件；其余是分属三个事件域的实时扩展点。"</p>
+<p>那么账本里到底有哪些条目？官方数下来是<strong>十二种</strong>（表5-4）。</p>
+<p><strong>表5-4 账本的十二种条目</strong></p>
+<table>
+<thead>
+<tr>
+<th>事件</th>
+<th>记下了什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>turn/start</code> · <code>turn/end</code></td>
+<td>轮次打开／关闭</td>
+</tr>
+<tr>
+<td><code>step/start</code> · <code>step/end</code></td>
+<td>步骤打开／关闭</td>
+</tr>
+<tr>
+<td><code>user/message</code></td>
+<td>你发的消息进入了步骤</td>
+</tr>
+<tr>
+<td><code>assistant/chunk</code></td>
+<td>模型流式回答的一个碎片</td>
+</tr>
+<tr>
+<td><code>assistant/message</code></td>
+<td>一次完整的模型回答（含空回答，用量照记）</td>
+</tr>
+<tr>
+<td><code>tool/call</code> · <code>tool/result</code></td>
+<td>模型发起的工具调用／执行结果</td>
+</tr>
+<tr>
+<td><code>steering/message</code></td>
+<td>中途发出的纠偏</td>
+</tr>
+<tr>
+<td><code>todo/write</code></td>
+<td>待办清单的一次全量快照</td>
+</tr>
+<tr>
+<td><code>request/header</code></td>
+<td>这一次模型请求的信封本身</td>
+</tr>
+</tbody>
+</table>
+<p>最后一种最容易被忽视，值得多说一句：连"模型这次收到了什么"本身也被记录——调用配置、渲染后的系统提示词、组装好的工具 schema，全都会作为会话状态写进日志。官方的说法是：<strong>每个对话请求都是日志的纯函数</strong>。回放时重放日志，就能一分不差地重建模型当时看到的东西。</p>
+<p>再看回分发模式：pre-step、模型请求（<code>agent/request</code>、<code>llm/stream</code>）、三道工具关卡全是 waterfall 事件，<code>agent/turn-stopping</code> 是 serial 事件。实时广播负责"怎么干"，会话事件负责"干成了什么"。</p>
+<p>该看哪边？官方给过明确分工：<strong>需要可回放文字记录的，应当消费 <code>session/event</code></strong>；而 <code>agent/*</code> 是实时协调接口，管的是队列与状态、提示词拦截、请求构造、纠偏、续跑和错误处理。界面想重演历史，读账本；插件想插手当下，听广播。</p>
 <h2 id="_4">会话日志：唯一的真源<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<p>整个 dsh 只有一本账：<strong>会话日志</strong>（追加式事件流）。模型看到的历史，是从这本账里<strong>投影</strong>出来的，不是单独存的。</p>
-<p>由此诞生一条铁律：</p>
-<blockquote>
-<p><strong>模型可见即已记录。</strong> 凡是模型能看到的输入，必须能在日志里重建出来。运行时有一项断言专门盯着这条。</p>
-</blockquote>
-<p>推论很直接：想让模型看到一种新东西？先发明一种新事件。没有捷径。</p>
-<p>一本账的好处（表5-2）：</p>
-<p><strong>表5-2 都从同一本账派生</strong></p>
+<p>整个 dsh 只有一本账：<strong>会话日志</strong>，一条仅追加的事件流。模型看到的上下文不是单独存的一份，而是从这本账里<strong>投影</strong>出来的：<code>deriveMessages()</code> 从中派生出模型历史，原始的 <code>assistant/chunk</code> 事件则保证回放和界面保真。</p>
+<p>一本账的好处：所有能力都从它派生（表5-5）。</p>
+<p><strong>表5-5 都从同一本账派生</strong></p>
 <table>
 <thead>
 <tr>
@@ -1182,7 +1331,7 @@
 <tbody>
 <tr>
 <td>恢复对话</td>
-<td>重放日志</td>
+<td>重读日志，重新投影</td>
 </tr>
 <tr>
 <td>fork（分叉会话）</td>
@@ -1193,20 +1342,81 @@
 <td>原始 <code>assistant/chunk</code> 事件保真</td>
 </tr>
 <tr>
-<td>遥测、导出文字记录</td>
+<td>文字记录、遥测</td>
 <td>还是读日志</td>
 </tr>
 </tbody>
 </table>
-<h2 id="_5">递话的三种姿势<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<p>你的消息都通过同一个 inbox（收件箱）到达司机。收件箱分两列：给下个轮次的、给下个步骤的。对着 agent 递话有三种姿势（表5-3）：</p>
-<p><strong>表5-3 followup / steer / inject</strong></p>
+<p>由此诞生第 3 章提过的那条铁律，值得在本章重复一遍：</p>
+<blockquote>
+<p><strong>模型可见即已记录。</strong> 抵达模型请求的一切，都必须能从日志重建；运行时有一项不变量专门断言这一点。</p>
+</blockquote>
+<p>推论很直接：<strong>想给模型看一样新东西，先发明一种新的会话事件</strong>——扩展事件词汇表，再从日志渲染。没有捷径。</p>
+<p>这本账不是比喻，是磁盘上真实的文件。官方 JSONL 后端的布局大致是：</p>
+<div class="highlight"><pre><span></span><code>$DSH_HOME/sessions/
+  --&lt;按工作区路径命名的项目目录&gt;--/
+    &lt;会话目录&gt;/
+      session.jsonl.zstd   ← 仅追加的账本，默认压缩
+</code></pre></div>
+<p>文件第一行是会话头（身份、工作目录、创建时间等），之后每条事件一条存储记录。两条规矩：<strong>仅追加</strong>——已写入的事件绝不重写；<strong>每次写盘都做同步（fsync）</strong>。想直接按行读文字，把持久化后端的压缩配置改成 <code>'none'</code> 即可（怎么改配置，第 12 章细讲）。</p>
+<h2 id="_5">重启了，还能接着跑<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>只有一本账，"续跑"就变成一道算术题：重读日志、重新投影，驱动器从停下的地方继续。</p>
+<p>真正的难题是另一处：进程被杀时，可能有工具调用干到一半。重启之后，怎么向模型交代"上次进行到哪了"？dsh 的答案是两个标记（表5-6）。</p>
+<p><strong>表5-6 恢复时如何摆平烂尾</strong></p>
+<table>
+<thead>
+<tr>
+<th>中断时的现场</th>
+<th>恢复标记</th>
+<th>对模型意味着什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>模型发出了调用，但调用没来得及持久化</td>
+<td><code>TOOL_NOT_STARTED</code></td>
+<td>这次调用从没发生过</td>
+</tr>
+<tr>
+<td>调用已持久化，结果还没拿到</td>
+<td><code>TOOL_OUTCOME_UNKNOWN</code></td>
+<td>只重试只读或幂等的工作；可能的副作用要么验证、要么问用户</td>
+</tr>
+</tbody>
+</table>
+<p>连"摔烂的尾巴"也有设计：最后一批写入不完整时，读取器保留能完整解码的部分，从这批的开头截断，再用合成的工具、步骤、轮次收尾事件重新编码。账本永远是平的。</p>
+<p>这就是"可恢复"三个字的工程含量——不是"大概能恢复"，而是每一笔都可重建，每一个烂尾都有明确的说法。</p>
+<p>连性能也算计过了：恢复出来的请求不去改动实时前缀，只要重建的历史、当前信封和模型路由都对得上，续跑的循环还能接着用提供方的缓存。</p>
+<h2 id="_6">递话的三种姿势<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>你的消息都通过同一个<strong>收件箱（inbox）</strong>到达司机。收件箱是 agent 拥有的持久投影，分两列（表5-7）。</p>
+<p><strong>表5-7 收件箱的两列</strong></p>
+<table>
+<thead>
+<tr>
+<th>列表</th>
+<th>给谁</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>next-turn</code></td>
+<td>下一个轮次</td>
+</tr>
+<tr>
+<td><code>next-step</code></td>
+<td>下一个步骤</td>
+</tr>
+</tbody>
+</table>
+<p>对着 agent 递话有三种姿势（表5-8），对应 agent 句柄上统一 <code>send</code> 方法的三个别名——<code>send</code> 直接暴露"投到哪列、要不要唤醒"两个参数，三种姿势只是固定预设。每条待处理消息都有唯一标识，它何时进箱、被谁领走、是否被丢弃，本身就是持久事实。</p>
+<p><strong>表5-8 followup / steer / inject</strong></p>
 <table>
 <thead>
 <tr>
 <th>姿势</th>
 <th>大白话</th>
 <th>会立刻唤醒司机吗</th>
+<th>细节</th>
 </tr>
 </thead>
 <tbody>
@@ -1214,43 +1424,55 @@
 <td>followup</td>
 <td>正常追加一个新任务</td>
 <td>✅ 会</td>
+<td>这条消息会成为它自己那个轮次里唯一的普通消息</td>
 </tr>
 <tr>
 <td>steer</td>
-<td>给正在干的活纠偏</td>
-<td>✅ 会（或在下一步边界消费）</td>
+<td>给最近的步骤纠偏</td>
+<td>✅ 会</td>
+<td>空闲的司机因此开一个轮次；运行中的司机在下一个步骤边界消费它；步骤被拒时，纠偏留在收件箱等下次唤醒</td>
 </tr>
 <tr>
 <td>inject</td>
-<td>塞一份背景资料进去</td>
-<td>❌ 不会，等别人叫醒</td>
+<td>塞一份模型可见的背景资料</td>
+<td>❌ 不会</td>
+<td>运行中的司机在最近的后续步骤边界领取；空闲的司机等 followup 或 steer 叫醒它</td>
 </tr>
 </tbody>
 </table>
-<p>inject 的"不唤醒"很有意思：你可以提前把资料放进收件箱，它安静躺着，直到下一条消息把司机叫醒时才一起带上车。</p>
-<h2 id="_6">🧪 本章实验<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>inject 的"不唤醒"很有意思：你可以提前把资料放进收件箱，它安静躺着，直到下一条消息把司机叫醒时，才一起带上车。</p>
+<p>纠偏也属于持久事实——账本里有专门的 <code>steering/message</code> 事件类型记它。你随手插的一句话，同样在账上有名。</p>
+<p>最后还有一项反悔权：取消。agent 句柄的 <code>cancel</code> 会清掉排队和纠偏的活（也可以选择保留），并中止当前轮次。被打断的一切，账本照样有痕。</p>
+<h2 id="_7">🧪 本章实验<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <blockquote>
 <p><strong>实验 5-1 ★｜翻一翻真账本</strong>
-目标：亲眼看到会话事件流。
-步骤：跑完一次 headless 任务后，打开 <code>$DSH_HOME/storages/</code> 目录，找到最新的会话文件（第 2 章那次就有），翻一翻。
-验收：能找到 turn 和 step 的痕迹——账本不是比喻，是真有。</p>
+目标：亲眼看到会话日志，知道"账本"不是比喻。
+步骤：用 web 形态跑完一次对话，打开 <code>$DSH_HOME/sessions/</code>，找到按你工作区命名的目录，再进最新的那个会话目录。
+验收：找到 <code>session.jsonl.zstd</code>——账本真实存在，且默认压缩。</p>
 <p><strong>实验 5-2 ★★｜试试 steer</strong>
 目标：体验"给正在干的活纠偏"。
-步骤：在 Web UI 里给 agent 一个需要干一会儿的任务，趁它干活时再发一句修正要求。
-验收：它的行为在随后的步骤里被你的话带偏了。</p>
+步骤：在 Web UI 里给 agent 一个需要干一会儿的任务，趁它干活时，用界面的纠偏发送方式（如 Cmd/Ctrl+Enter）再发一句修正要求。
+验收：它随后的步骤里，行为被你的话带偏了。</p>
+<p><strong>实验 5-3 ★｜对照官方时序图</strong>
+目标：把本章的八拍和官方时序图对上。
+步骤：打开 <a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/agent-lifecycle.zh.md">agent 轮次与步骤生命周期</a>，读里面那张时序图。
+验收：能指出至少 5 个本章讲过的事件名（如 <code>turn/start</code>、<code>agent/pre-step</code>、<code>step/end</code>）。</p>
 </blockquote>
-<h2 id="_7">🤔 思考题<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<h2 id="_8">🤔 思考题<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
 <ol>
 <li>★ 为什么"尝试过也要留痕"（被拒绝的轮次也记录）对排查问题很重要？</li>
 <li>★ "模型可见即已记录"这条铁律，防的是哪类 bug？</li>
 <li>★★ inject 不唤醒司机——想一个恰好需要这种行为的场景。</li>
+<li>★★ 如果账本允许"修改历史条目"，表5-5 里哪个能力会最先失效？</li>
 </ol>
-<h2 id="_8">📝 小结<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<h2 id="_9">📝 小结<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>步骤 = 一次模型请求 + 它调的工具</strong>；轮次 = 若干步骤，欠债驱动</li>
-<li><strong>事件分两种</strong>——账本的（会话事件，永久）和实时的（广播，当下）</li>
-<li><strong>会话日志是唯一真源</strong>——模型历史是投影出来的，"模型可见即已记录"</li>
-<li><strong>递话三姿势</strong>——followup 加任务、steer 纠偏、inject 塞资料</li>
+<li><strong>轮次 = 一次对输入的排空，步骤 = 一次模型请求 + 它引发的工具</strong>；Round 是轮次外面的大循环</li>
+<li><strong>流程八拍</strong>——开轮次、领取、组装、pre-step 关卡、先记账、请求模型、工具关卡、清欠</li>
+<li><strong>事件分两种</strong>——会话事件落账永久，实时事件只活在当下；账本共十二种条目，连请求信封本身也记录</li>
+<li><strong>会话日志是唯一真源</strong>——模型历史由 <code>deriveMessages()</code> 投影，"模型可见即已记录"</li>
+<li><strong>重启可续跑</strong>——仅追加、写盘同步，<code>TOOL_NOT_STARTED</code>／<code>TOOL_OUTCOME_UNKNOWN</code> 摆平烂尾</li>
+<li><strong>递话三姿势</strong>——followup 加任务、steer 纠偏、inject 塞资料；收件箱分 next-turn／next-step 两列</li>
 </ul>
 <p>下一章，解剖工具调用要过的那三道关卡。➡️ <a href="../ch06/">第6章 工具执行流水线</a></p>
 

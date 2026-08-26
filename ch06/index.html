@@ -578,6 +578,17 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
+        工具注册表：先登记，后上岗
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
         动手之前，先记账
       
     </span>
@@ -608,10 +619,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
         执行本体：包着跑
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实录：一条 bash 命令的过关卡之旅
       
     </span>
   </a>
@@ -630,21 +652,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        冻结与记账
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🧪 本章实验
+        冻结与记账：唯一的版本
       
     </span>
   </a>
@@ -655,7 +666,7 @@
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🤔 思考题
+        🧪 本章实验
       
     </span>
   </a>
@@ -664,6 +675,17 @@
       
         <li class="md-nav__item">
   <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🤔 思考题
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
         📝 小结
@@ -1044,6 +1066,17 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
+        工具注册表：先登记，后上岗
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
         动手之前，先记账
       
     </span>
@@ -1074,10 +1107,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
         执行本体：包着跑
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实录：一条 bash 命令的过关卡之旅
       
     </span>
   </a>
@@ -1096,21 +1140,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        冻结与记账
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🧪 本章实验
+        冻结与记账：唯一的版本
       
     </span>
   </a>
@@ -1121,7 +1154,7 @@
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🤔 思考题
+        🧪 本章实验
       
     </span>
   </a>
@@ -1130,6 +1163,17 @@
       
         <li class="md-nav__item">
   <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🤔 思考题
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
         📝 小结
@@ -1159,18 +1203,78 @@
 <h1 id="6">第6章 工具执行流水线<a class="headerlink" href="#6" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>阅读提示</strong>
-模型说"我要执行一条命令"，到命令真的跑起来，中间隔着一条流水线。这一章拆流水线上的每道关卡——它们是 agent 安全的最后一道防线。</p>
+模型说"我要执行一条命令"，到命令真的跑起来，中间隔着一条长长的流水线。这一章拆流水线上的每道关卡——记账、门禁、守卫、包装、冻结。我们会陪一条 bash 命令从头走到尾。</p>
 </blockquote>
 <h2 id="_1">模型从不亲自动手<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>复习第 1 章的分界线：大脑只负责<strong>申请</strong>用工具，真正动手的永远是身体。</p>
-<p>身体在动手之前，会让这次调用先过一条流水线（图6-1）。官方给这条流水线画过一张详图（<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/tool-execution-pipeline.zh.md">原文</a>），本书把它简化成人话版：</p>
+<p>复习第 1 章的分界线：大脑只负责<strong>申请</strong>用工具——"我要用 bash 工具跑这条命令"，真正动手的永远是身体。</p>
+<p>但身体不是听话就冲的愣头青。申请递进来之后，要先过一条执行流水线（图6-1），才谈得上真的执行。官方给这条流水线画过一张详图（<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/tool-execution-pipeline.zh.md">原文</a>），本书把它简化成人话版：</p>
 <p><img alt="工具执行流水线" src="../images/fig6-1-tool-pipeline.svg" /></p>
 <p><strong>图6-1 工具执行流水线（人话版）</strong></p>
-<h2 id="_2">动手之前，先记账<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>流水线第一步不是执行，而是<strong>记账</strong>：<code>tool/call</code> 事件先写进会话日志，然后才轮到关卡。</p>
-<p>哪怕这次调用最后被拒绝、什么都没干，日志里也有它"申请过"的记录。和第 5 章的"被拒绝的轮次也留痕"一个道理：<strong>尝试过就要有迹可循</strong>。</p>
+<p>先记住流水线的骨架：<strong>记账 → 关卡① → 守卫 → 包装执行 → 关卡③ → 冻结记账</strong>。后面逐段拆开。但在那之前，得先回答一个更靠前的问题：工具本身是从哪来的？</p>
+<h2 id="_2">工具注册表：先登记，后上岗<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>身体不是天生会做事，每一只"手"都要先向<strong>工具注册表</strong>（<code>ctx.tools</code>）报到。注册的是完整的"岗位说明书"：名字、描述、参数规格、输出长什么样的声明，加上真正干活的那个执行函数（<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/core/tools/README.zh.md">tools 包</a>）。</p>
+<p>登记完成后，两件事自动发生：</p>
+<ul>
+<li>工具的参数规格自动流入系统提示词——大脑是从这里才"知道"自己有这只手的（第 3 章的开场白组装员负责拼接）</li>
+<li>以后大脑申请用它时，流水线拿这份说明书校验申请、呈现结果</li>
+</ul>
+<p>注册还分两个层级（表6-1）：</p>
+<p><strong>表6-1 工具注册的两种层级</strong></p>
+<table>
+<thead>
+<tr>
+<th>注册方式</th>
+<th>可见范围</th>
+<th>典型用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>全局注册</td>
+<td>所有 agent 可见</td>
+<td>bash、read_file 这类出厂工具</td>
+</tr>
+<tr>
+<td>带作用域注册</td>
+<td>只有那一个 agent 可见</td>
+<td>给某个 agent 私有定制的手</td>
+</tr>
+</tbody>
+</table>
+<p>带作用域注册引出两个机制。一是<strong>遮蔽（shadowing）</strong>：agent 作用域里的工具若与全局工具同名，在这个 agent 里就顶替全局版本——好比连锁店挂了块同名招牌，进店的客人去的是分店。二是<strong>掩码过滤</strong>（<code>restrict</code>）：给某个 agent 发一张允许／拒绝清单，把一批全局工具直接藏起来。</p>
+<blockquote>
+<p><strong>注意</strong>
+官方明确提醒：掩码过滤管的是<strong>可见性</strong>，不是<strong>权限</strong>——藏起来的工具模型调不到，但这不是安全边界。真正的准入，靠的是下面的关卡。</p>
+</blockquote>
+<p>顺带一提：注册表还决定工具以什么方式呈现给模型。除了逐个调用的原生方式，还有一种 Code Mode——模型写一小段程序批量调用工具，子调用照样要走完整条流水线。它是可选配置，不影响本章主线。</p>
+<h2 id="_3">动手之前，先记账<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>流水线第一步不是执行，而是<strong>记账</strong>：<code>tool/call</code> 事件先写进会话日志，然后才轮到关卡；界面上同时亮起一张"待处理"卡片。</p>
+<p>哪怕这次调用最后被拒绝、什么都没干，日志里也有它"申请过"的记录。和第 5 章"被拒绝的轮次也留痕"一个道理：<strong>尝试过就要有迹可循</strong>。</p>
+<p><strong>表6-2 一次调用的两笔记账</strong></p>
+<table>
+<thead>
+<tr>
+<th>事件</th>
+<th>什么时候写</th>
+<th>记的是什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tool/call</code></td>
+<td>执行开始<strong>之前</strong></td>
+<td>申请本身：工具名与参数</td>
+</tr>
+<tr>
+<td><code>tool/result</code></td>
+<td>调用结算时——无论真执行了还是被拒了</td>
+<td>冻结的最终结果，模型可见的唯一版本</td>
+</tr>
+</tbody>
+</table>
 <h2 id="1pre-execute">关卡①：pre-execute<a class="headerlink" href="#1pre-execute" title="Permanent link">&para;</a></h2>
-<p>第一道关卡是瀑布式的（第 5 章讲过"传令"机制），三类负责人依次过手：</p>
+<p>第一道关卡是瀑布式的（第 5 章把它比作"传令"）：三类负责人依次过手，每人都要给出明确意见（<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/tool-execution-pipeline.zh.md">流水线文档</a>）：</p>
+<p><strong>表6-3 关卡①的三类负责人</strong></p>
 <table>
 <thead>
 <tr>
@@ -1193,8 +1297,8 @@
 </tr>
 </tbody>
 </table>
-<p>裁决只有三种（表6-1）：</p>
-<p><strong>表6-1 三种裁决</strong></p>
+<p>裁决只有三种（表6-4）：</p>
+<p><strong>表6-4 三种裁决</strong></p>
 <table>
 <thead>
 <tr>
@@ -1209,7 +1313,7 @@
 </tr>
 <tr>
 <td>拒绝</td>
-<td>跳过工具本体，直接去关卡③</td>
+<td>跳过工具本体，直接去关卡③ 收尾</td>
 </tr>
 <tr>
 <td>要审批</td>
@@ -1217,22 +1321,195 @@
 </tr>
 </tbody>
 </table>
-<p>审批有个重要的保守设计：<strong>没人能回答时，按拒绝处理</strong>。你不在电脑前、弹窗超时、环境没法交互——一律不干。宁可不干，不可乱干。</p>
+<p>这道关卡有两条重要的设计规矩。</p>
+<p><strong>第一，关卡只能裁决，不能改单。</strong> pre-execute 有意不允许修改调用参数——如果关卡能偷偷改参数，日志里记的、界面显示的，就会和真正跑的对不上。想改内容？官方把这想法留在了提案阶段，至今没放行。</p>
+<p><strong>第二，审批有个保守设计：没人能回答时，按拒绝处理。</strong> 你不在电脑前、应答者出了故障、环境里根本没有人类通道——一律不干。官方说法是"以拒绝方式关闭"（<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/interaction/user-approval/README.zh.md">审批包</a>）。宁可不干，不可乱干。</p>
+<p>审批本身也很克制，应答词汇只有四种：<strong>批准（仅此一次）、拒绝、取消、无人应答</strong>。注意"仅此一次"——结果词汇里<strong>没有"永远允许"</strong>，下次遇到照样再问。审批的过程记两笔账（<code>approval/asked</code> 与 <code>approval/decided</code>）进日志，模型看到的只是最终那条工具结果。</p>
+<p>日常使用中，你通常不逐个配权限，而是选一个<strong>权限预设</strong>——它把沙箱模式与审批策略打包成一档（<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/interaction/permission-presets/README.zh.md">权限预设</a>）：</p>
+<p><strong>表6-5 出厂的两档权限预设</strong></p>
+<table>
+<thead>
+<tr>
+<th>预设</th>
+<th>沙箱模式</th>
+<th>审批策略</th>
+<th>大白话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>workspace-write</code></td>
+<td>只许写工作区</td>
+<td>需要时问一次</td>
+<td>圈地干活，大事问你</td>
+</tr>
+<tr>
+<td><code>danger-full-access</code></td>
+<td>不设限</td>
+<td>从不弹窗</td>
+<td>全放开；注意"从不弹窗"意味着需要审批的操作会被<strong>自动拒绝</strong>，而不是放行</td>
+</tr>
+</tbody>
+</table>
 <h2 id="2">关卡②：单调守卫<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
-<p>第二道关卡叫"单调守卫"。"单调"的意思是：<strong>不能绕过、不能重新排序</strong>。</p>
-<p>权限策略可以商量（关卡①可以配），但守卫注册的是铁规矩——比如官方的 <a href="https://github.com/deepseek-ai/deepseek-harness/tree/master/packages/guard">guard 包</a>干的两件事：</p>
+<p>第二道关卡叫"单调守卫"。"单调"的意思是：<strong>裁决单向，不能绕过、不能重新排序</strong>。</p>
+<p>关卡①的权限策略可以商量（预设可配），但在这里注册的守卫是铁规矩：它们在关卡①之后发声，返回的拒绝<strong>不能被后面的监听器重新变回放行</strong>，位置也固定不可挪（<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/core/tools/README.zh.md">tools 包</a>）。</p>
+<p><strong>表6-6 关卡①与关卡②的分工</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>关卡① pre-execute</th>
+<th>关卡② 单调守卫</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>性质</td>
+<td>可配置的准入商量</td>
+<td>不可翻转的最后否决</td>
+</tr>
+<tr>
+<td>顺序</td>
+<td>瀑布传令，可插队扩展</td>
+<td>固定位置，不可重排</td>
+</tr>
+</tbody>
+</table>
+<p>注册表提供守卫席位，具体谁来坐由部署决定。官方 <a href="https://github.com/deepseek-ai/deepseek-harness/tree/master/packages/guard">guard 包家族</a>做的两件"循环卫生"事务，就从别的位置入手：</p>
+<p><strong>表6-7 guard 家族的两个成员</strong></p>
+<table>
+<thead>
+<tr>
+<th>成员</th>
+<th>管什么</th>
+<th>在哪管</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>重复调用提醒</td>
+<td>模型拿相同参数反复调同一个工具、原地打转</td>
+<td>事后、建议性：注入逐级增强的提醒</td>
+</tr>
+<tr>
+<td>调用截止时间</td>
+<td>单次调用挂住不回来</td>
+<td>执行时：给声明了预算的调用套上截止时间</td>
+</tr>
+</tbody>
+</table>
+<p>重复调用提醒的判定规则值得细看（表6-8）：</p>
+<p><strong>表6-8 重复提醒怎么认定"打转"</strong></p>
+<table>
+<thead>
+<tr>
+<th>规则</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>认定标准</td>
+<td>同一工具 + 规范化后完全相同的参数，算连续（<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/guard/repeat-tool-reminder/README.zh.md">原文</a>）</td>
+</tr>
+<tr>
+<td>默认阈值</td>
+<td>连续 3 次、5 次、8 次各提醒一次；第一次简短，后面附带明细</td>
+</tr>
+<tr>
+<td>被拒的调用也计数</td>
+<td>反复尝试已被拒绝的调用，恰是最该打断的循环</td>
+</tr>
+<tr>
+<td>只建议，不否决</td>
+<td>不改写、不拦截调用；换方式还是收工，全由模型自己决定</td>
+</tr>
+</tbody>
+</table>
+<p>提醒以注入的用户消息形式出现在工具结果之后——对模型可见、带来源、可从日志重建，但<strong>绝不替换</strong>工具本来的结果。</p>
+<p>截止时间那位则是"声明与执行分离"的样板：工具注册时可以声明协作预算 <code>timeoutMs</code>，但注册表只记录、不执法；执法由 <a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/guard/timeout-policy/README.zh.md">超时策略包装层</a> 完成——它给声明了预算的调用设置截止时间，先到时就返回结构化的 <code>TOOL_TIMEOUT</code> 结果。</p>
+<p>而且它是<strong>协作式</strong>的：截止时间只是通知，工具自己不理通知就不会停。出厂的 bash、read、write、edit 有意不声明预算——它们的超时由各自的执行器另行掌管。</p>
+<h2 id="_4">执行本体：包着跑<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>过了关卡，才轮到工具真正执行。但执行也被一层包装罩着，官方叫"环绕分发"，管三件事：<strong>超时、重试、计时</strong>（<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/core/tools/README.zh.md">tools 包</a>）。</p>
+<p>执行期间可能出的各种意外，全被流水线规范成同一种形状（表6-9）：</p>
+<p><strong>表6-9 执行中的意外，都被规范成错误结果</strong></p>
+<table>
+<thead>
+<tr>
+<th>情况</th>
+<th>模型看到的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>参数不合法</td>
+<td><code>INVALID_ARGS</code> 错误结果——还没碰到策略和工具本体</td>
+</tr>
+<tr>
+<td>工具本体抛异常</td>
+<td>规范成带原因的错误结果</td>
+</tr>
+<tr>
+<td>截止时间先到</td>
+<td>结构化 <code>TOOL_TIMEOUT</code></td>
+</tr>
+<tr>
+<td>调用被取消</td>
+<td><code>ABORTED</code> 类结果</td>
+</tr>
+</tbody>
+</table>
+<p>关键是：流水线不会因任何一次调用崩掉。模型看到的是"这一步失败了，原因是……"，然后它自己决定下一步。</p>
+<p>碰文件的操作还有一道专属小关卡：<strong>先看过，才许改</strong>。没读过的文件不许直接编辑——防止模型凭想象改代码。这道关卡挂在文件类工具之下，通过 <code>fs/*</code> 事件实现（<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/tool-execution-pipeline.zh.md">流水线文档</a>）。</p>
+<h2 id="bash">实录：一条 bash 命令的过关卡之旅<a class="headerlink" href="#bash" title="Permanent link">&para;</a></h2>
+<p>用最典型的一只手——bash 工具（<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/shell/tool-bash/README.zh.md">tool-bash</a>）——把上面的关卡串一遍。模型说"我要跑一条命令"之后，发生的事（表6-10）：</p>
+<p><strong>表6-10 一次 bash 调用的旅程</strong></p>
+<table>
+<thead>
+<tr>
+<th>站点</th>
+<th>在这里发生什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>记账</td>
+<td>申请（命令、一句话描述、工作目录）写入日志，界面亮起终端卡片</td>
+</tr>
+<tr>
+<td>关卡①</td>
+<td>权限与沙箱策略裁决；命令若想要比当前更宽的沙箱权限，模型必须附上理由走审批</td>
+</tr>
+<tr>
+<td>关卡②</td>
+<td>守卫检查是否重复调用；bash 未声明预算，不套截止时间</td>
+</tr>
+<tr>
+<td>执行</td>
+<td>执行器真正起进程——本地执行、沙箱执行是两个可换的提供方</td>
+</tr>
+<tr>
+<td>关卡③</td>
+<td>结果过检</td>
+</tr>
+<tr>
+<td>冻结记账</td>
+<td>输出与退出码冻结，<code>tool/result</code> 落账</td>
+</tr>
+</tbody>
+</table>
+<p>bash 工具有几条有趣的规矩，正好把本章的概念全用上：</p>
 <ul>
-<li>发现模型在<strong>重复调用</strong>同一个工具，给出提醒（防打转）</li>
-<li>给执行强制<strong>截止时间</strong>（防卡死）</li>
+<li><strong>必须附带一句话描述</strong>（主动语态、5~10 个词），只用于界面和日志展示——那是给你看的，不影响执行</li>
+<li><strong>调用之间不保留状态</strong>：每次调用都是全新进程；要指定工作目录用参数，别指望 <code>cd</code> 能留到下次</li>
+<li><strong>非零退出码不算失败</strong>：退出码只是结果的一部分，交给模型解读；只有进程没起来这类基础设施故障才算错误</li>
+<li><strong>系统提示词里有条固定叮嘱</strong>：每个 bash 结果都要看 <code>[exit code: N]</code> 标记，失败了先调查原因再继续</li>
 </ul>
-<p>这些规矩不参与"商量"，只在流水线里固定位置生效。</p>
-<h2 id="_3">执行本体：包着跑<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>过了关卡，才轮到工具真正执行。但执行也被一层包装罩着，管三件事：<strong>超时、重试、计时</strong>。</p>
-<p>工具本体出了任何错（包括抛异常），都会被流水线<strong>规范成一个错误结果</strong>——不会把整个对话循环搞崩。模型看到的是"这一步失败了，原因是……"，然后它自己决定下一步。</p>
-<p>碰文件的操作还有一道专属小关卡：<strong>先看过，才许改</strong>。没读过的文件不许直接编辑——防止模型凭想象改代码。</p>
+<p>最后一条值得展开：bash 的结果文本依次是标准输出、可选的 <code>[stderr]</code> 段，再加一串状态标记——<code>[exit code: N]</code>、<code>[timed out after …ms]</code>、<code>[sandbox: file access denied…]</code>、截断提示等等。输出太长会被截断，并附上完整输出的文件位置——身体知道上下文窗口是有限的（这是第 8 章的主题）。</p>
 <h2 id="3post-execute">关卡③：post-execute<a class="headerlink" href="#3post-execute" title="Permanent link">&para;</a></h2>
-<p>结果出来后，还要过第三道瀑布关卡。这里能做的事比"看一眼"多（表6-2）：</p>
-<p><strong>表6-2 post-execute 的四种动作</strong></p>
+<p>结果出来后，还要过第三道瀑布关卡。这里能做的事比"看一眼"多（表6-11）：</p>
+<p><strong>表6-11 post-execute 的四种动作</strong></p>
 <table>
 <thead>
 <tr>
@@ -1243,56 +1520,89 @@
 <tbody>
 <tr>
 <td>接收</td>
-<td>原样放行</td>
+<td>原样放行；也可以只换措辞（content）或只换值</td>
 </tr>
 <tr>
 <td>拦截</td>
-<td>这次结果不给模型看</td>
+<td>这次结果不给模型看，变成带反馈的失败</td>
 </tr>
 <tr>
 <td>替换</td>
-<td>换一个结果给模型（比如脱敏）</td>
+<td>换一个结果给模型</td>
 </tr>
 <tr>
 <td>补上下文</td>
-<td>在结果后面附加说明</td>
+<td>在结果之后附加说明</td>
 </tr>
 </tbody>
 </table>
-<h2 id="_4">冻结与记账<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<p>过了三关，结果被<strong>冻结</strong>——不可再改，然后：</p>
-<ol>
-<li><code>tool/result</code> 事件写入日志——这是模型能看到的<strong>唯一</strong>结果版本</li>
-<li>UI 上显示完成卡片</li>
-<li>同批的其他工具调用也都结算后，循环决定要不要开下一个步骤（回到第 5 章的图5-2）</li>
-</ol>
-<p>注意"唯一版本"：日志里的、模型看到的、界面显示的，是同一个冻结结果。没有"模型看到一个版本、日志记另一个版本"的空间。</p>
-<h2 id="_5">🧪 本章实验<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>前面说的重复提醒就是从这道门进来的：它作为附加上下文挂在工具结果之后，随后被循环以注入的用户消息送达模型。</p>
+<blockquote>
+<p><strong>注意</strong>
+官方特意提醒：<strong>替换内容不是保密边界</strong>。当某个值绝不能到达某类消费方时，应当直接拦截或替换整个值，而不是指望"换个措辞"。</p>
+</blockquote>
+<h2 id="_5">冻结与记账：唯一的版本<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>过了三关，结果先经过工具定义自己持有的最后一道内容边界（<code>finalizeContent</code>——只能改最终措辞，不能改值），然后被<strong>冻结</strong>——不可再改。</p>
+<p>接着三件事依次发生（表6-12）：</p>
+<p><strong>表6-12 冻结之后的收尾</strong></p>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>结果落账</td>
+<td><code>tool/result</code> 事件追加进会话日志——这是模型能看到的<strong>唯一</strong>结果版本</td>
+</tr>
+<tr>
+<td>界面显示</td>
+<td>渲染完成卡片；bash 是终端卡片，退出码单独成块</td>
+</tr>
+<tr>
+<td>批次结算</td>
+<td>同批还有其他调用就都结算完，循环再决定要不要开下一个步骤（回到图5-2）</td>
+</tr>
+</tbody>
+</table>
+<p>注意"唯一版本"：日志里的、模型看到的、界面显示的，是同一个冻结结果。没有"模型看到一个版本、日志记另一个版本"的空间——第 5 章那条"模型可见即已记录"的铁律，在工具层面就是这么落地的。</p>
+<p>工具执行时还会顺手记一些自己的账：待办清单写入的 <code>todo/write</code>、文件被观测的 <code>fs/observed</code>、钩子触发记录等等。它们各归各主，都进同一本日志——下一章的三层外存，就从这里接上了。</p>
+<h2 id="_6">🧪 本章实验<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <blockquote>
 <p><strong>实验 6-1 ★｜触发一次审批</strong>
 目标：亲眼看关卡①的弹窗。
-步骤：Web UI 里让 agent 干一件权限策略要求审批的事（比如删除一个测试文件）。
-验收：弹出审批询问；你点拒绝后，agent 会告诉你"被拒了"而不是硬来。</p>
+步骤：Web UI 里让 agent 干一件按权限预设需要审批的事（比如删除一个你随手建的测试文件）。
+验收：弹出审批询问；你点拒绝后，agent 告诉你"被拒了"而不是硬来，且该命令一个字符都没执行。</p>
 <p><strong>实验 6-2 ★★｜在账本里找到流水线痕迹</strong>
 目标：把图6-1 和真日志对上。
-步骤：做完实验 6-1 后，打开该会话的日志文件。
-验收：能找到 tool/call 和 tool/result 事件，且被拒的调用也有 tool/call 记录。</p>
+步骤：做完实验 6-1 后，打开该会话的日志文件（方法回顾实验 5-1）。
+验收：能找到 <code>tool/call</code> 和 <code>tool/result</code> 事件；被拒的调用也有 <code>tool/call</code> 记录——尝试过就要有迹可循。</p>
+<p><strong>实验 6-3 ★★｜让重复提醒现身</strong>
+目标：看见建议性守卫的工作方式。
+步骤：给 agent 一个容易打转的任务（比如找一个不存在的文件），观察它连续用相同参数查找时的变化。
+验收：连续重复达到阈值后，出现要求它换思路的注入提醒；提醒以用户消息形式出现，工具结果本身没被替换。</p>
 </blockquote>
-<h2 id="_6">🤔 思考题<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h2 id="_7">🤔 思考题<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <ol>
 <li>★ 为什么"没人回答审批"要按拒绝处理，而不是先干了再说？</li>
 <li>★ 关卡③能"替换结果"——想一个正当用途。（提示：敏感信息）</li>
+<li>★★ 关卡①为什么有意禁止修改调用参数？如果允许改写，哪两样东西会先对不上？</li>
+<li>★★ 重复提醒"只建议、不否决"——你觉得官方为什么这么保守？</li>
 <li>★★ 如果让模型直接执行命令、跳过整条流水线，最先出的事会是什么？</li>
 </ol>
-<h2 id="_7">📝 小结<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<h2 id="_8">📝 小结<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>动手前先记账</strong>——<code>tool/call</code> 先落日志，被拒也留痕</li>
-<li><strong>关卡①</strong>——钩子/权限/沙箱，裁决三选一；审批没人答 = 拒绝</li>
-<li><strong>关卡②</strong>——单调守卫，铁规矩不可绕过（防重复、防卡死）</li>
-<li><strong>执行带包装</strong>——超时/重试/计时，异常规范成错误结果</li>
-<li><strong>关卡③</strong>——结果可被接收/拦截/替换/补充，然后冻结、记 <code>tool/result</code></li>
+<li><strong>先登记后上岗</strong>——工具注册表管岗位说明书；全局与作用域两级，同名遮蔽、掩码管可见性不管权限</li>
+<li><strong>动手前先记账</strong>——<code>tool/call</code> 先落日志，被拒也留痕；审批过程记两笔账</li>
+<li><strong>关卡①</strong>——钩子／权限／沙箱，裁决三选一；只能裁决不能改单；审批一次只批一次，没人答 = 拒绝</li>
+<li><strong>关卡②</strong>——单调守卫，拒绝不可翻转、位置不可重排；guard 家族管重复提醒（只建议）与调用截止时间（协作式）</li>
+<li><strong>执行带包装</strong>——超时／重试／计时；一切异常规范成错误结果，循环不崩；文件先看过才许改</li>
+<li><strong>关卡③</strong>——结果可被接收／拦截／替换／补充；替换不是保密边界</li>
+<li><strong>冻结记账</strong>——<code>tool/result</code> 是模型可见的唯一版本，日志、界面、模型三方同源</li>
 </ul>
-<p>下一章，看 agent 怎么做到"干活不跑偏"。➡️ <a href="../ch07/">第7章 目标与计划</a></p>
+<p>流水线保证了"不乱干"。但 agent 的失败往往不是"干不了"，而是"干着干着跑偏了"。下一章看 dsh 怎么防跑偏。➡️ <a href="../ch07/">第7章 目标与计划</a></p>
 
 
 
