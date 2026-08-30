@@ -1,0 +1,1661 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="一本写给不读代码的人的 DeepSeek Harness 学习书">
+      
+      
+        <meta name="author" content="makewheels">
+      
+      
+        <link rel="canonical" href="https://makewheels.github.io/deepseek-harness-book/ch15/">
+      
+      
+        <link rel="prev" href="../ch14/">
+      
+      
+        <link rel="next" href="../afterword/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>第15章 规则自进化实战 - 从零读懂 DeepSeek Harness</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#15" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href=".." title="从零读懂 DeepSeek Harness" class="md-header__button md-logo" aria-label="从零读懂 DeepSeek Harness" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            从零读懂 DeepSeek Harness
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              第15章 规则自进化实战
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换夜间模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换夜间模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="从零读懂 DeepSeek Harness" class="md-nav__button md-logo" aria-label="从零读懂 DeepSeek Harness" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    从零读懂 DeepSeek Harness
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第一部分 初见
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    第一部分 初见
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第1章 什么是 Agent Harness
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第2章 5 分钟跑起来
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第3章 俯瞰地图
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第二部分 解剖器官
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    第二部分 解剖器官
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第4章 一切皆插件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第5章 一次对话的完整旅程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第6章 工具执行流水线
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第7章 目标与计划
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第8章 上下文工程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第三部分 手脚与外设
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    第三部分 手脚与外设
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第9章 安全的手脚
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第10章 连接外部世界
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第四部分 自己动手
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    第四部分 自己动手
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第11章 你的第一个插件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第12章 组装自己的 agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第五部分 深入与实战
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    第五部分 深入与实战
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第13章 会话日志与续接
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第14章 编排：Workflow 与 Ralph
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第15章 规则自进化实战
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第15章 规则自进化实战
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        五个插座，五种脾气
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        搭规则引擎：一条最小可行路线
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        进化闭环：五站一圈
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        划界：自进化不能干什么
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧪 本章实验
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🤔 思考题
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📝 小结
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../afterword/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    后记 能从 dsh 偷师什么
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        五个插座，五种脾气
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        搭规则引擎：一条最小可行路线
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        进化闭环：五站一圈
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        划界：自进化不能干什么
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧪 本章实验
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🤔 思考题
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📝 小结
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="15">第15章 规则自进化实战<a class="headerlink" href="#15" title="Permanent link">&para;</a></h1>
+<p>你的项目里有一座没人修剪的花园。</p>
+<p>起初它只有三行：一个 <code>AGENTS.md</code>，写着两条约定、一条禁忌。一年后它长到八百行——有的规则是为一个早已忘却的 bug 写的，有的互相矛盾，还有的没人记得是否仍然有效。谁也不敢删：删掉一行，谁知道会不会弄坏什么？</p>
+<p>规则就像花园，没人修剪就会疯长；疯长到最后，是谁都不想踏进去。这就是<strong>规则腐烂</strong>。</p>
+<p>这一章我们来许一个愿：让 agent 的规则<strong>可生成、可修改、可持久化、能进化</strong>。许愿之前，先把丑话说在前面。</p>
+<blockquote>
+<p><strong>交底</strong>
+dsh 里并没有现成的"规则自进化系统"。这一章交付的是<strong>本书作者的拼装路线</strong>：dsh 提供五个真实的扩展点，我们动手把它们串起来。机制是机制，拼装是拼装，文中分开标注。扩展点按 0.1.2-alpha.1 快照核对，dsh 仍在开发者预览，行为以本机实跑为准。</p>
+</blockquote>
+<p><strong>表15-1 规则腐烂的三种病</strong></p>
+<table>
+<thead>
+<tr>
+<th>病症</th>
+<th>你看到的样子</th>
+<th>病根</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>只增不减</td>
+<td><code>AGENTS.md</code> 从 3 行长到 800 行</td>
+<td>加一条很容易，删一条没人敢</td>
+</tr>
+<tr>
+<td>有结论没理由</td>
+<td>只剩"记得做 X"，没了为什么</td>
+<td>理由留在当天的对话里，没落字</td>
+</tr>
+<tr>
+<td>写了不试</td>
+<td>规则写完，没人知道管不管用</td>
+<td>没有转正、淘汰的流程</td>
+</tr>
+</tbody>
+</table>
+<p>三种病共用一个根：规则只有人<strong>写</strong>，没有人<strong>治理</strong>。治理之前，先看看规则可以住在哪儿。</p>
+<h2 id="_1">五个插座，五种脾气<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>动手接线之前，先盘点 dsh 身上的插座。能放"规则"的地方有五个，脾气各不相同（表15-2）：</p>
+<p><strong>表15-2 五个扩展点盘点</strong></p>
+<table>
+<thead>
+<tr>
+<th>扩展点</th>
+<th>规则以什么形态存在</th>
+<th>怎么到达模型</th>
+<th>生命周期</th>
+<th>适合放什么规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>工作区指令</td>
+<td><code>AGENTS.md</code> 一族 Markdown</td>
+<td>第一次请求注入基线，常驻书桌</td>
+<td>磁盘文件，跟随项目</td>
+<td>常驻约定，少而精</td>
+</tr>
+<tr>
+<td>skill</td>
+<td><code>SKILL.md</code> 目录包或单文件</td>
+<td>先见目录，按需加载全文</td>
+<td>磁盘文件，改动热刷新</td>
+<td>成块的"怎么做某事"</td>
+</tr>
+<tr>
+<td>hooks</td>
+<td>外部 shell 钩子脚本</td>
+<td>按时刻触发，先于模型</td>
+<td>独立脚本，跨进程有效</td>
+<td>硬门禁：拦、问、补上下文</td>
+</tr>
+<tr>
+<td>extensions</td>
+<td>模型现写的动态 Cordis 包</td>
+<td>进程内运行，可监听可注册</td>
+<td>进程内存，重启即清</td>
+<td>临时试验逻辑</td>
+</tr>
+<tr>
+<td>settings</td>
+<td>namespace 结构化取值</td>
+<td>注册的插件读解析值</td>
+<td>YAML/JSON 文档，热更新</td>
+<td>规则依赖的开关与阈值</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="规则的五个插座" src="../images/fig15-1-rule-layers.svg" /></p>
+<p><strong>图15-1 五个插座，五种脾气</strong></p>
+<p>逐个说两句。</p>
+<p><strong>工作区指令是常驻席。</strong> <a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/context/agent-instructions/README.zh.md">agent-instructions</a> 在第一次请求端上一条持久基线消息：先用户全局 <code>AGENTS.md</code>，再项目链上从宽泛到具体的各级文件，并附上一句优先级声明——更具体的压过更宽泛的，但谁都压不过系统、开发者或你直接下的指令。预算必填：超了先整份丢掉宽泛的，再截断最具体的，并发一条模型可见的通知。还有一条后面要用：<strong>发现跟随文件触碰</strong>——成功的读、写、编辑碰到哪个目录，哪里的指令文件就上桌。</p>
+<p><strong>skill 是按需书架。</strong> <a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/skill/README.zh.md">skill 家族</a>的本地提供方按 rank 扫几处目录：从项目的 <code>.dsh/skills</code>、<code>.agents/skills</code> 一路到用户目录，重名时 rank 低的赢。模型先看到的只是名字和一句描述，调用 <code>skill</code> 工具，全文才上桌；目录有 watcher 盯着，<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/subsystems/skills.zh.md">文件一变，目录跟着刷新</a>。</p>
+<p><strong>hooks 是模型脑子外面的门卫。</strong> <a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/hooks/README.zh.md">hooks 组</a>的两个桥接兼容两种现成生态的 <code>hooks.json</code> shell 钩子，在会话开始、提示词提交、工具运行前后、运行即将停止这些时刻触发。钩子可以带一条模型可见的消息阻塞操作、附加上下文，其中一个方言还能在工具运行前请求确认。失败从不停车：除"退出码 2 即阻塞"外，其余一律只记录。每次决策都以 <code>hook/invoked</code>、<code>hook/result</code> <a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/hooks/hook-protocol/README.zh.md">会话事件</a>入账。</p>
+<p><strong>extensions 是试验田。</strong> <a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/extensions/README.zh.md">extensions 组</a>给模型<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/extensions/tool-cordis/README.zh.md">七个工具</a>：检视运行时、定义动态包、运行、停止、移除。包带版本且不可变，失败后可以追加修正版再更新过去。定义只存在于进程内存——<strong>重启即清，不写仓库文件，不碰组合配置</strong>。</p>
+<p><strong>settings 是参数板。</strong> <a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/settings/README.zh.md">settings 家族</a>里，插件带着 schema 注册 namespace，用户在一份文档里覆盖取值：三层解析是 schema 默认 → 部署 base → 用户覆盖，变更实时生效。文件提供方热发布外部编辑，每次提交都发 <code>settings/updated</code> 事件——连"改参数"都有账（<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/subsystems/settings.zh.md">子系统参考</a>）。</p>
+<p>一句话对齐：<strong>桌面级（指令、skill）管"知道什么"，门禁级（hooks）管"什么不许过"，试验级（extensions）管"想法灵不灵"，参数级（settings）管"数值是多少"</strong>。好规则住对地方，是治理的第一步。</p>
+<h2 id="_2">搭规则引擎：一条最小可行路线<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>再次交底：以下路线是本书的拼装。每个零件都是 dsh 的真实机制，拼法不是官方功能。</p>
+<p><strong>第一步：给规则一个家。</strong> 在项目里开一个独立目录，一条规则一个文件。文件骨架直接抄 dsh 自己的作业——dsh 仓库根上有一份<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/AGENTS.md">总规矩 AGENTS.md</a>，<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/.agents/notes/README.md"><code>.agents/notes/</code></a> 里则给每个非平凡决策存一篇笔记。骨架四段：<strong>问题、规则正文、备选方案、验收标准</strong>。为什么这么啰嗦？因为不写"它赢过哪些备选"的决策，迟早被人翻出来重新吵一遍——这是 dsh 决策笔记制度写进文档的初衷。</p>
+<p><strong>第二步：会话开始时注入。</strong> 两条真实路径（表15-3）：</p>
+<p><strong>表15-3 两条注入路径</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>路径 A：常驻指针</th>
+<th>路径 B：skill 化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>写法</td>
+<td><code>AGENTS.md</code> 里一行指针："动手前先读规则目录"</td>
+<td>每条规则一个 <code>SKILL.md</code>，放进 <code>.agents/skills/</code></td>
+</tr>
+<tr>
+<td>读法</td>
+<td>基线上桌，模型用读工具自取全文</td>
+<td>模型见名字与描述，用 <code>skill</code> 工具加载</td>
+</tr>
+<tr>
+<td>书桌开销</td>
+<td>常驻一行</td>
+<td>目录常驻，全文按需</td>
+</tr>
+<tr>
+<td>适合</td>
+<td>规则少、条条重要</td>
+<td>规则多、按场景取用</td>
+</tr>
+</tbody>
+</table>
+<p>路径 A 还有个顺水推舟的玩法：把规则文件直接命名为 <code>AGENTS.md</code> 放进子目录——模型的读写编辑一碰到那个目录，指令自动上桌，连"去读"这步都省了。</p>
+<p><strong>第三步：运行时增删改。</strong> 规则正文让模型用写文件、编辑文件的工具直接改——这是它的本能。工作区指令的发现跟随文件触碰：改动过的文件会收到更新通知，新冒出来的文件会追加进书桌。一次规则修改，就在一次会话里闭环。参数型规则交给 settings：前提是你写一个小插件注册 namespace，此后每次修改实时落盘并发事件。规则连"数值"都有账可查。</p>
+<p><strong>第四步：试验田。</strong> 一条新规则落盘之前，先让它在 extensions 里跑：把规则的逻辑写成动态包，在当前进程里注册监听器或工具，跑几轮试试。灵，就落盘成文件规则；不灵，移除定义，不留痕迹。<strong>重启即清的内存生命周期，恰好是天然的试验田</strong>。</p>
+<p><strong>表15-4 最小路线清单：哪部分是 dsh 的，哪部分是本书的</strong></p>
+<table>
+<thead>
+<tr>
+<th>环节</th>
+<th>用到的机制</th>
+<th>谁提供的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>规则的家</td>
+<td>项目目录＋四段骨架</td>
+<td>本书约定（骨架抄自 dsh 决策笔记）</td>
+</tr>
+<tr>
+<td>注入</td>
+<td>工作区指令基线 / skill 目录</td>
+<td>dsh</td>
+</tr>
+<tr>
+<td>修改</td>
+<td>模型文件工具＋触碰驱动发现 / settings</td>
+<td>dsh</td>
+</tr>
+<tr>
+<td>试跑</td>
+<td>extensions 动态包</td>
+<td>dsh</td>
+</tr>
+<tr>
+<td>持久化</td>
+<td>文件＋git 提交</td>
+<td>本书约定</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_3">进化闭环：五站一圈<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>规则活过来了，还要让它进化。五个站连成闭环（图15-2）：捕获、起草、确认、试跑、转正——背面还有一条淘汰道。</p>
+<p><img alt="进化闭环" src="../images/fig15-2-evolution-loop.svg" /></p>
+<p><strong>图15-2 进化闭环：机器起草与试跑，人类挪文件</strong></p>
+<p><strong>站一：捕获异常——信号都在日志里。</strong> 会话日志只增不删，模型见过的一切都在册（铁律见<a href="../ch05/">第5章</a>、<a href="../ch08/">第8章</a>）。值得盯的信号有四类（表15-5，事件名见<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/subsystems/core.zh.md">核心子系统生成目录</a>）：</p>
+<p><strong>表15-5 四种进化信号</strong></p>
+<table>
+<thead>
+<tr>
+<th>信号</th>
+<th>在哪看</th>
+<th>它意味着什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>模型步骤失败</td>
+<td><code>agent/request-error</code></td>
+<td>路线级失败；监听者甚至可以决定重试</td>
+</tr>
+<tr>
+<td>轮次被取消</td>
+<td><code>turn/end</code>（终态 <code>kind: 'aborted'</code>）</td>
+<td>你喊停了——方向多半不对</td>
+</tr>
+<tr>
+<td>工具报错</td>
+<td><code>tool/result</code></td>
+<td>事实层面的碰壁</td>
+</tr>
+<tr>
+<td>人类纠正</td>
+<td><code>user/message</code></td>
+<td>最值钱："不对，你应该……"</td>
+</tr>
+</tbody>
+</table>
+<p>人类纠正不需要任何花哨机制——它本来就在对话里。</p>
+<p>隔一阵请模型复盘最近的会话：我被纠正过什么？重复犯过什么错？答案就是规则的原料。</p>
+<p><strong>站二：生成候选规则——模型起草，笔记体。</strong> dsh 仓库自己就是范本：每个非平凡变更必须带一篇决策笔记，笔记按状态住在不同目录——<code>proposed/</code> 是已评审未实施的提案，<code>implemented/</code> 是落地的决定，<code>rejected/</code> 是被否决的提案，<code>archived/</code> 是封存归档。文件里的状态行必须与所在目录一致，<strong>挪目录就要同步改状态</strong>。</p>
+<p>候选规则一律先进 <code>proposed/</code>，绝不直接改生效的 <code>AGENTS.md</code>。每篇写全四件事：问题、提案、备选方案（强制）、验收标准。转正那天，你才答得出"它赢过谁"。</p>
+<p><strong>站三：试跑评测。</strong> 开一个新会话，跑类似的任务，逐条核对笔记里的验收标准。这是演练，不是生产。dsh 自己的仓库也这么验证行为：把录制好的会话回放成快照测试，没有 API 密钥也能跑（见仓库根部 <a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/AGENTS.md">AGENTS.md</a>）。评测就是规则的彩排。</p>
+<p><strong>站四：转正持久化——只有人动手。</strong> 确认是一个动作：把文件从 <code>proposed/</code> 挪进 <code>implemented/</code>，改掉状态行，再把规则写进注入点——路径 A 的目录，或路径 B 的 <code>SKILL.md</code>。持久化靠文件加 git：一次转正就是一次提交，理由就写在笔记里。参数型的转正走 settings：写入用户层，<code>settings/updated</code> 事件一发，即时生效。</p>
+<p><strong>站五：过时淘汰——三个出口</strong>（表15-6）：</p>
+<p><strong>表15-6 淘汰的三个出口</strong></p>
+<table>
+<thead>
+<tr>
+<th>出口</th>
+<th>给谁</th>
+<th>纪律</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rejected/</code></td>
+<td>被否决的候选</td>
+<td>只在还能防同类错误时保留；理由失效就删</td>
+</tr>
+<tr>
+<td>保持更新</td>
+<td>生效的规则</td>
+<td>依赖的事实变了，规则同步改——dsh 要求已实施笔记与代码同一步变更</td>
+</tr>
+<tr>
+<td><code>archived/</code></td>
+<td>完成且低价值的</td>
+<td>冻结：不再编辑，也不作当前依据</td>
+</tr>
+</tbody>
+</table>
+<p>淘汰不等于删除。否决记录留着，恰恰是为了拦住下一次有人提同样的坏主意。</p>
+<h2 id="_4">划界：自进化不能干什么<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>闭环可以跑得快，但有几件事必须钉死。</p>
+<p><strong>机器不得自行转正。</strong> <a href="../ch07/">第7章</a>说过：<strong>恢复可以无感，开工必须有令</strong>——目标续行在重启后一律清零，等人类授权。规则转正同理：机器可以捕获、可以起草、可以试跑，唯独"挪文件"必须是人。能自行转正的规则系统，很快就会进化出一条对自己最有利的规则。状态目录加人类挪文件，就是最朴素的一道闸。</p>
+<p><strong>规则永远矮指令一头。</strong> 工作区指令注入时就自带天花板声明：更具体的压过更宽泛的，但谁也不能压过系统、开发者或你的直接指令。自进化的规则进化到天上去，也只是建议。</p>
+<p><strong>试验田不是保险箱。</strong> extensions 官方警告：沙箱不是安全边界，动态包要当 bash 访问来对待；挂载这套工具本身，就要像交出 bash 工具一样慎重。带浏览器半的包还会停在"等待批准"，要人点头才激活。</p>
+<p><strong>预算是硬约束。</strong> 指令超预算，先丢宽泛的，再截具体的，还要发通知；skill 目录的每条描述也有长度上限。规则系统挤爆书桌的那天，机制会先让你疼——把疼当成淘汰的信号。</p>
+<p><strong>表15-7 机器与人的分工</strong></p>
+<table>
+<thead>
+<tr>
+<th>动作</th>
+<th>机器</th>
+<th>人</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>收集信号、复盘会话</td>
+<td>✅</td>
+<td>可以吩咐</td>
+</tr>
+<tr>
+<td>起草候选笔记</td>
+<td>✅</td>
+<td>审</td>
+</tr>
+<tr>
+<td>试跑评测</td>
+<td>✅</td>
+<td>看结果</td>
+</tr>
+<tr>
+<td>转正（proposed → implemented）</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>否决、归档</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>修改转正条件</td>
+<td>❌</td>
+<td>慎重</td>
+</tr>
+</tbody>
+</table>
+<p>花园里永远会长出新规则。你真正要维护的，不是规则本身，而是园丁的裁决权。</p>
+<h2 id="_5">🧪 本章实验<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p><strong>实验 15-1 ★｜给规则一个家，看见它上桌</strong>
+目标：亲眼看到规则文件进入模型的上下文。
+步骤：项目根放 <code>AGENTS.md</code>，写一行指针"动手前先读 rules/INDEX.md"；建 <code>rules/INDEX.md</code>，写一条规则（如"回答先列要点"）。开始会话提一个普通问题；然后改掉这条规则（如"改用表格回答"），让 agent 读或写一次 <code>rules/</code> 里的文件，再问同样的问题。
+验收：第一次回答遵循规则一；改动并触碰后，第二次回答遵循规则二。dsh 处于开发者预览，注入通知的具体措辞以本机实跑为准。</p>
+<p><strong>实验 15-2 ★★｜走一次完整转正</strong>
+目标：从一次纠正出发，走完进化闭环。
+步骤：在会话里故意纠正 agent（"以后做 Y 之前要先做 X"）；请它复盘这次纠正，起草一篇四段笔记放进 <code>rules/proposed/</code>；开新会话跑一个类似任务，逐条核对验收；由你亲手把文件挪进 <code>rules/implemented/</code> 并更新目录；再开新会话验证规则生效。
+验收：笔记四段齐全；挪动前新会话不知道这条规则，挪动后知道；全程只有一次人类搬运动作。</p>
+</blockquote>
+<h2 id="_6">🤔 思考题<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<ol>
+<li>★ 候选规则为什么要住进 <code>proposed/</code>，而不是直接改 <code>AGENTS.md</code>？</li>
+<li>★ 常驻指针（路径 A）与 skill 化（路径 B），各适合什么数量和体量的规则？想想书桌预算。</li>
+<li>★★ dsh 强制决策笔记写"备选方案"。只记结论、不记备选的规则系统，会出什么事？</li>
+<li>★★ 如果允许机器自行转正，会形成什么循环？从"恢复可以无感，开工必须有令"说起。</li>
+<li>★★★ extensions 是内存级（重启即清），文件是磁盘级（git 管理）——怎么把两者拼成"试错不留痕、试对才落户"？</li>
+</ol>
+<h2 id="_7">📝 小结<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>规则腐烂是因为只写不治理</strong>——三种病：只增不减、有结论没理由、写了不试</li>
+<li><strong>五个插座</strong>——指令常驻书桌、skill 按需、hooks 守门、extensions 试验田、settings 参数板；好规则住对地方</li>
+<li><strong>最小路线是本书的拼装</strong>——规则即文件，开会话经指令或 skill 注入，运行时靠文件工具与 settings 改，先在 extensions 试跑，持久化靠 git；零件全是 dsh 的</li>
+<li><strong>进化闭环五站</strong>——捕获（<code>agent/request-error</code>、取消的轮次、人类纠正）→ 模型起草进 <code>proposed/</code> → 人类确认 → 试跑评测 → 挪进 <code>implemented/</code> 生效 → 淘汰（否决／冻结）</li>
+<li><strong>抄 dsh 的作业</strong>——决策笔记四段骨架、状态按目录流转、备选强制：不写"它赢过谁"的决策，只会被重新争论</li>
+<li><strong>边界钉死</strong>——机器不得未经人确认转正；规则压不过直接指令；试验田不是保险箱；预算是硬约束；恢复可以无感，开工必须有令</li>
+</ul>
+<p>编排把许多动作串成一出戏，规则让每个动作一次比一次好。这一章的闭环，是你留给未来会话的一笔利息。</p>
+<p>⬅️ 上一章 <a href="../ch14/">第14章 编排：Workflow 与 Ralph</a> ｜ ➡️ 下一章 <a href="../afterword/">后记 能从 dsh 偷师什么</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../ch14/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 第14章 编排：Workflow 与 Ralph">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                第14章 编排：Workflow 与 Ralph
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../afterword/" class="md-footer__link md-footer__link--next" aria-label="下一页: 后记 能从 dsh 偷师什么">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                后记 能从 dsh 偷师什么
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.top", "navigation.footer", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

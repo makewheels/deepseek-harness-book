@@ -1,0 +1,67 @@
+<svg viewBox="0 0 920 460" width="920" xmlns="http://www.w3.org/2000/svg" font-family="'Microsoft YaHei','PingFang SC',sans-serif">
+  <defs>
+    <marker id="arw152" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5c6bc0"/>
+    </marker>
+  </defs>
+  <rect width="920" height="460" fill="#ffffff"/>
+
+  <!-- 站 1：捕获异常 -->
+  <rect x="30" y="44" width="150" height="104" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.8"/>
+  <text x="105" y="74" text-anchor="middle" font-size="15" font-weight="bold" fill="#20242e">捕获异常</text>
+  <text x="105" y="100" text-anchor="middle" font-size="13.5" fill="#5a6072">信号在日志里</text>
+  <text x="105" y="122" text-anchor="middle" font-size="13.5" fill="#5a6072">纠正最值钱</text>
+
+  <!-- 站 2：模型起草 -->
+  <rect x="208" y="44" width="150" height="104" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.8"/>
+  <text x="283" y="74" text-anchor="middle" font-size="15" font-weight="bold" fill="#20242e">模型起草</text>
+  <text x="283" y="100" text-anchor="middle" font-size="13.5" fill="#5a6072">写入 proposed/</text>
+  <text x="283" y="122" text-anchor="middle" font-size="13.5" fill="#5a6072">四段齐全</text>
+
+  <!-- 站 3：人类确认（重点） -->
+  <rect x="386" y="44" width="150" height="104" rx="12" fill="#fff8e1" stroke="#f9a825" stroke-width="1.8"/>
+  <text x="461" y="74" text-anchor="middle" font-size="15" font-weight="bold" fill="#20242e">人类确认</text>
+  <text x="461" y="100" text-anchor="middle" font-size="13.5" fill="#b26a00">唯一的搬运动作</text>
+  <text x="461" y="122" text-anchor="middle" font-size="13.5" fill="#b26a00">机器只能起草</text>
+
+  <!-- 站 4：试跑评测 -->
+  <rect x="564" y="44" width="150" height="104" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.8"/>
+  <text x="639" y="74" text-anchor="middle" font-size="15" font-weight="bold" fill="#20242e">试跑评测</text>
+  <text x="639" y="100" text-anchor="middle" font-size="13.5" fill="#5a6072">新会话演练</text>
+  <text x="639" y="122" text-anchor="middle" font-size="13.5" fill="#5a6072">逐条过验收</text>
+
+  <!-- 站 5：转正 -->
+  <rect x="742" y="44" width="150" height="104" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.8"/>
+  <text x="817" y="74" text-anchor="middle" font-size="15" font-weight="bold" fill="#20242e">转正</text>
+  <text x="817" y="100" text-anchor="middle" font-size="13.5" fill="#5a6072">implemented/</text>
+  <text x="817" y="122" text-anchor="middle" font-size="13.5" fill="#5a6072">写入注入点生效</text>
+
+  <!-- 站间箭头 -->
+  <path d="M182,96 L204,96" stroke="#5c6bc0" stroke-width="1.8" marker-end="url(#arw152)"/>
+  <path d="M360,96 L382,96" stroke="#5c6bc0" stroke-width="1.8" marker-end="url(#arw152)"/>
+  <path d="M538,96 L560,96" stroke="#5c6bc0" stroke-width="1.8" marker-end="url(#arw152)"/>
+  <path d="M716,96 L738,96" stroke="#5c6bc0" stroke-width="1.8" marker-end="url(#arw152)"/>
+
+  <!-- 回环：生效的规则产生新信号 -->
+  <path d="M817,148 L817,208 L105,208 L105,150" fill="none" stroke="#5c6bc0" stroke-width="1.8" marker-end="url(#arw152)"/>
+  <text x="461" y="200" text-anchor="middle" font-size="13.5" fill="#5a6072">生效的规则产生新信号：回到捕获</text>
+
+  <!-- 驳回支线 -->
+  <path d="M461,148 L461,262 L330,262 L330,292" fill="none" stroke="#5c6bc0" stroke-width="1.8" marker-end="url(#arw152)"/>
+  <text x="472" y="204" font-size="13.5" fill="#5a6072">驳回</text>
+  <rect x="230" y="296" width="200" height="88" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.8"/>
+  <text x="330" y="326" text-anchor="middle" font-size="15" font-weight="bold" fill="#20242e">rejected/</text>
+  <text x="330" y="352" text-anchor="middle" font-size="13.5" fill="#5a6072">保留否决理由</text>
+  <text x="330" y="374" text-anchor="middle" font-size="13.5" fill="#5a6072">防止重蹈覆辙</text>
+
+  <!-- 淘汰支线 -->
+  <path d="M860,148 L860,262 L660,262 L660,292" fill="none" stroke="#5c6bc0" stroke-width="1.8" marker-end="url(#arw152)"/>
+  <text x="872" y="204" font-size="13.5" fill="#5a6072">过时</text>
+  <rect x="560" y="296" width="200" height="88" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.8"/>
+  <text x="660" y="326" text-anchor="middle" font-size="15" font-weight="bold" fill="#20242e">archived/</text>
+  <text x="660" y="352" text-anchor="middle" font-size="13.5" fill="#5a6072">冻结不再编辑</text>
+  <text x="660" y="374" text-anchor="middle" font-size="13.5" fill="#5a6072">不作当前依据</text>
+
+  <text x="30" y="344" font-size="14.5" font-weight="bold" fill="#5a6072">淘汰道</text>
+  <text x="460" y="432" text-anchor="middle" font-size="14.5" fill="#20242e">闭环里只有一个搬运动作——人类挪文件</text>
+</svg>

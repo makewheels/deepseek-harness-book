@@ -1063,6 +1063,65 @@
 
               
             
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第五部分 深入与实战
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    第五部分 深入与实战
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
               
                 
   
@@ -1077,7 +1136,63 @@
   <span class="md-ellipsis">
     
   
-    第13章 后记 能从 dsh 偷师什么
+    第13章 会话日志与续接
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第14章 编排：Workflow 与 Ralph
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第15章 规则自进化实战
   
 
     
@@ -1094,6 +1209,33 @@
           </ul>
         </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../afterword/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    后记 能从 dsh 偷师什么
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1516,43 +1658,56 @@
 <h3 id="event">Event：不认识对方，也能合作<a class="headerlink" href="#event" title="Permanent link">&para;</a></h3>
 <p>服务适合直接调用；事件适合观察、拦截或扩展流程。例如工具执行前后的策略，不必修改 agent loop，可以监听 <code>tools/*</code> 事件。</p>
 <p>Cordis 的事件名和消息格式通过类型声明约束；每类事件还有明确的分发模式（表4-4）。</p>
-<p><strong>表4-4 事件的四种分发模式</strong></p>
+<p><strong>表4-4 事件的五种分发模式</strong></p>
 <table>
 <thead>
 <tr>
 <th>模式</th>
 <th>怎么走</th>
+<th>等待吗</th>
 <th>有返回值吗</th>
-<th>典型用途</th>
+<th>大白话</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>emit</code></td>
-<td>监听者按注册顺序观察，不等待</td>
+<td>监听者按注册顺序观察</td>
+<td>否</td>
 <td>无</td>
-<td>纯通知</td>
+<td>广播通知，喊完就走</td>
 </tr>
 <tr>
 <td><code>waterfall</code></td>
-<td>沿监听链传递，每层可包装或短路</td>
+<td>沿一排负责人传递，每层可包装或短路</td>
+<td>否</td>
 <td>有</td>
-<td>审批、拦截、改写</td>
+<td>传令审批，能扣下</td>
 </tr>
 <tr>
 <td><code>parallel</code></td>
-<td>所有监听者并发执行并等待完成</td>
+<td>所有监听者并发执行</td>
+<td>是</td>
 <td>无</td>
-<td>并行收集副作用</td>
+<td>扇形铺开，等大家都干完</td>
 </tr>
 <tr>
 <td><code>serial</code></td>
-<td>按序执行并等待，第一个有效回答胜出</td>
+<td>按注册顺序执行</td>
+<td>是</td>
 <td>有</td>
-<td>决策前的最后关卡</td>
+<td>排队逐个办，收好回执</td>
+</tr>
+<tr>
+<td><code>bail</code></td>
+<td>按序传递，直到有人返回 bail 值停下</td>
+<td>否</td>
+<td>有</td>
+<td>第一个举手的人说了算</td>
 </tr>
 </tbody>
 </table>
+<p>注意：分发模式不是注释，是<strong>公开契约</strong>。新事件要用 <code>@mode</code> 标签声明自己的模式，生成目录的脚本会拿声明去核对每一处分发调用点——声明和用法对不上，门禁直接报错。</p>
 <p>Waterfall 像一条可包裹的中间件链：监听器调用 <code>next()</code> 才会继续交给下游；不调用就会短路。因此，只负责观察或标注的监听器必须调用 <code>next()</code>，直接返回意味着“这个决策到我为止”。</p>
 <p>审批中的 <code>approval/request</code>、模型请求前的 <code>agent/request</code>，以及工具调用前后的策略，都可以借助这种机制扩展流程，而不用互相直接导入。官方的 <a href="https://github.com/deepseek-ai/deepseek-harness/blob/99f6f02fecdb7dff40c3fbc9470f5907c29f74ca/docs/cordis-primer.zh.md">Cordis 入门</a>把整套关系概括为插件、上下文、依赖注入、类型化事件和可逆 effect。</p>
 <h2 id="_2">真正的关键不是“能插”，而是“能拔干净”<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>

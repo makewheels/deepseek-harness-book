@@ -1,0 +1,33 @@
+<svg viewBox="0 0 920 380" width="920" xmlns="http://www.w3.org/2000/svg" font-family="'Microsoft YaHei','PingFang SC',sans-serif">
+  <defs>
+    <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5c6bc0"/>
+    </marker>
+  </defs>
+  <rect width="920" height="380" fill="#ffffff"/>
+  <rect x="230" y="20" width="460" height="58" rx="12" fill="#fff8e1" stroke="#f9a825" stroke-width="1.8"/>
+  <text x="460" y="44" text-anchor="middle" font-size="16" font-weight="bold" fill="#20242e">铁律：事件只追加，永不改写</text>
+  <text x="460" y="66" text-anchor="middle" font-size="13.5" fill="#b26a00">seq 连续不缺号，入账即深冻结</text>
+  <rect x="40" y="108" width="330" height="244" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.8"/>
+  <text x="205" y="140" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#20242e">会话日志（唯一真源）</text>
+  <line x1="60" y1="154" x2="350" y2="154" stroke="#c3c9e6" stroke-width="1.4"/>
+  <text x="64" y="182" font-size="13.5" fill="#5a6072">seq 0&#160;&#160;turn/start</text>
+  <text x="64" y="208" font-size="13.5" fill="#5a6072">seq 1&#160;&#160;user/message</text>
+  <text x="64" y="234" font-size="13.5" fill="#5a6072">seq 2&#160;&#160;assistant/chunk …</text>
+  <text x="64" y="260" font-size="13.5" fill="#5a6072">……</text>
+  <text x="64" y="286" font-size="13.5" fill="#5a6072">seq n−1&#160;&#160;tool/call</text>
+  <text x="64" y="312" font-size="13.5" fill="#5a6072">seq n&#160;&#160;tool/result</text>
+  <text x="205" y="340" text-anchor="middle" font-size="13.5" fill="#b26a00">新页只能加在末尾</text>
+  <rect x="480" y="108" width="400" height="64" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.8"/>
+  <text x="680" y="134" text-anchor="middle" font-size="15" font-weight="bold" fill="#20242e">模型历史 · 派生</text>
+  <text x="680" y="158" text-anchor="middle" font-size="13.5" fill="#5a6072">书桌每次都从账本重新摆出来</text>
+  <rect x="480" y="198" width="400" height="64" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.8"/>
+  <text x="680" y="224" text-anchor="middle" font-size="15" font-weight="bold" fill="#20242e">客户端投影 · 折叠</text>
+  <text x="680" y="248" text-anchor="middle" font-size="13.5" fill="#5a6072">待办、统计、目标快照的完整当前值</text>
+  <rect x="480" y="288" width="400" height="64" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.8"/>
+  <text x="680" y="314" text-anchor="middle" font-size="15" font-weight="bold" fill="#20242e">搜索索引 · 派生</text>
+  <text x="680" y="338" text-anchor="middle" font-size="13.5" fill="#5a6072">可随时丢弃重建的派生物</text>
+  <path d="M372,190 C420,170 440,150 476,140" fill="none" stroke="#5c6bc0" stroke-width="1.8" marker-end="url(#arw)"/>
+  <path d="M372,230 L476,230" fill="none" stroke="#5c6bc0" stroke-width="1.8" marker-end="url(#arw)"/>
+  <path d="M372,270 C420,290 440,310 476,320" fill="none" stroke="#5c6bc0" stroke-width="1.8" marker-end="url(#arw)"/>
+</svg>

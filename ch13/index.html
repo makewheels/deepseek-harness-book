@@ -18,6 +18,8 @@
         <link rel="prev" href="../ch12/">
       
       
+        <link rel="next" href="../ch14/">
+      
       
         
       
@@ -27,7 +29,7 @@
     
     
       
-        <title>第13章 后记 能从 dsh 偷师什么 - 从零读懂 DeepSeek Harness</title>
+        <title>第13章 会话日志与续接 - 从零读懂 DeepSeek Harness</title>
       
     
     
@@ -74,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#13-dsh" class="md-skip">
+        <a href="#13" class="md-skip">
           跳转至
         </a>
       
@@ -110,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              第13章 后记 能从 dsh 偷师什么
+              第13章 会话日志与续接
             
           </span>
         </div>
@@ -703,8 +705,6 @@
       
   
   
-    
-  
   
   
     
@@ -717,11 +717,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
@@ -742,7 +742,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -809,6 +809,67 @@
 
               
             
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第五部分 深入与实战
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    第五部分 深入与实战
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
               
                 
   
@@ -832,7 +893,7 @@
   <span class="md-ellipsis">
     
   
-    第13章 后记 能从 dsh 偷师什么
+    第13章 会话日志与续接
   
 
     
@@ -850,7 +911,7 @@
   <span class="md-ellipsis">
     
   
-    第13章 后记 能从 dsh 偷师什么
+    第13章 会话日志与续接
   
 
     
@@ -879,29 +940,7 @@
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        一个不寻常的目录
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#agent-notes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Agent Notes：一个决策的一生
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#verify" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        机器管机械：verify 门禁体系
+        账本的铁律：只追加，永不改写
       
     </span>
   </a>
@@ -912,7 +951,7 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        术语表纪律与不变量文化
+        崩溃时"关账"，不"截肢"
       
     </span>
   </a>
@@ -920,24 +959,80 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#projection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        projection：从账本派生屏幕
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="projection：从账本派生屏幕">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        六件可以带走的事
+        缓存：捷径，不是第二本账
       
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#resume-fork" class="md-nav__link">
     <span class="md-ellipsis">
       
-        诚实的局限
+        续接：resume 与 fork
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="续接：resume 与 fork">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        resume：整本账做种子
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fork" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fork：剪一段稳定前缀，抄一份
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        先落笔再干活：检查点策略
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -945,21 +1040,38 @@
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        继续走的路标
+        跨会话翻账本：搜索、谱系与导出
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="跨会话翻账本：搜索、谱系与导出">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        全文搜索：一份可随时丢弃的派生索引
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#export" class="md-nav__link">
     <span class="md-ellipsis">
       
-        最后一句话
+        把整棵会话树带回家：/export
       
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1005,9 +1117,92 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第14章 编排：Workflow 与 Ralph
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第15章 规则自进化实战
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../afterword/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    后记 能从 dsh 偷师什么
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1042,29 +1237,7 @@
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        一个不寻常的目录
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#agent-notes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Agent Notes：一个决策的一生
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#verify" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        机器管机械：verify 门禁体系
+        账本的铁律：只追加，永不改写
       
     </span>
   </a>
@@ -1075,7 +1248,7 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        术语表纪律与不变量文化
+        崩溃时"关账"，不"截肢"
       
     </span>
   </a>
@@ -1083,24 +1256,80 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#projection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        projection：从账本派生屏幕
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="projection：从账本派生屏幕">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        六件可以带走的事
+        缓存：捷径，不是第二本账
       
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#resume-fork" class="md-nav__link">
     <span class="md-ellipsis">
       
-        诚实的局限
+        续接：resume 与 fork
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="续接：resume 与 fork">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        resume：整本账做种子
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fork" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fork：剪一段稳定前缀，抄一份
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        先落笔再干活：检查点策略
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1108,21 +1337,38 @@
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        继续走的路标
+        跨会话翻账本：搜索、谱系与导出
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="跨会话翻账本：搜索、谱系与导出">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        全文搜索：一份可随时丢弃的派生索引
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#export" class="md-nav__link">
     <span class="md-ellipsis">
       
-        最后一句话
+        把整棵会话树带回家：/export
       
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1176,345 +1422,365 @@
 
 
 
-<h1 id="13-dsh">第13章 后记 能从 dsh 偷师什么<a class="headerlink" href="#13-dsh" title="Permanent link">&para;</a></h1>
+<h1 id="13">第13章 会话日志与续接<a class="headerlink" href="#13" title="Permanent link">&para;</a></h1>
+<p>深夜，你交给 agent 一个大活儿。它连续干了两个小时：翻文件、跑命令、改代码，一切都记在一本账上。然后意外发生了——进程死了，可能是你误触了快捷键，也可能是机器重启。</p>
+<p>两个问题立刻压过来。这两个小时的工作还能找回来吗？那几个干到一半的工具调用，重启之后要怎么向模型交代？</p>
+<p>还有第三种遗憾：走到一半的某个岔路口，你当时选了左边，现在想回到路口走右边——又不想毁掉已经走出来的这条时间线。</p>
+<p>三个答案都藏在同一个地方：第 5 章认识的那本会话日志。那一章说了"一本账就够了"；这一章往深处挖两层：这本账守着什么纪律，dsh 又围绕它造了哪些续接与检索的设备。</p>
 <blockquote>
 <p><strong>阅读提示</strong>
-全书收官，不教新知识。我们换一个视角：不看 dsh 是什么产品，而看它是<strong>怎么被造出来的</strong>——这个仓库是 DeepSeek 团队用 AI agent 开发 AI agent harness 的现场，档案完整保留。盘点值得偷师的六件事、它诚实的局限，以及你继续走的路标。</p>
+账本的三条纪律：只追加不改写、崩溃时关账、视图全靠派生。三套设备：resume 与 fork、检查点关卡、跨会话检索。读完你能回答：为什么"回到过去改历史"不需要抹掉历史。</p>
 </blockquote>
-<h2 id="_1">一个不寻常的目录<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>前十二章你看的都是"产品"：插件、轮次、沙箱、配置树。现在把视线移到仓库根目录，有几样东西不属于任何运行时：</p>
+<h2 id="_1">账本的铁律：只追加，永不改写<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>先把账本的形制说正式：<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/subsystems/session.zh.md">会话</a>是一条类型化的事件流，事件只能追加，<code>seq</code> 是每个事件的页码，恒等于当前日志长度——单调递增，连续不缺号。想从中间插一页、抽一页，校验环节直接拒绝。</p>
+<p>还有两道封条。事件一旦入账就被深冻结，连普通代码都无法改写历史；载荷在追加的那一刻就接受"无损 JSON"校验，序列化不了的数据当场被拒，根本进不了账本。完整的追加规则见 <a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/core/session/README.zh.md">dsh-session 包说明</a>。</p>
+<p>账本里都记些什么？先混个脸熟（表13-1）：</p>
+<p><strong>表13-1 事件词汇走马灯</strong></p>
+<table>
+<thead>
+<tr>
+<th>事件</th>
+<th>记什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>turn/start</code>、<code>turn/end</code></td>
+<td>一个轮次的开张与收账，连同结束原因</td>
+</tr>
+<tr>
+<td><code>step/start</code>、<code>step/end</code></td>
+<td>一次模型调用加它要求的工具执行</td>
+</tr>
+<tr>
+<td><code>user/message</code></td>
+<td>你的提示词、注入的背景资料，都带来源</td>
+</tr>
+<tr>
+<td><code>assistant/chunk</code></td>
+<td>原始流式分片，保住逐 token 的回放保真</td>
+</tr>
+<tr>
+<td><code>assistant/message</code></td>
+<td>组装好的模型回复，连带用量记账</td>
+</tr>
+<tr>
+<td><code>tool/call</code>、<code>tool/result</code></td>
+<td>模型发起一次调用、调用交回结果</td>
+</tr>
+<tr>
+<td><code>request/header</code></td>
+<td>请求信封本身：调用配置、系统提示词、工具清单</td>
+</tr>
+<tr>
+<td><code>session/end-seed</code></td>
+<td>种子历史与本生命周期的分界线</td>
+</tr>
+<tr>
+<td>插件合并的类型</td>
+<td>如压缩的 <code>compaction/*</code>，只记账不产生消息</td>
+</tr>
+</tbody>
+</table>
+<p>这样一本"只追加"的账，到底买到了什么（表13-2）？</p>
+<p><strong>表13-2 只追加买到的四样东西</strong></p>
+<table>
+<thead>
+<tr>
+<th>好处</th>
+<th>长什么样</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>崩溃可修</td>
+<td>账本永远是"平"的，任何一段前缀都能当恢复的起点</td>
+</tr>
+<tr>
+<td>可审计</td>
+<td>模型为什么看见、为什么忘记，逐条事件查得到；连请求信封本身都有账</td>
+</tr>
+<tr>
+<td>视图可派生</td>
+<td>模型历史、界面投影、搜索索引都是同一本账的派生物，改一处不怕别处漂移</td>
+</tr>
+<tr>
+<td>续接变算术</td>
+<td>resume、fork 都成了"读账本、抄账本"，不需要任何特殊通道</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="账本与它的派生视图" src="../images/fig13-2-append-only.svg" /></p>
+<p><strong>图13-2 一本账，三种派生</strong></p>
+<p>补一句性能：追加热路径不阻塞磁盘写入，事件先进内存即算提交，持久化插件在后台缓冲分批落盘。"什么时候必须把这一笔记死在磁盘上"，是检查点策略的事，本章后半细讲。</p>
+<h2 id="_2">崩溃时"关账"，不"截肢"<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>最棘手的时刻是进程死在轮次中间。账本尾巴上一片狼藉：工具调用记了账却没拿到结果，步骤开着，轮次也开着。</p>
+<p>直觉的修法是"截肢"：把没写完的尾巴整段砍掉，假装什么都没发生。代价有两个：那些事件是花了钱写下的账页，砍了就永远没了；模型更不知道活干到了哪里，可能把做过的事重做一遍。</p>
+<p>dsh 的选择是"关账"：<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/session/session-persistence/README.zh.md">加载账本</a>时，已持久化的事件原样保留，再为烂尾的尾巴补上一组合成的收尾事件（表13-3）。</p>
+<p><strong>表13-3 三种崩溃现场与关账手法</strong></p>
+<table>
+<thead>
+<tr>
+<th>崩溃时的现场</th>
+<th>怎么关账</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>最后一批写到一半（撕裂碎片）</td>
+<td>丢弃碎片，保留能完整解码的部分</td>
+</tr>
+<tr>
+<td><code>tool/call</code> 在账、结果没拿到</td>
+<td>补一条合成的 <code>tool/result</code>，写明"结果未知"</td>
+</tr>
+<tr>
+<td>开放的步骤与轮次</td>
+<td>补 <code>step/end</code> 与 <code>turn/end</code>，结束原因是 <code>interrupted</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>interrupted</code> 是个特殊的结束原因：运行循环永远不会发出它，只有崩溃恢复才能合成。所以你在账本里看到 <code>interrupted</code>，就等于看到一块"此处发生过崩溃"的铭牌。</p>
+<p>这与第 8 章"施工牌"是同一种品格：压缩中途崩溃留下没闭合的 <code>start</code>/<code>end</code>，让失败显形；这里也不抹掉未完成的轮次，而是补上一页交代。模型随后收到的"结果未知"也有明确的行动指南：只读或幂等的操作可以重试，可能有副作用的操作要先验证现场或问你，不许盲目重试。</p>
+<p>关账之后，账本依旧平整：旧账的 <code>seq</code> 连续，新生命周期从种子长度处续接编号，第一笔先写一条分界线——下面细说。</p>
+<p><img alt="崩溃关账" src="../images/fig13-3-crash-closer.svg" /></p>
+<p><strong>图13-3 关账，不截肢</strong></p>
+<h2 id="projection">projection：从账本派生屏幕<a class="headerlink" href="#projection" title="Permanent link">&para;</a></h2>
+<p>账本是真源，可屏幕要的并不是一串原始事件：待办面板要当前清单，统计面板要计数，目标面板要快照。再存一份副本？两本账迟早打架。</p>
+<p><a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/subsystems/session-projection.zh.md">会话投影</a>给出第三条路：视图从账本派生，每次现算，不存副本。每个领域登记一个"投影单元"：一个初始状态、一个纯函数折叠 <code>apply(状态, 事件)</code>，外加一个可选的客户端视图。</p>
+<p>分工干净利落（表13-4）：</p>
+<p><strong>表13-4 投影的三方分工</strong></p>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>负责什么</th>
+<th>不碰什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>框架（注册表）</td>
+<td>只订阅一次 <code>session/event</code>，把每个已提交事件喂给每个单元</td>
+<td>不算任何业务状态</td>
+</tr>
+<tr>
+<td>领域（投影单元）</td>
+<td>只做纯函数折叠</td>
+<td>不持有任何订阅</td>
+</tr>
+<tr>
+<td>客户端</td>
+<td>只收经过 schema 校验的成品值</td>
+<td>从不自己折叠事件</td>
+</tr>
+</tbody>
+</table>
+<p>单元还有两条纪律。<strong>全量值规则</strong>：携带状态的事件必须携带变更后的完整状态，绝不发裸增量——每个值都自描述，消费方拿最新一份即可。<strong>同引用闸门</strong>：对不关心的事件原样返回原状态引用，引用没变，下游开销为零。</p>
+<p>读取是一次同步的切片：<code>snapshot()</code> 返回 <code>{ asOfSeq, values }</code>，水位线 <code>asOfSeq</code> 声明"所有值都算到了这个 seq"，与同一时刻切出的页面切片严格一致。内置的例子如 <a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/session/session-stats/README.zh.md">session-stats</a>：全日志计数与墙钟时间，就是一个登记进注册表的单元。</p>
+<h3 id="_3">缓存：捷径，不是第二本账<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>冷读很疼：打开一个老会话、扫一眼列表页，都要把整本账从头折叠一遍。<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/session/session-projection-cache/README.zh.md">投影缓存</a>把每个单元的状态连同版本号、水位线一起记成检查点行，下次从检查点接着折叠。</p>
+<p>它的纪律值得逐条看：</p>
 <ul>
-<li>一份 <code>AGENTS.md</code>——不是给人看的开发文档，而是写给 AI agent 的工作守则；</li>
-<li>一个 <code>.agents/</code> 目录——里面是几百篇设计笔记和十几份"技能说明书"；</li>
-<li><code>scripts/</code> 里一百多个脚本，其中 29 个以 <code>verify-</code> 开头、充当门禁（外加 12 个同名的伴随测试）。</li>
+<li><strong>缓存行是"折叠捷径，绝不是权威"</strong>。它可以过期——行上的 <code>seq</code> 精确地说出它有多旧——但永远不会错。</li>
+<li><strong>日志先行，缓存跟随</strong>。写缓存行之前，先将会话缓冲的事件持久化落盘；崩溃最多让缓存落后于账本，绝不会跑到账本前面。</li>
+<li><strong>三个必写点</strong>：会话创建、<code>turn/end</code>、会话销毁（由热转冷的瞬间）；之间再按事件数与时间间隔节流，两个节流字段都是必填的部署决策。</li>
+<li><strong>版本不符就丢弃重折</strong>，不做迁移；写失败只记警告，下次写入自愈——缓存永远尽力而为。</li>
+<li><strong>列表页享受零 I/O 读取</strong>：直接从存储域的内存表取值，最多旧到上次检查点，绝不错。</li>
 </ul>
-<p>把这些拼起来，会得出一个这一代软件项目里还很罕见的结论：<strong>dsh 是团队用 AI agent 开发出来的，而整个开发过程留下了可供审查的档案</strong>。设计决策为什么这么定、否决过什么、哪些规矩由机器执行——全都白纸黑字。这一章就是去翻这些档案。</p>
-<p><strong>表13-1 仓库里的"agent 向"设施</strong></p>
+<p>缓存从不触碰会话持久化层——它在自己的存储域里存自己的派生文档。真源永远只有账本一本（表13-5）。</p>
+<p><strong>表13-5 账本、投影、缓存三层对照</strong></p>
 <table>
 <thead>
 <tr>
-<th>设施</th>
-<th>是什么</th>
-<th>给谁用</th>
+<th></th>
+<th>事件日志</th>
+<th>内存投影</th>
+<th>投影缓存</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/AGENTS.md"><code>AGENTS.md</code></a></td>
-<td>仓库工作守则：一条条自包含的短规则，每条链接到它的详细归属</td>
-<td>每个进仓库干活的 agent（和人）</td>
+<td>身份</td>
+<td>唯一真源</td>
+<td>派生的视图</td>
+<td>视图的持久化捷径</td>
 </tr>
 <tr>
-<td><code>.agents/notes/</code></td>
-<td>设计笔记库：决策、提案、否决与归档</td>
-<td>事后想知道"为什么这么设计"的任何人</td>
+<td>会过期吗</td>
+<td>不会</td>
+<td>不会</td>
+<td>会，<code>seq</code> 说出有多旧</td>
 </tr>
 <tr>
-<td><code>.agents/skills/</code></td>
-<td>11 份技能说明书，如代码评审、合并堆叠的 PR、文档翻译、归档笔记</td>
-<td>执行特定流程的 agent</td>
-</tr>
-<tr>
-<td><a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/AGENTS.md"><code>docs/AGENTS.md</code></a></td>
-<td>文档标准：分层、预算、写作规则</td>
-<td>写文档的 agent</td>
+<td>丢了怎么办</td>
+<td>数据丢失</td>
+<td>重算即回</td>
+<td>重算即回</td>
 </tr>
 </tbody>
 </table>
-<p>一个细节：根目录、<code>packages/</code>、<code>examples/</code> 下各有一个同名快捷文件，都只是指向 <code>AGENTS.md</code> 的符号链接——守则只有一份，别处全是引用。这本身就是后面要讲的一条纪律。</p>
-<h2 id="agent-notes">Agent Notes：一个决策的一生<a class="headerlink" href="#agent-notes" title="Permanent link">&para;</a></h2>
-<p><code>.agents/notes/</code> 是整个档案的核心。dsh 团队给设计笔记定了一个名字：<strong>Agent Note</strong>。它记录的是代码和文档无法承载的东西——<strong>为什么这么决定，以及放弃了什么</strong>。</p>
-<p>每篇笔记的路径就编码了它的状态和类别：<code>{生命周期}/{类别}/yyyy-mm-dd-主题.md</code>。生命周期有四个，一篇笔记在文件夹之间移动，就是状态在流转：</p>
-<p><strong>表13-2 Agent Note 的四种状态（截至本书写作的数量）</strong></p>
+<h2 id="resume-fork">续接：resume 与 fork<a class="headerlink" href="#resume-fork" title="Permanent link">&para;</a></h2>
+<p>铁律加关账，让"续接"变成了对账本本身的操作。</p>
+<h3 id="resume">resume：整本账做种子<a class="headerlink" href="#resume" title="Permanent link">&para;</a></h3>
+<p>续接就是<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/subsystems/persistence.zh.md">加载</a>加会话准备：读回的账本连同头部的谱系元数据原样归来，恢复的 agent 看到同样的历史与组合。构造函数种子就是整本存储日志，新生命周期的第一条事件从种子长度处续接 <code>seq</code>——页码不清零。</p>
+<p>新生命周期写下的第一笔，是一条只记账的边界线：<code>session/end-seed</code>。为什么要这么讲究？因为种子历史与新工作在字节层面完全相同——没有边界线，你无法分辨一条没闭合的 <code>start</code> 记录是早已死去的生命周期留下的，还是此刻正在进行的。读存储历史的消费方以"最后一条 <code>end-seed</code>"定位边界；按真人活动给会话排序的消费方则会排除它——接手会话本身不算工作。</p>
+<p>续接还有自己的信封快照：一条 <code>reason</code> 为 <code>resume</code> 的 <code>request/header</code>，把这次循环实例的边界也记进账本。</p>
+<h3 id="fork">fork：剪一段稳定前缀，抄一份<a class="headerlink" href="#fork" title="Permanent link">&para;</a></h3>
+<p>fork 就是"复制日志再改"，第 5 章一句话带过，这里展开。<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/subsystems/session.zh.md">ctx.sessions.fork</a> 干三件事：</p>
+<ol>
+<li><strong>剪</strong>：选取源事件直到 <code>boundary</code> 序号（含），缺省剪到最后一个事件。硬规矩是所选前缀不得结束在开放轮次里——只能在轮次之间的稳定位置下剪。</li>
+<li><strong>抄</strong>：深克隆选中的事件作为子会话的种子。从此两本账各过各的，子会话往后的写入不会流回父账本。</li>
+<li><strong>记谱系</strong>：子会话元数据写下 <code>parentSession</code>、<code>seedLength</code>，继承工作目录。谱系记在头部，不占事件。</li>
+</ol>
+<p>子会话同样以 <code>end-seed</code> 为第一笔，区分种子与实时工作。fork 也有明确边界：存储内的 fork API 只对实时会话动手，不支持 fork 已持久化但未加载的会话；想从冷账本分叉，走远端的 <code>SessionController.fork</code>——它从"冷可读的已完成轮次前缀"开新会话。</p>
+<p><strong>表13-6 resume 与 fork 对照</strong></p>
 <table>
 <thead>
 <tr>
-<th>状态</th>
-<th>含义</th>
-<th>数量</th>
+<th></th>
+<th>resume</th>
+<th>fork</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>proposed</code></td>
-<td>提案，实施前评审用；尚未构建或部分构建</td>
-<td>26</td>
+<td>种子</td>
+<td>整本存储日志</td>
+<td>一段轮次间的稳定前缀</td>
 </tr>
 <tr>
-<td><code>implemented</code></td>
-<td>决策已交付；笔记与实际交付保持同步</td>
-<td>559</td>
+<td>与源的关系</td>
+<td>同一会话接着续</td>
+<td>新子会话，谱系记进元数据</td>
 </tr>
 <tr>
-<td><code>rejected</code></td>
-<td>提案被否决；仅当它仍能避免一种诱人的大错时保留</td>
-<td>11</td>
+<td><code>seq</code></td>
+<td>从种子长度处续接</td>
+<td>同样从种子长度处续接</td>
 </tr>
 <tr>
-<td><code>archived</code></td>
-<td>已实施的决策完成使命后冻结归档</td>
-<td>143</td>
+<td>边界线</td>
+<td><code>session/end-seed</code></td>
+<td><code>session/end-seed</code></td>
+</tr>
+<tr>
+<td>硬要求</td>
+<td>烂尾先关账</td>
+<td>前缀不得结束在开放轮次</td>
 </tr>
 </tbody>
 </table>
-<p>七百多篇笔记，覆盖了六个类别：新功能、缺陷修复、简化、架构、流程、测试。随便挑一篇带 <code>.zh</code> 后缀的<a href="https://github.com/deepseek-ai/deepseek-harness/tree/master/.agents/notes/implemented">已实施笔记</a>读一读，你会发现它们长得出奇一致。这不是自觉，是格式：</p>
-<p><strong>表13-3 一篇 implemented 笔记的解剖</strong></p>
+<p><img alt="resume 与 fork" src="../images/fig13-4-fork-resume.svg" /></p>
+<p><strong>图13-4 同一本账的两种续法</strong></p>
+<h3 id="_4">先落笔再干活：检查点策略<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>续接还有个隐藏前提：崩溃那一刻，该入账的都入了吗？持久化是分批异步的，批写到一半崩了，账就还悬在内存里。</p>
+<p><a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/session/session-checkpoint-policy/README.zh.md">checkpoint-policy</a> 就是管这件事的零配置插件：它不写事件，只决定"何时必须落笔"，并通过 <code>ctx.sessions.flush</code> 这道持久性屏障完成落盘。三道关卡（表13-7）：</p>
+<p><strong>表13-7 先落笔再干活的三道关卡</strong></p>
 <table>
 <thead>
 <tr>
-<th>部分</th>
-<th>写什么</th>
-<th>规矩</th>
+<th>时机</th>
+<th>先持久化，再放行</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>头部</td>
-<td><code>Status:</code> 一行，必须与所在文件夹一致</td>
-<td>拒绝是唯一带内容的状态：原因写在状态行上</td>
+<td>模型请求进入适配器之前</td>
+<td>缓冲中的请求事件——崩溃后不会重放一笔没记过的请求</td>
 </tr>
 <tr>
-<td><code>## Problem</code></td>
-<td>动机，不依赖解决方案也能独立读懂</td>
-<td>每篇的起点</td>
+<td>顶层工具本体执行之前</td>
+<td>这条 <code>tool/call</code>——在产生外部副作用之前入账；嵌套调用复用外层检查点</td>
 </tr>
 <tr>
-<td><code>## Decision</code></td>
-<td>已交付的现实，现在时</td>
-<td>代码搬家、改名时，笔记同一变更内同步</td>
-</tr>
-<tr>
-<td><code>## Alternatives considered</code></td>
-<td>每个真实备选方案及其落选原因</td>
-<td><strong>强制</strong>——无法还原时才允许留一条豁免注释</td>
-</tr>
-<tr>
-<td><code>## Consequences</code></td>
-<td>权衡的代价<strong>与</strong>收益</td>
-<td>不只写成本</td>
+<td>每个步骤边界</td>
+<td>上一步的回复与工具结果——再派生下一个请求</td>
 </tr>
 </tbody>
 </table>
-<p>为什么"备选方案"是强制的？<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/.agents/notes/implemented/process/2026-07-05-uniform-agent-note-format.zh.md">统一格式的笔记</a>里有一句话值得抄走：<strong>记录决策时不记录它击败了什么，就是在邀请反复争论</strong>。三个月后有人问"当初为什么不直接加一层缓存"，答案不在任何人的脑子里，在那篇笔记里。</p>
-<p>值得偷师的不只是格式，还有配套的几条硬规矩：</p>
+<p>态度是失败即关：检查点失败，适配器和工具本体干脆不执行——宁可拒绝干活，也不干没记账的活。两条诚实的免责声明：流式分片没有逐片检查点，依赖有界的后台批次；"已持久化的调用没有结果"只能记为结果未知，不会自动重试——策略能证明"你派出过这趟差"，证明不了"外部效果已完成"。</p>
+<h2 id="_5">跨会话翻账本：搜索、谱系与导出<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>一个会话一本书，机器上很快攒出几百本。<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/session-query/README.zh.md">session-query 家族</a> 专管翻书：统一服务 <code>ctx.sessionQuery</code> 覆盖列表、精确读取、关系追踪与全文搜索；有实时数据时实时优先，返回的每条记录都是脱离存储的克隆，描述同一个一致时刻。</p>
+<p><strong>表13-8 翻账本的工具箱</strong></p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>你得到什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>listSessions</code> / <code>filterSessions</code></td>
+<td>语料库列表与过滤（按 id、目录、创建时间、父会话、可用性）</td>
+</tr>
+<tr>
+<td><code>readSession</code> / <code>readSurface</code></td>
+<td>完整原始日志（经回放校验）／当前模型表面</td>
+</tr>
+<tr>
+<td><code>readEvent</code></td>
+<td>一个事件，加前后有界的原始邻窗</td>
+</tr>
+<tr>
+<td><code>traceEvent</code></td>
+<td>一个事件的位置替换与被引用源关系</td>
+</tr>
+<tr>
+<td><code>traceSession</code></td>
+<td>会话谱系：已知祖先链加递归后代树</td>
+</tr>
+<tr>
+<td><code>searchSessions</code> / <code>searchEvents</code></td>
+<td>跨会话分组搜索／会话内搜索</td>
+</tr>
+</tbody>
+</table>
+<p><code>traceEvent</code> 是"事件社会关系"的显微镜：谁替换了它、它遮住了谁、它引用哪些先前事件做源、哪些后续事件引用它——压缩遮罩的痕迹能一路追到底。<code>traceSession</code> 顺着谱系爬：fork 留下的 <code>parentSession</code> 让祖先与后代都找得回来，祖先链是否完整也会明确告知。词汇细节见<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/subsystems/session-query.zh.md">会话查询子系统文档</a>。</p>
+<h3 id="_6">全文搜索：一份可随时丢弃的派生索引<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>全文搜索由 <a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/session-query/session-query-sqlite/README.zh.md">SQLite 提供方</a>供给，设计上有四句话：</p>
 <ul>
-<li><strong>每个非平凡变更必须在同一个 PR 里带一篇笔记</strong>。纯机械的小改动豁免，其余没有例外。</li>
-<li><strong>笔记跟着代码走</strong>。代码移动文件、重命名包，笔记在同一变更里更新——不是重写决策，是更新事实。</li>
-<li><strong>归档即冻结</strong>。归档的笔记禁止编辑、翻译、移动，由脚本核对内容清单，一字不许动。要改？写新笔记，链接旧的。</li>
-<li><strong>没有中央索引</strong>。目录树本身就是工作清单——加一份手工索引，就是加一份会过时的副本。</li>
+<li><strong>派生索引，绝不动源存储。</strong> 索引行存放在一个专用的可丢弃数据库里；实时会话从内存索引，持久会话从派生库索引，每次搜索先做一次对账，结果永远反映最新状态。</li>
+<li><strong>查询是数据，不是语法。</strong> 引号、<code>OR</code>、<code>NEAR</code>、星号一律按普通文本对待；排序确定——匹配片段多者在前、文档短者在前；摘录按 Unicode 码点截断，没有提供方私有的分数。</li>
+<li><strong>游标带世代。</strong> 语料库一变，旧游标宁可报错失败，也不返回错位的页。</li>
+<li><strong>按词匹配，不按子串。</strong> 要字面子串扫描，用 <code>filterEvents</code> 的文本子句：字面、忽略大小写、空白灵活。</li>
 </ul>
-<p>拿<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/.agents/notes/implemented/architecture/2026-08-03-per-session-agent-presets.zh.md">按会话组装 preset 的那篇笔记</a>当例子——第 12 章的 preset 机制，决策全过程都在里面：问题是"一个进程只能有一种组装，想并存精简版和完整版得开两个进程"；决策是"preset 挂进 agent 的作用域，不动任何注册表"；还记了实测数字（一份十二行组装约 3 毫秒、约 600KB，所以每会话各挂一份比共享更划算），以及被否决的备选——给作用域注册表新增一层、把每个 preset 跑成子进程。读完这一篇，你会明白第 12 章那些"奇怪规矩"（空白才可切、preset 文件不回写）每一条背后都站着一个被排除的方案。</p>
-<h2 id="verify">机器管机械：verify 门禁体系<a class="headerlink" href="#verify" title="Permanent link">&para;</a></h2>
-<p>笔记解决了"决策有人记"，但规矩不能靠自觉。dsh 的答案是把能机器检查的部分全部交给机器。</p>
-<p>仓库 <code>scripts/</code> 目录下有一百多个工程脚本，其中 <strong>29 个以 <code>verify-</code> 开头的门禁脚本</strong>（另有 12 个是它们的伴随测试）。命名即职责，挑几个看名字就懂：</p>
-<p><strong>表13-4 门禁脚本选看</strong></p>
-<table>
-<thead>
-<tr>
-<th>脚本</th>
-<th>管什么</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>verify-agent-note-format</code></td>
-<td>笔记的头部、章节骨架、状态与文件夹一致</td>
-</tr>
-<tr>
-<td><code>verify-archived-agent-notes</code></td>
-<td>归档冻结：内容清单、伴随记录哈希</td>
-</tr>
-<tr>
-<td><code>verify-doc-budgets</code></td>
-<td>每篇文档的字数上限，超了红</td>
-</tr>
-<tr>
-<td><code>verify-md-wrap</code></td>
-<td>每段一个物理行</td>
-</tr>
-<tr>
-<td><code>verify-export-jsdoc</code></td>
-<td>每个导出都有文档注释</td>
-</tr>
-<tr>
-<td><code>verify-translation-pairing</code></td>
-<td>中英双语文档成对更新</td>
-</tr>
-<tr>
-<td><code>verify-cordis-config</code></td>
-<td>配置里引用的插件必须出现在清单依赖里</td>
-</tr>
-</tbody>
-</table>
-<p>门禁不只在 CI 里。本地提交时，<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/lefthook.yml">lefthook.yml</a> 挂了一排快速检查点：翻译配对、归档完整性、暂存文件的 lint、空白符、vendor 清单守卫；推送前再跑一遍类型检查。文件开头那句注释是整套体系的自我定位：<strong>让本地检查点保持快，全仓库的门禁矩阵归 CI</strong>。</p>
-<p>这套分工可以概括成一句话：<strong>机器管机械，人评审语义</strong>。门禁只回答"格式对不对、链接活不活、配对齐不齐"这类有唯一答案的问题；一个设计好不好、该不该做，交给笔记和评审。<code>AGENTS.md</code> 里还有一条规则把这种文化写成了义务：<strong>把可机械检查的不变量接进真正执行的顶层门禁，并证明每条被改动的验收路径都会拒绝非法输入</strong>。写规则而不接线，等于没写。</p>
-<p>连"跑基准"这件看似与代码无关的事也透着同一股气质。仓库根目录的 <a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/BENCHMARK.md">BENCHMARK.md</a> 只有几行：按 Python SDK 指南装好，跑 <code>jsonrpc-agent</code> 的精简变体，每个基准任务用独立的工作区和会话。翻译一下：<strong>用 dsh 跑基准，走的是 dsh 自己的产品路径</strong>——agent 产品用 agent 产品来测量，连评测都不另开小灶。</p>
-<h2 id="_2">术语表纪律与不变量文化<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>再看两处容易被忽略、其实最见功力的地方。</p>
-<p>第一处是<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/glossary.zh.md">官方术语表</a>。开头一句话就是全书读者最熟悉的："DeepSeek Harness 的领域词汇为每个概念规定一个规范术语。"术语通过标准锚点链接，实现细节不在术语表里——留给各包 README 和 Agent Note。一个概念只有一个名字，一义一词；写这本书时我们几乎不需要在多个叫法之间做选择，这在技术文档里是罕见的待遇。</p>
-<p>与术语纪律配套的是"归属纪律"。文档标准里写着：<strong>每个事实只有一个家</strong>——在负责它的那一层写全，别处一律放链接。连文档长度都有预算：根目录 <code>AGENTS.md</code> 不超过 1600 词，架构文档不超过 1800 词，超了门禁会红——逼作者把内容搬回它该去的层，而不是在原地膨胀。</p>
-<p>第二处是<strong>不变量文化</strong>。全书反复出现的那条铁律——<strong>模型可见即已记录</strong>——在架构文档里的完整表述是：抵达模型请求的一切都必须能从日志重建，<strong>并由一项运行时不变量断言这一点</strong>。铁律不是口号，是一段会报错的代码。</p>
-<p>这不是孤例。<code>packages/</code> 下有 227 个叫 <code>invariant.ts</code> 的文件，几乎每个包一个。守则对它们的写法也有要求：不变量断言的是"被拥有的关系"——去查权威的事件流和可变数据，而不是查某个服务在不在、某个插件挂没挂。再加一条：<strong>配置错误要响亮地失败</strong>——能自己说明白的错误就在加载时炸，绝不静默跳过。</p>
-<p>把这些放在一起看，你会认出一条文化线索：<strong>凡是能用机器表达的承诺，都不留在口头</strong>。三种纪律各管一段（表13-5）：</p>
-<p><strong>表13-5 三种纪律</strong></p>
-<table>
-<thead>
-<tr>
-<th>纪律</th>
-<th>工具</th>
-<th>效果</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>管住嘴</td>
-<td>术语表：一个概念一个规范叫法</td>
-<td>讨论和文档不会一义多词</td>
-</tr>
-<tr>
-<td>管住手</td>
-<td>门禁与文档预算</td>
-<td>格式、链接、长度越界即红</td>
-</tr>
-<tr>
-<td>管住运行时</td>
-<td>227 个 <code>invariant.ts</code></td>
-<td>口头承诺变成会报错的检查</td>
-</tr>
-</tbody>
-</table>
-<h2 id="_3">六件可以带走的事<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p><img alt="六件能从 dsh 偷师的事" src="../images/fig13-1-ten-lessons.svg" /></p>
-<p><strong>图13-1 六件偷师清单</strong></p>
-<p>把这一章的证据压成一张清单。无论你以后维护什么项目——哪怕完全不涉及 AI——这六件都值得照抄（表13-6）：</p>
-<p><strong>表13-6 偷师清单与最小行动</strong></p>
-<table>
-<thead>
-<tr>
-<th>#</th>
-<th>偷什么</th>
-<th>dsh 里的证据</th>
-<th>你的最小行动</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>行为守则先行</td>
-<td><code>AGENTS.md</code>：短规则、每条自包含、链接归属</td>
-<td>写一页守则，宁短勿全</td>
-</tr>
-<tr>
-<td>2</td>
-<td>每个变更带一篇笔记</td>
-<td>七百多篇 Agent Note，与变更同 PR</td>
-<td>从模板抄四节标题开始</td>
-</tr>
-<tr>
-<td>3</td>
-<td>备选方案也写下来</td>
-<td>"曾考虑的替代方案"是强制章节</td>
-<td>每篇至少写一个真实的落选项</td>
-</tr>
-<tr>
-<td>4</td>
-<td>机器管机械</td>
-<td>29 个 <code>verify-*</code> 门禁 + lefthook 检查点</td>
-<td>给最常被违反的一条规矩写脚本</td>
-</tr>
-<tr>
-<td>5</td>
-<td>一个事实一个家</td>
-<td>术语表 + 文档预算 + 分层归属</td>
-<td>先给核心概念定唯一叫法</td>
-</tr>
-<tr>
-<td>6</td>
-<td>不变量要可执行</td>
-<td>227 个 <code>invariant.ts</code>；模型可见即已记录</td>
-<td>把一条口头承诺改成会报错的检查</td>
-</tr>
-</tbody>
-</table>
-<p>这六件有一个共同点：<strong>都不贵</strong>。写一页守则、一篇笔记、一个脚本，都是小时级的工作；贵的是没有它们之后，每一次"当初为什么这么定"的考古和争论。</p>
-<h2 id="_4">诚实的局限<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<p>偷师归偷师，dsh 当下的短板也要看清（表13-7）：</p>
-<p><strong>表13-7 dsh 的局限（以本书写作时为准）</strong></p>
-<table>
-<thead>
-<tr>
-<th>局限</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>开发者预览</td>
-<td>官方 README 明说"会有破坏性变更"；守则里甚至有一节"预发布立场"，注明第一个正式版本发布后就删掉</td>
-</tr>
-<tr>
-<td>沙箱以文件效果为界</td>
-<td>沙箱执行的是文件效果策略；网络与进程可见性不在它的词汇内</td>
-</tr>
-<tr>
-<td>没有花费闸门</td>
-<td>自备 key 按量计费，官方没有预算拦截机制，花超之前没人拦你</td>
-</tr>
-<tr>
-<td>生态还年轻</td>
-<td>树外插件质量参差，安装之前自己看一眼它的清单和代码</td>
-</tr>
-</tbody>
-</table>
-<p>这些局限恰好呼应本章主题：一个敢把决策档案全部公开的项目，也敢把"还在预览期"写在最显眼的地方。</p>
-<h2 id="_5">继续走的路标<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<p>官方材料都在 <a href="https://github.com/deepseek-ai/deepseek-harness">deepseek-ai/deepseek-harness</a> 仓库里：</p>
-<ul>
-<li><a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/architecture.zh.md">架构文档</a>——动手前的必读总览</li>
-<li><a href="https://github.com/deepseek-ai/deepseek-harness/tree/master/docs/cordis-tutorial">cordis 教程</a>——插件框架的系统课程</li>
-<li><a href="https://github.com/deepseek-ai/deepseek-harness/tree/master/docs/cookbook">cookbook</a>——动手菜谱</li>
-<li><a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/glossary.zh.md">术语表</a>——概念拿不准时查它</li>
-</ul>
-<p>社区入口：</p>
-<ul>
-<li>GitHub 话题 <a href="https://github.com/topics/dsh-plugin"><code>dsh-plugin</code></a>——发现别人写的插件</li>
-<li>仓库的 Discussions——反馈与讨论的官方渠道</li>
-</ul>
-<h2 id="_6">最后一句话<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
-<p>回到第 1 章那个比喻：大模型是被关在黑屋子里的大脑，harness 是给它装上的身体。</p>
-<p>这本书带你把这副身体从外到内拆了一遍，最后又看了它的产房。现在你知道了：所谓 AI agent 的魔法，拆开看全是朴素的工程——<strong>记账、关卡、回滚、外存、叠层</strong>；而造出这些工程的过程，同样没有魔法——<strong>守则、笔记、门禁、术语、不变量</strong>。魔法不在模型里，在模型之外的一切里；也不在 agent 里，在围着 agent 建立纪律的人那里。</p>
-<p>祝你拼出自己的那辆车。🚗</p>
+<p>搜索是可选能力：已发布组合默认关闭，索引何时打开有启动时、首次搜索时、永不打开三档（配置项以本机实跑为准）。诸如 <code>/resume</code> 既往工作检索这样的功能，就是它的消费方。</p>
+<h3 id="export">把整棵会话树带回家：/export<a class="headerlink" href="#export" title="Permanent link">&para;</a></h3>
+<p><a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/session-query/session-log-export/README.zh.md">session-log-export</a> 在 Web 端给了两个入口：会话头部的 <code>Session log</code> 按钮和 <code>/export</code> 命令。浏览器随即下载一个 ZIP，里面是整棵会话树——会话本身、它的子会话与附件。</p>
+<p>两个细节值得品味。下载前宿主会先冲洗活跃的根会话，于是 ZIP 里连触发这次下载的那对命令生命周期事件都在——导出行为本身也记了账。导出要求后端保有逐会话的原始产物：随附的 JSONL 后端（明文或压缩）没问题，SQLite 后端不支持导出（以本机实跑为准）。</p>
+<p>模型自己也能翻账本：<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/session-query/tool-session-query/README.zh.md">tool-session-query</a> 注册了五个工作区授权的会话查询工具，搜索、追踪、读取一应俱全。</p>
 <h2 id="_7">🧪 本章实验<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p><strong>实验 13-1 ★｜数一数门禁</strong>
-目标：对"机器管机械"有体感。
-步骤：打开 <a href="https://github.com/deepseek-ai/deepseek-harness/tree/master/scripts">scripts 目录</a>，数以 <code>verify-</code> 开头的门禁脚本（不含 <code>.spec.</code> 后缀的伴随测试），任选三个，只凭名字猜它们管什么，再去 <code>AGENTS.md</code> 里印证。
-验收：数出 29 个门禁脚本；三个猜测里至少两个被印证。</p>
-<p><strong>实验 13-2 ★★｜解剖一篇笔记</strong>
-目标：亲手摸一次决策档案。
-步骤：读 <a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/.agents/notes/implemented/architecture/2026-08-03-per-session-agent-presets.zh.md">按会话组装 preset 的笔记</a>，回答：问题是什么？决策是什么？哪个备选方案被否决了，为什么？
-验收：三问都能答，且答案与第 12 章的机制对得上。</p>
-<p><strong>实验 13-3 ★★｜给你自己的项目写一篇</strong>
-目标：把格式变成习惯。
-步骤：挑一个你项目里"只有你知道为什么"的决策，按 Problem / Decision / Alternatives considered / Consequences 四节写一篇笔记。
-验收：备选方案一节里至少有一个你<strong>真的考虑过</strong>的方案，并写清它落选的原因。</p>
+<p><strong>实验 13-1 ★｜亲眼看到续接的边界线</strong>
+目标：验证重启续接后 <code>seq</code> 连续不缺号，且新旧生命周期之间有边界线。
+步骤：用 Web 形态聊上几轮，用 <code>/export</code>（或会话头部的 <code>Session log</code> 按钮）下载会话 ZIP；结束进程后重启，续接同一个会话再聊几轮，再次导出；解压两份账本对照（若压缩了先解压）。
+验收：两份账本的 <code>seq</code> 页码连续；第二份账本里能多找到一条 <code>session/end-seed</code>，本轮新事件全排在它之后。</p>
+<p><strong>实验 13-2 ★★｜翻出陈年旧账</strong>
+目标：体验跨会话全文搜索与它的派生索引。
+步骤：在某个会话里聊一个自造的冷门词（比如一种编造的植物名）；会话结束后，用部署提供的搜索入口（Web 搜索或 <code>/resume</code>）搜这个词。
+验收：命中那个会话并给出摘录；索引数据库是独立于会话账本的另一个文件。若搜索不可用，说明该部署没挂载搜索后端（以本机实跑为准）。</p>
 </blockquote>
 <h2 id="_8">🤔 思考题<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
 <ol>
-<li>★★ 六件偷师清单里，哪一件搬到你的项目上最难？难在哪，缺什么前提？</li>
-<li>★★ dsh 把被否决的提案也留在仓库里，还要"仅当它能避免一种诱人的大错时才保留"。这条保留标准本身，想防的是什么？</li>
-<li>★★★ 你准备在自己的项目里引入 AI agent 协作。守则、第一篇笔记、第一个门禁——你会先做哪个？为什么？</li>
+<li>★ 只追加让账本"永远是平的"。假如允许改写历史，崩溃恢复要额外多做哪些事？</li>
+<li>★★ 崩溃时 dsh 选择"关账"而不是"把没干完的继续干完"，明确不提供部分轮次续跑。这个取舍买到了什么，放弃了什么？</li>
+<li>★★ 投影缓存只敢承诺"可以过期，永远不会错"。日志先行、缓存跟随的顺序，是如何支撑这句话的？</li>
+<li>★ fork 是"抄一份前缀"，不是"共享同一本账"。如果两个会话合写一本账，会撞出什么乱子？</li>
+<li>★★★ 搜索索引"可随时丢弃重建"，账本却"一字不删"。同一份数据，为什么待遇截然相反？</li>
 </ol>
 <h2 id="_9">📝 小结<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>dsh 是 agent 开发的现场</strong>——守则、笔记、技能、门禁，档案全在仓库里</li>
-<li><strong>Agent Notes 四状态流转</strong>——proposed → implemented → rejected / archived；备选方案强制记录</li>
-<li><strong>机器管机械，人评审语义</strong>——29 个 <code>verify-*</code> 门禁管形状，笔记和评审管判断</li>
-<li><strong>术语与归属纪律</strong>——一义一词、一个事实一个家、文档有预算</li>
-<li><strong>不变量文化</strong>——模型可见即已记录，口头承诺都变成会报错的检查</li>
-<li><strong>诚实的局限</strong>——预览期、沙箱边界、无花费闸门、生态年轻</li>
+<li><strong>只追加，永不改写</strong>——会话是仅追加的事件流，<code>seq</code> 连续不缺号，事件入账即深冻结，坏载荷在追加处被拒</li>
+<li><strong>关账不截肢</strong>——崩溃后加载时补上合成收尾事件，<code>interrupted</code> 只由恢复合成；唯一被丢弃的是从未写全的撕裂碎片，失败显形</li>
+<li><strong>边界线</strong>——resume 与 fork 都以旧事件为种子，新生命周期第一笔是 <code>session/end-seed</code>，页码从种子长度处续接</li>
+<li><strong>投影</strong>——框架驱动、领域计算、客户端只收成品；全量值规则加同引用闸门，快照是一次同步的一致切片</li>
+<li><strong>缓存不是真源</strong>——日志先行、缓存跟随；可以过期，永远不会错；版本不符就丢弃重折</li>
+<li><strong>检查点三道关卡</strong>——请求前、工具本体前、步骤边界；失败即关，宁可拒绝干活也不干没记账的活</li>
+<li><strong>跨会话翻账本</strong>——<code>ctx.sessionQuery</code> 统一读取、追踪与谱系；全文索引是可丢弃的派生物；<code>/export</code> 把整棵会话树带回家</li>
 </ul>
-<p>全书完。⬅️ 回 <a href="../">首页</a>，或从 <a href="../ch01/">第1章 什么是 Agent Harness</a> 重读一遍。</p>
+<p>机制深水区的第一站到此结束。下一章换个视角，看多段工作如何被编排成流水线。⬅️ <a href="../ch12/">第12章 组装自己的 agent</a> ｜ ➡️ <a href="../ch14/">第14章 编排：Workflow 与 Ralph</a></p>
 
 
 
@@ -1565,6 +1831,22 @@
             </div>
           </a>
         
+        
+          
+          <a href="../ch14/" class="md-footer__link md-footer__link--next" aria-label="下一页: 第14章 编排：Workflow 与 Ralph">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                第14章 编排：Workflow 与 Ralph
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
         
       </nav>
     
