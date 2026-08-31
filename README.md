@@ -2,7 +2,7 @@
 
 一本写给**不读代码的人**的 DeepSeek Harness（dsh）学习书。
 
-- 📖 **在线阅读**：https://makewheels.github.io/deepseek-harness-book/
+- 📖 **在线阅读**：[makewheels.github.io/deepseek-harness-book](https://makewheels.github.io/deepseek-harness-book/)
 - 风格参照李博杰《深入理解 AI Agent》（案例驱动、编号实验、思考题、章末小结），但全部用大白话讲，图多字少。
 - 源材料：[deepseek-ai/deepseek-harness](https://github.com/deepseek-ai/deepseek-harness) 源码与官方文档 + 实机运行验证。
 - 构建：Markdown + Material for MkDocs。
@@ -23,7 +23,7 @@ pip install mkdocs-material   # 或用仓库内 .venv
 mkdocs serve
 ```
 
-浏览器打开 http://127.0.0.1:8000 。
+浏览器打开 [http://127.0.0.1:8000](http://127.0.0.1:8000)。
 
 ## 发布站点
 
@@ -37,4 +37,4 @@ mkdocs gh-deploy   # 构建并推送到 gh-pages 分支（GitHub Pages）
 
 ## 状态
 
-全书完稿（2026-08-19）。dsh 处于开发者预览阶段，接口可能变动，书稿以 2026 年 8 月中旬源码为准，阅读时以本机实跑为准。
+全书完稿（2026-08-19 初稿，2026-08-26 全面重写定稿）。dsh 处于开发者预览阶段，接口可能变动，书稿以 2026 年 8 月下旬源码为准，阅读时以本机实跑为准。
