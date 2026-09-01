@@ -1,0 +1,31 @@
+<svg viewBox="0 0 920 400" width="920" xmlns="http://www.w3.org/2000/svg" font-family="'Microsoft YaHei','PingFang SC',sans-serif">
+  <defs>
+    <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5c6bc0"/>
+    </marker>
+  </defs>
+  <rect width="920" height="400" fill="#ffffff"/>
+  <rect x="60" y="46" width="800" height="96" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.8"/>
+  <text x="84" y="78" font-size="15.5" font-weight="bold" fill="#20242e">父会话账本</text>
+  <rect x="84" y="94" width="330" height="30" rx="12" fill="#dfe4f8" stroke="#5c6bc0" stroke-width="1.2"/>
+  <text x="249" y="114" text-anchor="middle" font-size="13.5" fill="#20242e">稳定前缀 seq 0 … k（轮次之间）</text>
+  <rect x="426" y="94" width="410" height="30" rx="12" fill="#ffffff" stroke="#c3c9e6" stroke-width="1.2"/>
+  <text x="631" y="114" text-anchor="middle" font-size="13.5" fill="#5a6072">后续事件 seq k+1 … n</text>
+  <path d="M250,142 C250,170 250,185 250,206" fill="none" stroke="#5c6bc0" stroke-width="1.8" marker-end="url(#arw)"/>
+  <text x="262" y="185" font-size="13.5" fill="#5a6072">整本做种子</text>
+  <path d="M630,142 C630,170 630,185 630,206" fill="none" stroke="#5c6bc0" stroke-width="1.8" marker-end="url(#arw)"/>
+  <text x="642" y="185" font-size="13.5" fill="#5a6072">复制前缀 0 … k</text>
+  <rect x="60" y="210" width="380" height="150" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.8"/>
+  <text x="250" y="240" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#20242e">resume：同一会话 · 新生命周期</text>
+  <line x1="80" y1="254" x2="420" y2="254" stroke="#c3c9e6" stroke-width="1.4"/>
+  <text x="250" y="282" text-anchor="middle" font-size="13.5" fill="#5a6072">种子 = 整本存储日志</text>
+  <text x="250" y="308" text-anchor="middle" font-size="13.5" fill="#5a6072">先写边界线 session/end-seed</text>
+  <text x="250" y="334" text-anchor="middle" font-size="13.5" fill="#5a6072">新事件从种子长度处续接 seq</text>
+  <rect x="480" y="210" width="380" height="150" rx="12" fill="#fff8e1" stroke="#f9a825" stroke-width="1.8"/>
+  <text x="670" y="240" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#20242e">fork：新子会话 · 另一本账</text>
+  <line x1="500" y1="254" x2="840" y2="254" stroke="#f0d9a0" stroke-width="1.4"/>
+  <text x="670" y="282" text-anchor="middle" font-size="13.5" fill="#5a6072">深克隆前缀事件做种子</text>
+  <text x="670" y="308" text-anchor="middle" font-size="13.5" fill="#5a6072">元数据记谱系：parentSession 等</text>
+  <text x="670" y="334" text-anchor="middle" font-size="13.5" fill="#5a6072">往后两本账各过各的</text>
+  <text x="460" y="386" text-anchor="middle" font-size="13.5" fill="#b26a00">种子与实时工作字节相同，所以接手的第一笔永远是边界线</text>
+</svg>

@@ -1,0 +1,64 @@
+<svg viewBox="0 0 920 480" width="920" xmlns="http://www.w3.org/2000/svg" font-family="'Microsoft YaHei','PingFang SC',sans-serif">
+  <defs>
+    <marker id="arw14" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5c6bc0"/>
+    </marker>
+  </defs>
+  <rect width="920" height="480" fill="#ffffff"/>
+
+  <!-- 父 agent -->
+  <rect x="30" y="70" width="230" height="120" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.8"/>
+  <text x="145" y="104" text-anchor="middle" font-size="16.5" font-weight="bold" fill="#20242e">父 agent</text>
+  <text x="145" y="134" text-anchor="middle" font-size="13.5" fill="#5a6072">模型自己写编排脚本</text>
+  <text x="145" y="160" text-anchor="middle" font-size="13.5" fill="#5a6072">连同 meta、args 提交</text>
+
+  <!-- 父子之间的双向箭头 -->
+  <path d="M262,110 L326,110" fill="none" stroke="#5c6bc0" stroke-width="1.8" marker-end="url(#arw14)"/>
+  <text x="294" y="96" text-anchor="middle" font-size="13.5" fill="#5a6072">交脚本</text>
+  <path d="M328,170 L264,170" fill="none" stroke="#5c6bc0" stroke-width="1.8" marker-end="url(#arw14)"/>
+  <text x="294" y="196" text-anchor="middle" font-size="13.5" fill="#5a6072">只回最终值</text>
+
+  <!-- worker 容器 -->
+  <rect x="330" y="40" width="560" height="210" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.8"/>
+  <text x="610" y="68" text-anchor="middle" font-size="15" font-weight="bold" fill="#20242e">worker 线程（每次运行一个）</text>
+
+  <rect x="355" y="88" width="255" height="140" rx="12" fill="#ffffff" stroke="#5c6bc0" stroke-width="1.6"/>
+  <text x="482" y="116" text-anchor="middle" font-size="15" font-weight="bold" fill="#20242e">编排脚本（纯 JS）</text>
+  <text x="482" y="146" text-anchor="middle" font-size="13.5" fill="#5a6072">agent() · parallel() · pipeline()</text>
+  <text x="482" y="172" text-anchor="middle" font-size="13.5" fill="#5a6072">phase() · log()</text>
+  <text x="482" y="198" text-anchor="middle" font-size="13.5" fill="#5a6072">最后 return &lt;JSON 值&gt;</text>
+
+  <rect x="635" y="88" width="235" height="140" rx="12" fill="#fff8e1" stroke="#f9a825" stroke-width="1.8"/>
+  <text x="752" y="118" text-anchor="middle" font-size="15" font-weight="bold" fill="#20242e">隔离 ≠ 安全边界</text>
+  <text x="752" y="148" text-anchor="middle" font-size="13.5" fill="#5a6072">脚本与模型已有的 bash</text>
+  <text x="752" y="172" text-anchor="middle" font-size="13.5" fill="#5a6072">共享同一信任前提</text>
+  <text x="752" y="200" text-anchor="middle" font-size="13.5" fill="#b26a00">逃逸 vm 即得进程权限</text>
+
+  <!-- 扇出箭头 -->
+  <path d="M450,250 C445,285 432,312 427,336" fill="none" stroke="#5c6bc0" stroke-width="1.8" marker-end="url(#arw14)"/>
+  <path d="M660,250 C655,285 622,312 612,336" fill="none" stroke="#5c6bc0" stroke-width="1.8" marker-end="url(#arw14)"/>
+  <path d="M780,250 C786,285 792,312 794,336" fill="none" stroke="#5c6bc0" stroke-width="1.8" marker-end="url(#arw14)"/>
+  <text x="540" y="300" text-anchor="middle" font-size="13.5" fill="#5a6072">agent() 派真活</text>
+
+  <!-- subagent 行 -->
+  <rect x="340" y="340" width="170" height="100" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.8"/>
+  <text x="425" y="372" text-anchor="middle" font-size="15" font-weight="bold" fill="#20242e">subagent 1</text>
+  <text x="425" y="400" text-anchor="middle" font-size="13.5" fill="#5a6072">各持独立上下文</text>
+  <text x="425" y="424" text-anchor="middle" font-size="13.5" fill="#5a6072">干完交回结果</text>
+
+  <rect x="525" y="340" width="170" height="100" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.8"/>
+  <text x="610" y="372" text-anchor="middle" font-size="15" font-weight="bold" fill="#20242e">subagent 2</text>
+  <text x="610" y="400" text-anchor="middle" font-size="13.5" fill="#5a6072">各持独立上下文</text>
+  <text x="610" y="424" text-anchor="middle" font-size="13.5" fill="#5a6072">干完交回结果</text>
+
+  <rect x="710" y="340" width="170" height="100" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.8"/>
+  <text x="795" y="372" text-anchor="middle" font-size="15" font-weight="bold" fill="#20242e">subagent 3</text>
+  <text x="795" y="400" text-anchor="middle" font-size="13.5" fill="#5a6072">各持独立上下文</text>
+  <text x="795" y="424" text-anchor="middle" font-size="13.5" fill="#5a6072">干完交回结果</text>
+
+  <!-- 左下注解 -->
+  <rect x="30" y="330" width="230" height="110" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
+  <text x="145" y="362" text-anchor="middle" font-size="15" font-weight="bold" fill="#20242e">父只看最终值</text>
+  <text x="145" y="392" text-anchor="middle" font-size="13.5" fill="#5a6072">中间 subagent 消息</text>
+  <text x="145" y="418" text-anchor="middle" font-size="13.5" fill="#5a6072">绝不进父对话</text>
+</svg>
