@@ -1504,7 +1504,7 @@ stdio 桥在启动子进程前，会<strong>主动移除环境中名称通常表
 </blockquote>
 <p>边界也说清楚：这座桥目前<strong>只搬运 MCP 的工具能力</strong>，协议里的资源和提示词模板还在暂缓清单上。</p>
 <h3 id="agent">真实例子：给 agent 接一块外挂记忆<a class="headerlink" href="#agent" title="Permanent link">&para;</a></h3>
-<p>官方 <a href="https://github.com/deepseek-ai/deepseek-harness/tree/master/examples/mcp-memory">mcp-memory 示例</a>把三个第三方记忆系统接成 dsh 的外挂记忆，三份参考配置都<strong>默认关闭</strong>（表10-3）。官方特意声明：收录只作互操作参考，不代表认可或合作。</p>
+<p>官方 <a href="https://github.com/deepseek-ai/deepseek-harness/tree/master/apps/cli/config/examples/mcp-memory">mcp-memory 配置</a>（配<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/user/guide/mcp-memory.zh.md">使用指南</a>）把三个第三方记忆系统接成 dsh 的外挂记忆，三份参考配置都<strong>默认关闭</strong>（表10-3）。官方特意声明：收录只作互操作参考，不代表认可或合作。</p>
 <p><strong>表10-3 mcp-memory 的三选一</strong></p>
 <table>
 <thead>
@@ -1534,7 +1534,7 @@ stdio 桥在启动子进程前，会<strong>主动移除环境中名称通常表
 </table>
 <p>选一个，装好上游，一行命令启用（以 Memorix 为例）：</p>
 <div class="highlight"><pre><span></span><code>npm<span class="w"> </span>install<span class="w"> </span>--global<span class="w"> </span>memorix@1.3.0
-dsh<span class="w"> </span>web<span class="w"> </span>--patch<span class="w"> </span><span class="s2">"</span><span class="nv">$PWD</span><span class="s2">/examples/mcp-memory/memorix.cordis.yml"</span>
+dsh<span class="w"> </span>web<span class="w"> </span>--patch<span class="w"> </span><span class="s2">"</span><span class="nv">$PWD</span><span class="s2">/apps/cli/config/examples/mcp-memory/memorix.cordis.yml"</span>
 </code></pre></div>
 <p><code>--patch</code> 就是第 4 章讲过的覆盖层：往组合上多盖一层补丁，不传就一切照旧。官方给的验收方法是一套三步接力：在会话 A 里让模型记住一个带唯一后缀的值；<strong>新建会话 B</strong>（不复制会话 A 的对话），问它记不记得，确认它调用了记忆服务器的检索工具；再让它用这个偏好给个建议。第二步能过，才叫真的跨会话记忆。</p>
 <h2 id="lspide">LSP：IDE 同款理解力<a class="headerlink" href="#lspide" title="Permanent link">&para;</a></h2>
@@ -1716,7 +1716,7 @@ dsh<span class="w"> </span>web<span class="w"> </span>--patch<span class="w"> </
 <p>两个细节见设计品味：</p>
 <ul>
 <li><strong>非 2xx 响应是结果，不是错误</strong>。抓一个返回 404 的页面，得到的是带着状态码的结果，而不是异常——网页的状态本身就是信息。</li>
-<li><strong>本地抓取后端不拦截私有网络目标</strong>。官方文档把话说得很直白：在能触及敏感内部目标的环境中，禁止启用 <code>web_fetch</code>。这道防线留给部署配置——呼应第 9 章的主题：安全边界按部署画。</li>
+<li><strong>本地抓取后端会拦截私有网络目标</strong>。现行实现只放行公共单播地址：DNS 解析走发现校验、连接地址固定、每一跳重新校验——官方原话是"这些检查会阻止通过 SSRF 访问非公开目的地址"。这道防线做进了零件里（本书写作早期它曾留给部署配置，后来上游补上了）——呼应第 9 章的主题：安全边界按部署画。</li>
 </ul>
 <p><strong>真实例子</strong>：问 agent 一个训练数据里不可能有的新近事件。你会看到它用 <code>web_search</code> 扇出查询（一次最多并发好几个、相同查询只跑一遍），拿回带 URL 的来源清单，再用 <code>web_fetch</code> 精读关键页面——HTML 会被渲染成 markdown，省下真金白银的 token。</p>
 <h2 id="subagent">subagent：委派之门<a class="headerlink" href="#subagent" title="Permanent link">&para;</a></h2>
@@ -1760,7 +1760,7 @@ dsh<span class="w"> </span>web<span class="w"> </span>--patch<span class="w"> </
 <li><strong>可继续</strong>：子代理是一份持久会话，有自己的收件箱，随时可以追加消息，冷了能从存储里恢复唤醒。像开了一条常驻的工作线。</li>
 </ul>
 <h3 id="_3">启动时能力门禁<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
-<p>每个提供方亮出自己的启动时能力旗标：输出 schema、深度上限、工具过滤、独立 persona。请求在<strong>启动之前</strong>对照旗标检查——要了对方没有的，当场拒绝、明确报错，绝不"先收下再静默忽略"。还是全书那条原则：让失败显形。</p>
+<p>每个提供方亮出自己的启动时能力旗标：输出 schema、深度上限、工具过滤、独立 persona、agent 选项（<code>agentOptions</code>），共五项。请求在<strong>启动之前</strong>对照旗标检查——要了对方没有的，当场拒绝、明确报错，绝不"先收下再静默忽略"。还是全书那条原则：让失败显形。</p>
 <h3 id="scope-lineage">这扇门最要紧的规矩：scope 与 lineage<a class="headerlink" href="#scope-lineage" title="Permanent link">&para;</a></h3>
 <p>官方<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/glossary.zh.md">术语表</a>把两条规矩钉得很死，值得专门画一张图（图10-3）：</p>
 <p><img alt="scope 管可见性，lineage 只记血缘" src="../images/fig10-3-scope-lineage.svg" /></p>
@@ -1820,7 +1820,7 @@ dsh<span class="w"> </span>web<span class="w"> </span>--patch<span class="w"> </
 </tbody>
 </table>
 <p>妙处在于杠杆：现有的 bash 执行、终端、LSP stdio 宿主<strong>一行不用 fork</strong>，因为它们把一切可变状态操作都委托给了 <code>ctx.fs</code> 和 <code>ctx.subprocess</code>——把这两个服务换成 E2B 适配器，整个"可变世界"就搬进了云沙箱。这正是第 4 章缝设计的红利。</p>
-<p>官方 headless 示例里就带一份 <a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/examples/headless-agent/e2b.cordis.yml">e2b 覆盖层</a>，在同一个沙箱里驱动 FS、Bash、PTY 和 LSP，并证明沙箱最终真的被删除。文件与命令的改动只存在于沙箱；宿主工作区既不上传也不挂载。想看"执行环境也能当外设"的完整演示，就是它。</p>
+<p>e2b 包里带一份<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/e2b/e2b/tests/fixtures/composition/cordis.yml">官方组合配置</a>（放在测试夹具里），在同一个沙箱里驱动 FS、Bash、PTY 和 LSP，并证明沙箱最终真的被删除。文件与命令的改动只存在于沙箱；宿主工作区既不上传也不挂载。想看"执行环境也能当外设"的完整演示，就是它。</p>
 <h2 id="_4">🧪 本章实验<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <blockquote>
 <p><strong>实验 10-1 ★｜让它联网</strong>
@@ -1833,7 +1833,7 @@ dsh<span class="w"> </span>web<span class="w"> </span>--patch<span class="w"> </
 验收：目录清单里出现 my-first-skill；谈到发布时，agent 调用 skill 工具加载正文并照做。</p>
 <p><strong>实验 10-3 ★★｜接一块外挂记忆</strong>
 目标：跑通 mcp-memory 的三步验收。
-步骤：按<a href="https://github.com/deepseek-ai/deepseek-harness/tree/master/examples/mcp-memory">示例 README</a> 装一个记忆服务器（比如 <code>npm install --global @modelcontextprotocol/server-memory@2026.7.4</code>），用 <code>dsh web --patch "$PWD/examples/mcp-memory/mcp-reference-memory.cordis.yml"</code> 启动，然后做"写入 → 新会话召回 → 使用"三步，全程用唯一值。
+步骤：按<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/user/guide/mcp-memory.zh.md">使用指南</a>装一个记忆服务器（比如 <code>npm install --global @modelcontextprotocol/server-memory@2026.7.4</code>），用 <code>dsh web --patch "$PWD/apps/cli/config/examples/mcp-memory/mcp-reference-memory.cordis.yml"</code> 启动，然后做"写入 → 新会话召回 → 使用"三步，全程用唯一值。
 验收：会话 B 不复制会话 A 的对话，也能从记忆里召回那个唯一值。</p>
 </blockquote>
 <h2 id="_5">🤔 思考题<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
@@ -1841,7 +1841,7 @@ dsh<span class="w"> </span>web<span class="w"> </span>--patch<span class="w"> </
 <li>★ MCP 被称为"万能插座"。想想充电接口统一之前的世界：统一协议对工具生态意味着什么？</li>
 <li>★ skill 为什么用"先目录、后加载"两步走，而不是把所有诀窍直接塞进系统提示词？</li>
 <li>★★ 带作用域的注册不向下继承给子代理——这条规矩防住了什么"特权泄漏"？代价是放弃了什么便利？</li>
-<li>★★ 本地 <code>web_fetch</code> 后端刻意不拦截私有网络，把这道防线留给部署配置。什么时候"不在零件里砌墙"才是更好的选择？</li>
+<li>★★ 本地 <code>web_fetch</code> 后端把私有网络拦截做进了零件里（SSRF 防护）。什么时候这类防线该做进零件，什么时候该留给部署配置？</li>
 </ol>
 <h2 id="_6">📝 小结<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <ul>

@@ -1322,11 +1322,11 @@
 全书收官，不教新知识。我们换一个视角：不看 dsh 是什么产品，而看它是<strong>怎么被造出来的</strong>——这个仓库是 DeepSeek 团队用 AI agent 开发 AI agent harness 的现场，档案完整保留。盘点值得偷师的六件事、它诚实的局限，以及你继续走的路标。</p>
 </blockquote>
 <h2 id="_1">一个不寻常的目录<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>前十二章你看的都是"产品"：插件、轮次、沙箱、配置树。现在把视线移到仓库根目录，有几样东西不属于任何运行时：</p>
+<p>前十五章你看的都是"产品"：插件、轮次、沙箱、配置树。现在把视线移到仓库根目录，有几样东西不属于任何运行时：</p>
 <ul>
 <li>一份 <code>AGENTS.md</code>——不是给人看的开发文档，而是写给 AI agent 的工作守则；</li>
 <li>一个 <code>.agents/</code> 目录——里面是几百篇设计笔记和十几份"技能说明书"；</li>
-<li><code>scripts/</code> 里一百多个脚本，其中 29 个以 <code>verify-</code> 开头、充当门禁（外加 12 个同名的伴随测试）。</li>
+<li><code>scripts/</code> 里一百多个脚本，其中 34 个以 <code>verify-</code> 开头、充当门禁（外加 17 个同名的伴随测试）。</li>
 </ul>
 <p>把这些拼起来，会得出一个这一代软件项目里还很罕见的结论：<strong>dsh 是团队用 AI agent 开发出来的，而整个开发过程留下了可供审查的档案</strong>。设计决策为什么这么定、否决过什么、哪些规矩由机器执行——全都白纸黑字。这一章就是去翻这些档案。</p>
 <p><strong>表后记-1 仓库里的"agent 向"设施</strong></p>
@@ -1361,7 +1361,7 @@
 </tr>
 </tbody>
 </table>
-<p>一个细节：根目录、<code>packages/</code>、<code>examples/</code> 下各有一个同名快捷文件，都只是指向 <code>AGENTS.md</code> 的符号链接——守则只有一份，别处全是引用。这本身就是后面要讲的一条纪律。</p>
+<p>一个细节：根目录、<code>packages/</code>、<code>vendor/</code>、<code>.agents/notes/implemented/</code> 下各有一个叫 <code>CLAUDE.md</code> 的快捷文件，都只是指向同级 <code>AGENTS.md</code> 的符号链接——同一层守则只写一份，别名负责兼容。注意不是全仓库只有一份：<code>packages/</code> 下另有一份独立的包级补充守则，<code>docs/</code> 下也有自己的 <code>AGENTS.md</code>。分层写全、各归各家，这本身就是后面要讲的一条纪律。</p>
 <h2 id="agent-notes">Agent Notes：一个决策的一生<a class="headerlink" href="#agent-notes" title="Permanent link">&para;</a></h2>
 <p><code>.agents/notes/</code> 是整个档案的核心。dsh 团队给设计笔记定了一个名字：<strong>Agent Note</strong>。它记录的是代码和文档无法承载的东西——<strong>为什么这么决定，以及放弃了什么</strong>。</p>
 <p>每篇笔记的路径就编码了它的状态和类别：<code>{生命周期}/{类别}/yyyy-mm-dd-主题.md</code>。生命周期有四个，一篇笔记在文件夹之间移动，就是状态在流转：</p>
@@ -1383,21 +1383,21 @@
 <tr>
 <td><code>implemented</code></td>
 <td>决策已交付；笔记与实际交付保持同步</td>
-<td>559</td>
+<td>621</td>
 </tr>
 <tr>
 <td><code>rejected</code></td>
 <td>提案被否决；仅当它仍能避免一种诱人的大错时保留</td>
-<td>11</td>
+<td>10</td>
 </tr>
 <tr>
 <td><code>archived</code></td>
 <td>已实施的决策完成使命后冻结归档</td>
-<td>143</td>
+<td>169</td>
 </tr>
 </tbody>
 </table>
-<p>七百多篇笔记，覆盖了六个类别：新功能、缺陷修复、简化、架构、流程、测试。随便挑一篇带 <code>.zh</code> 后缀的<a href="https://github.com/deepseek-ai/deepseek-harness/tree/master/.agents/notes/implemented">已实施笔记</a>读一读，你会发现它们长得出奇一致。这不是自觉，是格式：</p>
+<p>八百多篇笔记，覆盖了六个类别：新功能、缺陷修复、简化、架构、流程、测试。随便挑一篇带 <code>.zh</code> 后缀的<a href="https://github.com/deepseek-ai/deepseek-harness/tree/master/.agents/notes/implemented">已实施笔记</a>读一读，你会发现它们长得出奇一致。这不是自觉，是格式：</p>
 <p><strong>表后记-3 一篇 implemented 笔记的解剖</strong></p>
 <table>
 <thead>
@@ -1446,7 +1446,7 @@
 <p>拿<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/.agents/notes/implemented/architecture/2026-08-03-per-session-agent-presets.zh.md">按会话组装 preset 的那篇笔记</a>当例子——第 12 章的 preset 机制，决策全过程都在里面：问题是"一个进程只能有一种组装，想并存精简版和完整版得开两个进程"；决策是"preset 挂进 agent 的作用域，不动任何注册表"；还记了实测数字（一份十二行组装约 3 毫秒、约 600KB，所以每会话各挂一份比共享更划算），以及被否决的备选——给作用域注册表新增一层、把每个 preset 跑成子进程。读完这一篇，你会明白第 12 章那些"奇怪规矩"（空白才可切、preset 文件不回写）每一条背后都站着一个被排除的方案。</p>
 <h2 id="verify">机器管机械：verify 门禁体系<a class="headerlink" href="#verify" title="Permanent link">&para;</a></h2>
 <p>笔记解决了"决策有人记"，但规矩不能靠自觉。dsh 的答案是把能机器检查的部分全部交给机器。</p>
-<p>仓库 <code>scripts/</code> 目录下有一百多个工程脚本，其中 <strong>29 个以 <code>verify-</code> 开头的门禁脚本</strong>（另有 12 个是它们的伴随测试）。命名即职责，挑几个看名字就懂：</p>
+<p>仓库 <code>scripts/</code> 目录下有一百多个工程脚本，其中 <strong>34 个以 <code>verify-</code> 开头的门禁脚本</strong>（另有 17 个是它们的伴随测试）。命名即职责，挑几个看名字就懂：</p>
 <p><strong>表后记-4 门禁脚本选看</strong></p>
 <table>
 <thead>
@@ -1492,9 +1492,9 @@
 <h2 id="_2">术语表纪律与不变量文化<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>再看两处容易被忽略、其实最见功力的地方。</p>
 <p>第一处是<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/glossary.zh.md">官方术语表</a>。开头一句话就是全书读者最熟悉的："DeepSeek Harness 的领域词汇为每个概念规定一个规范术语。"术语通过标准锚点链接，实现细节不在术语表里——留给各包 README 和 Agent Note。一个概念只有一个名字，一义一词；写这本书时我们几乎不需要在多个叫法之间做选择，这在技术文档里是罕见的待遇。</p>
-<p>与术语纪律配套的是"归属纪律"。文档标准里写着：<strong>每个事实只有一个家</strong>——在负责它的那一层写全，别处一律放链接。连文档长度都有预算：根目录 <code>AGENTS.md</code> 不超过 1600 词，架构文档不超过 1800 词，超了门禁会红——逼作者把内容搬回它该去的层，而不是在原地膨胀。</p>
+<p>与术语纪律配套的是"归属纪律"。文档标准里写着：<strong>每个事实只有一个家</strong>——在负责它的那一层写全，别处一律放链接。连文档长度都有预算：根目录 <code>AGENTS.md</code> 不超过 1950 词，架构文档不超过 2400 词，超了门禁会红——逼作者把内容搬回它该去的层，而不是在原地膨胀。</p>
 <p>第二处是<strong>不变量文化</strong>。全书反复出现的那条铁律——<strong>模型可见即已记录</strong>——在架构文档里的完整表述是：抵达模型请求的一切都必须能从日志重建，<strong>并由一项运行时不变量断言这一点</strong>。铁律不是口号，是一段会报错的代码。</p>
-<p>这不是孤例。<code>packages/</code> 下有 227 个叫 <code>invariant.ts</code> 的文件，几乎每个包一个。守则对它们的写法也有要求：不变量断言的是"被拥有的关系"——去查权威的事件流和可变数据，而不是查某个服务在不在、某个插件挂没挂。再加一条：<strong>配置错误要响亮地失败</strong>——能自己说明白的错误就在加载时炸，绝不静默跳过。</p>
+<p>这不是孤例。<code>packages/</code> 下有 251 个叫 <code>invariant.ts</code> 的文件，几乎每个包一个。守则对它们的写法也有要求：不变量断言的是"被拥有的关系"——去查权威的事件流和可变数据，而不是查某个服务在不在、某个插件挂没挂。再加一条：<strong>配置错误要响亮地失败</strong>——能自己说明白的错误就在加载时炸，绝不静默跳过。</p>
 <p>把这些放在一起看，你会认出一条文化线索：<strong>凡是能用机器表达的承诺，都不留在口头</strong>。三种纪律各管一段（表后记-5）：</p>
 <p><strong>表后记-5 三种纪律</strong></p>
 <table>
@@ -1518,13 +1518,13 @@
 </tr>
 <tr>
 <td>管住运行时</td>
-<td>227 个 <code>invariant.ts</code></td>
+<td>251 个 <code>invariant.ts</code></td>
 <td>口头承诺变成会报错的检查</td>
 </tr>
 </tbody>
 </table>
 <h2 id="_3">六件可以带走的事<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p><img alt="六件能从 dsh 偷师的事" src="../images/fig-afterword-ten-lessons.svg" /></p>
+<p><img alt="六件能从 dsh 偷师的事" src="../images/fig-afterword-six-lessons.svg" /></p>
 <p><strong>图后记-1 六件偷师清单</strong></p>
 <p>把这一章的证据压成一张清单。无论你以后维护什么项目——哪怕完全不涉及 AI——这六件都值得照抄（表后记-6）：</p>
 <p><strong>表后记-6 偷师清单与最小行动</strong></p>
@@ -1547,7 +1547,7 @@
 <tr>
 <td>2</td>
 <td>每个变更带一篇笔记</td>
-<td>七百多篇 Agent Note，与变更同 PR</td>
+<td>八百多篇 Agent Note，与变更同 PR</td>
 <td>从模板抄四节标题开始</td>
 </tr>
 <tr>
@@ -1559,7 +1559,7 @@
 <tr>
 <td>4</td>
 <td>机器管机械</td>
-<td>29 个 <code>verify-*</code> 门禁 + lefthook 检查点</td>
+<td>34 个 <code>verify-*</code> 门禁 + lefthook 检查点</td>
 <td>给最常被违反的一条规矩写脚本</td>
 </tr>
 <tr>
@@ -1571,7 +1571,7 @@
 <tr>
 <td>6</td>
 <td>不变量要可执行</td>
-<td>227 个 <code>invariant.ts</code>；模型可见即已记录</td>
+<td>251 个 <code>invariant.ts</code>；模型可见即已记录</td>
 <td>把一条口头承诺改成会报错的检查</td>
 </tr>
 </tbody>
@@ -1629,7 +1629,7 @@
 <p><strong>实验 13-1 ★｜数一数门禁</strong>
 目标：对"机器管机械"有体感。
 步骤：打开 <a href="https://github.com/deepseek-ai/deepseek-harness/tree/master/scripts">scripts 目录</a>，数以 <code>verify-</code> 开头的门禁脚本（不含 <code>.spec.</code> 后缀的伴随测试），任选三个，只凭名字猜它们管什么，再去 <code>AGENTS.md</code> 里印证。
-验收：数出 29 个门禁脚本；三个猜测里至少两个被印证。</p>
+验收：数出 34 个门禁脚本；三个猜测里至少两个被印证。</p>
 <p><strong>实验 13-2 ★★｜解剖一篇笔记</strong>
 目标：亲手摸一次决策档案。
 步骤：读 <a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/.agents/notes/implemented/architecture/2026-08-03-per-session-agent-presets.zh.md">按会话组装 preset 的笔记</a>，回答：问题是什么？决策是什么？哪个备选方案被否决了，为什么？
@@ -1649,7 +1649,7 @@
 <ul>
 <li><strong>dsh 是 agent 开发的现场</strong>——守则、笔记、技能、门禁，档案全在仓库里</li>
 <li><strong>Agent Notes 四状态流转</strong>——proposed → implemented → rejected / archived；备选方案强制记录</li>
-<li><strong>机器管机械，人评审语义</strong>——29 个 <code>verify-*</code> 门禁管形状，笔记和评审管判断</li>
+<li><strong>机器管机械，人评审语义</strong>——34 个 <code>verify-*</code> 门禁管形状，笔记和评审管判断</li>
 <li><strong>术语与归属纪律</strong>——一义一词、一个事实一个家、文档有预算</li>
 <li><strong>不变量文化</strong>——模型可见即已记录，口头承诺都变成会报错的检查</li>
 <li><strong>诚实的局限</strong>——预览期、沙箱边界、无花费闸门、生态年轻</li>

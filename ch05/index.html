@@ -1428,7 +1428,7 @@
 </tr>
 <tr>
 <td><code>user/message</code></td>
-<td>你发的消息进入了步骤</td>
+<td>你发的消息进入了步骤（中途纠偏也用这种记）</td>
 </tr>
 <tr>
 <td><code>assistant/chunk</code></td>
@@ -1443,20 +1443,20 @@
 <td>模型发起的工具调用／执行结果</td>
 </tr>
 <tr>
-<td><code>steering/message</code></td>
-<td>中途发出的纠偏</td>
-</tr>
-<tr>
-<td><code>todo/write</code></td>
-<td>待办清单的一次全量快照</td>
-</tr>
-<tr>
 <td><code>request/header</code></td>
 <td>这一次模型请求的信封本身</td>
 </tr>
+<tr>
+<td><code>request/context</code></td>
+<td>这次请求解析出的模型路由元数据（哪家提供方、哪个模型、上下文窗口多大）</td>
+</tr>
+<tr>
+<td><code>session/end-seed</code></td>
+<td>一道分界线：它之前的事件是从种子（续跑、分叉或回放）继承来的历史，之后才是本次进程亲笔写的</td>
+</tr>
 </tbody>
 </table>
-<p>最后一种最容易被忽视，值得多说一句：连"模型这次收到了什么"本身也被记录——调用配置、渲染后的系统提示词、组装好的工具 schema，全都会作为会话状态写进日志。官方的说法是：<strong>每个对话请求都是日志的纯函数</strong>。回放时重放日志，就能一分不差地重建模型当时看到的东西。</p>
+<p>其中 <code>request/header</code> 最容易被忽视，值得多说一句：连"模型这次收到了什么"本身也被记录——调用配置、渲染后的系统提示词、组装好的工具 schema，全都会作为会话状态写进日志。官方的说法是：<strong>每个对话请求都是日志的纯函数</strong>。回放时重放日志，就能一分不差地重建模型当时看到的东西。</p>
 <p>再看回分发模式：pre-step、模型请求（<code>agent/request</code>、<code>llm/stream</code>）、三道工具关卡全是 waterfall 事件，<code>agent/turn-stopping</code> 是 serial 事件。实时广播负责"怎么干"，会话事件负责"干成了什么"。</p>
 <p>该看哪边？官方给过明确分工：<strong>需要可回放文字记录的，应当消费 <code>session/event</code></strong>；而 <code>agent/*</code> 是实时协调接口，管的是队列与状态、提示词拦截、请求构造、纠偏、续跑和错误处理。界面想重演历史，读账本；插件想插手当下，听广播。</p>
 <h2 id="_4">会话日志：唯一的真源<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
@@ -1583,7 +1583,7 @@
 </tbody>
 </table>
 <p>inject 的"不唤醒"很有意思：你可以提前把资料放进收件箱，它安静躺着，直到下一条消息把司机叫醒时，才一起带上车。</p>
-<p>纠偏也属于持久事实——账本里有专门的 <code>steering/message</code> 事件类型记它。你随手插的一句话，同样在账上有名。</p>
+<p>纠偏也属于持久事实——它现在按一条普通的 <code>user/message</code> 入账（早期曾有专门的 <code>steering/message</code> 类型，后来退役，旧账本读取时自动迁移）。你随手插的一句话，同样在账上有名。</p>
 <p>最后还有一项反悔权：取消。agent 句柄的 <code>cancel</code> 会清掉排队和纠偏的活（也可以选择保留），并中止当前轮次。被打断的一切，账本照样有痕。</p>
 <h2 id="_7">🧪 本章实验<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <blockquote>

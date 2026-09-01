@@ -1410,7 +1410,7 @@
 <tr>
 <td>固定身份</td>
 <td>system-prompt 自己</td>
-<td>顺序 −100 的开场一句："You are an AI agent powered by DeepSeek Harness."</td>
+<td>顺序 −1000 的开场一句："You are an AI agent powered by DeepSeek Harness."</td>
 </tr>
 <tr>
 <td>有序段</td>
@@ -1431,7 +1431,7 @@
 </table>
 <p>拼装的规矩很讲究：</p>
 <ul>
-<li><strong>段按顺序号排，不按注册先后。</strong> 身份是 −100，人设是 0，工具指引用 100–199。注册顺序只是插件加载时序的产物，顺序号才是桌面布局。</li>
+<li><strong>段按顺序号排，不按注册先后。</strong> 身份是 −1000，人设是 0，工具指引用 1000–2900。注册顺序只是插件加载时序的产物，顺序号才是桌面布局。</li>
 <li><strong>工具 schema 是开场白的一部分。</strong> 官方把"模型获知自己能做什么"当成一个连贯整体：段和 schema 是同一次组装的两半。</li>
 <li><strong>变量插值宁严勿松。</strong> 引用了没注册的变量、或者格式写错，组装直接报错——明确失败，胜过交出一份错的提示词。</li>
 </ul>

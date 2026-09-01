@@ -1,0 +1,42 @@
+<svg viewBox="0 0 920 450" width="920" xmlns="http://www.w3.org/2000/svg" font-family="'Microsoft YaHei','PingFang SC',sans-serif">
+  <defs>
+    <marker id="arw92" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5c6bc0"/>
+    </marker>
+  </defs>
+  <rect width="920" height="450" fill="#ffffff"/>
+
+  <!-- Service Definition（顶部） -->
+  <rect x="250" y="30" width="420" height="104" rx="14" fill="#fff8e1" stroke="#f9a825" stroke-width="1.8"/>
+  <text x="460" y="62" text-anchor="middle" font-size="16" font-weight="bold" fill="#20242e">dsh-shell｜Service Definition</text>
+  <text x="460" y="90" text-anchor="middle" font-size="13.5" fill="#5a6072">接口 ctx.shell：执行器该做什么（run / start）</text>
+  <text x="460" y="114" text-anchor="middle" font-size="13.5" fill="#5a6072">只描述约定，不依赖任何实现</text>
+
+  <!-- Provider ×2（左下，并排） -->
+  <rect x="60" y="296" width="250" height="74" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.8"/>
+  <text x="185" y="326" text-anchor="middle" font-size="15" font-weight="bold" fill="#20242e">dsh-bash-local｜Provider</text>
+  <text x="185" y="352" text-anchor="middle" font-size="13.5" fill="#5a6072">本机受管子进程执行</text>
+
+  <rect x="330" y="296" width="250" height="74" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.8"/>
+  <text x="455" y="326" text-anchor="middle" font-size="15" font-weight="bold" fill="#20242e">dsh-bash-sandbox｜Provider</text>
+  <text x="455" y="352" text-anchor="middle" font-size="13.5" fill="#5a6072">执行前先过沙箱限制</text>
+
+  <!-- Consumer（右下） -->
+  <rect x="620" y="296" width="240" height="74" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.8"/>
+  <text x="740" y="326" text-anchor="middle" font-size="15" font-weight="bold" fill="#20242e">dsh-tool-bash｜Consumer</text>
+  <text x="740" y="352" text-anchor="middle" font-size="13.5" fill="#5a6072">面向模型的 bash 工具</text>
+
+  <!-- 箭头：注册 -->
+  <path d="M185,294 C220,230 300,170 368,136" fill="none" stroke="#5c6bc0" stroke-width="1.8" marker-end="url(#arw92)"/>
+  <path d="M455,294 C455,230 458,180 460,136" fill="none" stroke="#5c6bc0" stroke-width="1.8" marker-end="url(#arw92)"/>
+  <text x="255" y="208" text-anchor="middle" font-size="13.5" fill="#5a6072">注册接口</text>
+  <text x="505" y="208" text-anchor="middle" font-size="13.5" fill="#5a6072">注册接口</text>
+
+  <!-- 箭头：消费 -->
+  <path d="M740,294 C710,230 640,170 580,136" fill="none" stroke="#5c6bc0" stroke-width="1.8" marker-end="url(#arw92)"/>
+  <text x="705" y="208" text-anchor="middle" font-size="13.5" fill="#5a6072">只调用接口</text>
+
+  <!-- 注释 -->
+  <text x="740" y="394" text-anchor="middle" font-size="13.5" fill="#b26a00">不认识任何 Provider</text>
+  <text x="460" y="428" text-anchor="middle" font-size="14.5" fill="#5a6072">换一个 Provider，Consumer 一行不改：容器、远程执行器同样接入</text>
+</svg>

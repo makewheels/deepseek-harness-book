@@ -1512,7 +1512,7 @@
 </tr>
 </tbody>
 </table>
-<p>截至本书写作时（2026 年 8 月下旬），这个仓库有 <strong>19 万+ star</strong>，<code>packages/</code> 目录下摆着约 50 个零件包。这不是实验室玩具，是 DeepSeek 拿来真做产品的底盘。</p>
+<p>截至 2026 年 8 月底，这个仓库有 <strong>20 万+ star</strong>，<code>packages/</code> 目录下摆着约 50 个零件包。这不是实验室玩具，是 DeepSeek 拿来真做产品的底盘。</p>
 <p>DeepSeek 内部开发者的一个类比（<a href="https://x.com/jiayuan_jy/status/2087911060154314963">原推</a>）：</p>
 <blockquote>
 <p>可以把 dsh 想象成一个乐高汽车玩具。官方 Coding Agent 只是他们拼好的一套预置。你可以换引擎、换轮胎、换挡风玻璃——最后拼出来的，甚至不一定还是辆汽车。</p>
@@ -1526,7 +1526,7 @@
 <thead>
 <tr>
 <th></th>
-<th>chat.deepseek.com</th>
+<th><a href="https://chat.deepseek.com/">chat.deepseek.com</a></th>
 <th>dsh</th>
 </tr>
 </thead>
@@ -1601,11 +1601,11 @@
 </table>
 <p>dsh 的独特之处有三条，每条后面都对应一章：</p>
 <ol>
-<li><strong>零件足够小</strong>。约 50 个包各管一件事，随便举几个真实的名字：<code>dsh-fs</code> 管文件读写，<code>dsh-shell</code> 管命令执行，<code>dsh-sandbox</code> 管把进程关进笼子，<code>dsh-goal</code> 管"别忘了总目标"，<code>dsh-compaction</code> 管上下文太长时怎么压缩。想懂哪样就拆哪样，不用一口吞下整辆车（第 3 章看完整地图）。</li>
+<li><strong>零件足够小</strong>。51 个零件组，组里的包各管一件事，随便举几个真实的名字：<code>dsh-fs</code> 管文件读写，<code>dsh-shell</code> 管命令执行，<code>dsh-sandbox</code> 管把进程关进笼子，<code>dsh-goal</code> 管"别忘了总目标"，<code>dsh-compaction</code> 管上下文太长时怎么压缩。想懂哪样就拆哪样，不用一口吞下整辆车（第 3 章看完整地图）。</li>
 <li><strong>图纸是真的</strong>。仓库自带中英双语文档，连"一个轮次怎么走"都有官方时序图。本书大量引用这些一手材料，不转述二手猜测。</li>
 <li><strong>出身决定含金量</strong>。这是头部模型厂商<strong>自己每天在用</strong>的 harness，不是为开源而开源的演示品。它踩过的坑，就是你以后会踩的坑。</li>
 </ol>
-<p>还有个彩蛋：dsh 的 <code>hooks</code> 零件，和 Claude Code、Codex 共用同一套钩子线协议库。换句话说，这副身体从设计时就考虑了和别家 agent 生态互通，而不是砌墙。</p>
+<p>还有个彩蛋：dsh 的 <code>hooks</code> 零件带一个钩子引擎（<code>hook-protocol</code>）和两座"方言桥"（<code>hooks-claude-code</code>、<code>hooks-codex</code>），能直接加载你为 Claude Code 或 Codex 写好的 <code>hooks.json</code>。换句话说，这副身体从设计时就考虑了和别家 agent 生态互通，而不是砌墙。</p>
 <h2 id="_3">这本书怎么讲<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>全书按"从看见、到拆解、到动手"递进（图1-3）：</p>
 <p><img alt="全书路线图" src="../images/fig1-3-book-roadmap.svg" /></p>
@@ -1710,7 +1710,7 @@ dsh 处于<strong>开发者预览</strong>阶段，官方原话："正在快速�
 <p><strong>实验 1-1 ★｜看看这匹马长什么样</strong>
 目标：对 dsh 的体量建立第一印象。
 步骤：打开 <a href="https://github.com/deepseek-ai/deepseek-harness">dsh 的 GitHub 仓库</a>，只看三样：star 数、"一切皆插件"的口号、<code>packages/</code> 下的文件夹数量。
-验收：你能说出"这不是玩具，是一个十几万人盯着的严肃项目"。</p>
+验收：你能说出"这不是玩具，是一个二十万人盯着的严肃项目"。</p>
 <p><strong>实验 1-2 ★★｜检查电脑准备好了没</strong>
 目标：确认本机 Node.js 版本。dsh 官方要求 <strong>v22.19 及以上，或 v24 及以上</strong>。
 步骤：终端输入 <code>node -v</code>。

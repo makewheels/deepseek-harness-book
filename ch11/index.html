@@ -1478,7 +1478,7 @@
 <p>最后带覆盖层启动：</p>
 <div class="highlight"><pre><span></span><code>pnpm<span class="w"> </span>dsh<span class="w"> </span>web<span class="w"> </span>--patch<span class="w"> </span>./scratch-plugin/cordis.yml
 </code></pre></div>
-<p>打开 <code>http://127.0.0.1:3080</code>。启动期间，终端会打印 <code>[hello-plugin] plugin loaded!</code>——你的插件上车了。四步全景见图11-2。</p>
+<p>打开 <a href="http://127.0.0.1:3080">http://127.0.0.1:3080</a>。启动期间，终端会打印 <code>[hello-plugin] plugin loaded!</code>——你的插件上车了。四步全景见图11-2。</p>
 <p><img alt="第一个插件四步上车" src="../images/fig11-2-first-plugin-steps.svg" /></p>
 <p><strong>图11-2 第一个插件的四步</strong></p>
 <h2 id="_3">插件三件套<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
@@ -1588,7 +1588,7 @@
 <p>如果开发命令已停，重新启动：</p>
 <div class="highlight"><pre><span></span><code>pnpm<span class="w"> </span>dsh<span class="w"> </span>web<span class="w"> </span>--patch<span class="w"> </span>./scratch-plugin/cordis.yml
 </code></pre></div>
-<p>打开 <code>http://127.0.0.1:3080</code>，输入：<code>Use the greet tool to greet Ada.</code> 模型调用 <code>greet</code>，收到工具结果 <code>Hello, Ada!</code>。你造的手，模型真的用了。</p>
+<p>打开 <a href="http://127.0.0.1:3080">http://127.0.0.1:3080</a>，输入：<code>Use the greet tool to greet Ada.</code> 模型调用 <code>greet</code>，收到工具结果 <code>Hello, Ada!</code>。你造的手，模型真的用了。</p>
 <h2 id="walkthrough_1">Walkthrough 第三步：让参数可配置<a class="headerlink" href="#walkthrough_1" title="Permanent link">&para;</a></h2>
 <p>把问候语写死在代码里，别人想换个说法就得改代码。官方<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/user/develop/basic/config.zh.md">《插件配置》</a>的做法是：导出一个 <code>Config</code> 类型和同名的 schema，默认值直接写在 schema 里：</p>
 <div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="kr">type</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Context</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'@deepseek-ai/cordis'</span>
@@ -1702,7 +1702,7 @@ dsh<span class="w"> </span>--profile<span class="w"> </span>demo
 <h3 id="_6">让插件被找到<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <p>官方 README 给的生态约定一句话：为你的插件仓库加上 <a href="https://github.com/topics/dsh-plugin"><code>dsh-plugin</code> 话题</a>，便于被发现。没有中心化应用商店——发现靠话题和口碑，这是开源生态的老配方。</p>
 <h2 id="agent">最简样机：两行配方的自指 agent<a class="headerlink" href="#agent" title="Permanent link">&para;</a></h2>
-<p>最后看一眼官方示例里<strong>最简单的一台样机</strong>：<a href="https://github.com/deepseek-ai/deepseek-harness/tree/master/examples/web-cordis">web-cordis</a>。它的全部配置就是一份覆盖层，核心只有两处（表11-6）：</p>
+<p>最后看一眼官方的 <strong>cordis 示例配置</strong>：<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/apps/cli/config/examples/cordis/cordis.yml">cordis.yml</a>（顶层 examples/ 退役后搬到这里）。它的全部配置就是一份覆盖层，核心只有两处（表11-6）：</p>
 <p><strong>表11-6 web-cordis 的全部配置</strong></p>
 <table>
 <thead>
@@ -1729,7 +1729,7 @@ dsh<span class="w"> </span>--profile<span class="w"> </span>demo
 <p><strong>实验 11-1 ★★｜跑通 hello 插件</strong>
 目标：亲眼看到自己的插件被挂载。
 步骤：克隆官方仓库，完成从源码运行的准备，按本章"第一步"做一遍 <code>scratch-plugin</code>，用 <code>pnpm dsh web --patch ./scratch-plugin/cordis.yml</code> 启动。
-验收：终端打印 <code>[hello-plugin] plugin loaded!</code>，<code>http://127.0.0.1:3080</code> 正常打开。</p>
+验收：终端打印 <code>[hello-plugin] plugin loaded!</code>，<a href="http://127.0.0.1:3080">http://127.0.0.1:3080</a> 正常打开。</p>
 <p><strong>实验 11-2 ★｜故意让它失败</strong>
 目标：验证"配置错误要响亮"。
 步骤：给带 <code>Config</code> 的插件传一个不合法的值（比如把 <code>maxRetries</code> 写成字符串），重新启动。

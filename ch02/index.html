@@ -1444,8 +1444,8 @@
 </thead>
 <tbody>
 <tr>
-<td><code>profiles/web/</code>、<code>profiles/headless/</code></td>
-<td>两个官方配方的家，首次使用时从模板自动初始化</td>
+<td><code>profiles/web/</code>、<code>profiles/headless/</code> 等</td>
+<td>官方配方的家（模板现有五个：web、headless、acp、sdk、sdk-minimal），首次使用时从模板自动初始化</td>
 </tr>
 <tr>
 <td><code>profiles/&lt;名字&gt;/cordis.patch.yml</code></td>
@@ -1499,9 +1499,9 @@
 </tr>
 </tbody>
 </table>
-<p>有一条顺序规矩要记住：<strong>启动器自己的参数（如 <code>--profile</code>）必须写在最前面，后面的一切都原样交给启动起来的应用</strong>。比如 <code>--port</code> 不是启动器的参数，是 web 应用的，所以要写在后面。写错了没关系——dsh 对无效命令一律报错退出，不会默默按错误理解执行。</p>
+<p>有一条位置规矩要记住：<strong>启动应用时，<code>--profile</code> 写在应用名前面；用 <code>plugin</code> 子命令时，<code>--profile</code> 紧跟在 <code>plugin</code> 后面</strong>。其余参数属于被启动的应用——比如 <code>--port</code> 不是启动器的参数，是 web 应用的，所以要写在后面。写错了没关系——dsh 对无效命令一律报错退出，不会默默按错误理解执行。</p>
 <h2 id="_6">打开浏览器后的四步<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
-<p>全新的 dsh 像一辆没钥匙、没车库的车。打开 <code>http://127.0.0.1:3080</code> 后，按顺序做四件事（图2-3）：</p>
+<p>全新的 dsh 像一辆没钥匙、没车库的车。打开 <a href="http://127.0.0.1:3080">http://127.0.0.1:3080</a> 后，按顺序做四件事（图2-3）：</p>
 <p><img alt="首次使用四步" src="../images/fig2-3-first-run-steps.svg" /></p>
 <p><strong>图2-3 首次使用四步</strong></p>
 <p><strong>① 拿钥匙。</strong> 去 <a href="https://platform.deepseek.com/">DeepSeek 开放平台</a> 注册账号，创建一个 API key。</p>
@@ -1525,7 +1525,7 @@ dsh 本身免费开源，没有订阅制，模型调用全靠 API key <strong>�
 <p>第一次看到 agent 自己翻页你的文件时，很多人会本能地想按停止。不必紧张：你随时可以打断，而且每个动作都记在日志里，事后可查——这是第 5 章的主题。</p>
 <h2 id="_8">另一种形态：无头模式<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
 <p>dsh 出厂带两种形态，按需选：</p>
-<p><strong>表2-4 两种形态对照</strong></p>
+<p><strong>表2-3 两种形态对照</strong></p>
 <table>
 <thead>
 <tr>
@@ -1584,7 +1584,7 @@ pnpm<span class="w"> </span>dsh<span class="w"> </span>web
 <p>注意两点：源码方式要用 <strong>pnpm</strong>（不是 npm）；<code>pnpm run build</code> 先把仓库产物准备好，之后的 <code>pnpm dsh web</code> 直接用现成产物，不会重复构建。</p>
 <p>第 3 章会带你俯瞰这个仓库的完整地图。</p>
 <h2 id="_10">出问题了？对照这张表<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
-<p><strong>表2-3 首次运行常见状况</strong></p>
+<p><strong>表2-4 首次运行常见状况</strong></p>
 <table>
 <thead>
 <tr>
@@ -1633,7 +1633,7 @@ pnpm<span class="w"> </span>dsh<span class="w"> </span>web
 目标：体验"一条命令干完一件事"。
 步骤：对一个笔记目录运行上面的 headless 命令。
 验收：终端打印最终答案，进程自己退出。</p>
-<p><strong>实验 2-4 ★★★｜看一眼配置树</strong>
+<p><strong>实验 2-4 ★｜看一眼配置树</strong>
 目标：对"零件 + 配方"建立实感。
 步骤：运行 <code>npx @deepseek-ai/dsh web --dump-config</code>，找到 <code>dsh-base</code> 和 <code>dsh-web-app</code> 两个名字。
 验收：你能指出配置树里哪一层来自官方配方。</p>

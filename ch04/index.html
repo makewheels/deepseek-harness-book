@@ -1499,7 +1499,7 @@
 </ol>
 <blockquote>
 <p><strong>阅读提示</strong>
-本章保留“公司总部”和“换零件”的类比，但不会停在类比上。每个关键结论后面都给出配置、源码或运行证据。</p>
+本章保留"公司总部"和"换零件"的类比，但不会停在类比上。每个关键结论后面都给出配置、源码或运行证据。证据代码都放在折叠块里（默认收起）——不读代码的读者直接跳过读结论即可，不影响理解。</p>
 <p><strong>证据基线</strong>
 本章核对的是 DeepSeek Harness 提交 <a href="https://github.com/deepseek-ai/deepseek-harness/tree/99f6f02fecdb7dff40c3fbc9470f5907c29f74ca"><code>99f6f02</code></a>，验证日期为 2026-08-26。dsh 尚处于开发者预览阶段，命令、包名和配置以后可能变化。</p>
 </blockquote>
@@ -1539,6 +1539,8 @@
 <div class="highlight"><pre><span></span><code>pnpm<span class="w"> </span>dsh<span class="w"> </span>--profile<span class="w"> </span>web<span class="w"> </span>--dump-config
 </code></pre></div>
 <p>这个命令不调用模型，不需要 API Key。它会把 <code>web</code> profile 最终合成的配置树输出为 YAML。下面是本次实际输出中截取的三组条目：</p>
+<details class="note">
+<summary>证据｜--dump-config 实际输出节选</summary>
 <div class="highlight"><pre><span></span><code><span class="c1"># == @deepseek-ai/dsh-base</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">llm</span>
 <span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">'@deepseek-ai/dsh-llm'</span>
@@ -1555,13 +1557,17 @@
 <span class="w">  </span><span class="nt">inject</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">webStartup</span>
 </code></pre></div>
+</details>
 <p>这里至少能确认三件事：LLM 能力、默认 agent loop 和 Web 运行时都出现在同一棵配置树里；每个节点都有稳定的 <code>id</code>；输出还标出了节点来自 <code>dsh-base</code> 还是 <code>dsh-web-app</code>。</p>
 <p>配置里还有一种更有意思的来源标记：</p>
+<details class="note">
+<summary>证据｜patch 在输出里留下的痕迹</summary>
 <div class="highlight"><pre><span></span><code><span class="c1"># == @deepseek-ai/dsh-base, patched by @deepseek-ai/dsh-web-app</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tool-pwsh</span>
 <span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">'@deepseek-ai/dsh-tool-pwsh'</span>
 <span class="w">  </span><span class="nt">disabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
+</details>
 <p>这不是另一份 Web 专用工具定义。<code>dsh-web-app</code> 找到 <code>dsh-base</code> 中 id 为 <code>tool-pwsh</code> 的行，并对它应用了 patch。最终输出同时保留“原来从哪来”和“后来被谁修改”的线索。</p>
 <p>不过，<code>--dump-config</code> 只能证明<strong>产品部件参与了组合</strong>，不能单独证明卸载真的干净，也不能证明调用者没有偷偷依赖具体实现。为回答后两个问题，我们还要进入 Cordis。</p>
 <h2 id="cordis">Cordis：插件怎样互相找到对方<a class="headerlink" href="#cordis" title="Permanent link">&para;</a></h2>
@@ -1741,7 +1747,9 @@
 </tbody>
 </table>
 <p>Cordis 不知道的资源——例如定时器、连接和文件 watcher——则必须显式包进 <code>ctx.effect()</code>，并返回清理函数。</p>
-<p>下面是本章实际运行过的最小探针。把它保存到操作系统临时目录，然后在 DeepSeek Harness 仓库根目录用 <code>pnpm exec tsx &lt;文件路径&gt;</code> 运行：</p>
+<p>下面是本章实际运行过的最小探针。把它保存到操作系统临时目录，然后在 DeepSeek Harness 仓库根目录用 <code>pnpm exec tsx &lt;文件路径&gt;</code> 运行（实验 4-2 要用；不读代码的读者可跳过折叠块直接读结论）：</p>
+<details class="note">
+<summary>证据｜最小生命周期探针与实际输出</summary>
 <div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Context</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'@deepseek-ai/cordis'</span>
 
 <span class="ow">void</span><span class="w"> </span><span class="p">(</span><span class="k">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
@@ -1762,9 +1770,10 @@
 <span class="w">  </span><span class="k">await</span><span class="w"> </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">fiber</span><span class="p">.</span><span class="nx">dispose</span><span class="p">()</span>
 <span class="p">})()</span>
 </code></pre></div>
-<p>本次实际输出是：</p>
+<p>本次实际输出：</p>
 <div class="highlight"><pre><span></span><code>plugin loaded -&gt; resource opened -&gt; resource closed
 </code></pre></div>
+</details>
 <p>这条输出很短，却验证了一个完整因果链：插件加载时资源被建立；调用 <code>fiber.dispose()</code> 后，属于该插件的 disposer 被执行，资源随之关闭。</p>
 <p>源码中的链路也能对上（表4-6）：</p>
 <p><strong>表4-6 从挂载到清理的源码链路</strong></p>
@@ -1899,7 +1908,7 @@
 <tbody>
 <tr>
 <td>profile</td>
-<td>一套具名组装：列出 bundle，保存自身的 patch，并可安装树外插件；<code>web</code> 和 <code>headless</code> 是随发行版交付的模板</td>
+<td>一套具名组装：列出 bundle，保存自身的 patch，并可安装树外插件；<code>web</code> 和 <code>headless</code>（模板现有五个，见第 12 章）是随发行版交付的</td>
 </tr>
 <tr>
 <td>bundle</td>
@@ -1908,12 +1917,12 @@
 </tbody>
 </table>
 <p>每个 profile 都建立在 <code>dsh-base</code> 之上；<code>dsh-web-app</code> 增加浏览器应用，<code>dsh-headless</code> 增加不带服务器的一次性运行器。</p>
-<p>实际启动和 <code>--dump-config</code> 共用同一套组合算法。<a href="https://github.com/deepseek-ai/deepseek-harness/blob/99f6f02fecdb7dff40c3fbc9470f5907c29f74ca/apps/cli/src/profile-boot.ts#L132-L170"><code>prepareProfile()</code></a>按上述次序把各层交给 <code>composeEntries()</code>，因此打印出的树不是另一套近似配置，而是对启动组合的离线呈现。</p>
+<p>实际启动和 <code>--dump-config</code> 共用同一套组合算法。<a href="https://github.com/deepseek-ai/deepseek-harness/blob/99f6f02fecdb7dff40c3fbc9470f5907c29f74ca/apps/cli/src/profile-boot.ts#L132-L170"><code>composeProfile()</code></a>按上述次序把各层交给 <code>composeEntries()</code>，因此打印出的树不是另一套近似配置，而是对启动组合的离线呈现。</p>
 <p>这里还有一个容易踩坑的细节：patch 找到 id 后，会<strong>替换该行的整个 <code>config</code>，不是递归深度合并</strong>。上层若只写一个新字段，却忘了重述需要保留的旧字段，旧字段不会自动留下。</p>
 <p>分层带来的好处是本地改装不必复制整份官方配置；代价是同一个节点可能被多层修改。<code>--dump-config</code> 中的来源注释正是为了解决“最后是谁改了它”的追踪问题。</p>
 <h2 id="_6">自修改：可逆不等于没有风险<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <p>官方 <a href="https://github.com/deepseek-ai/deepseek-harness/blob/99f6f02fecdb7dff40c3fbc9470f5907c29f74ca/examples/web-cordis/README.zh.md"><code>web-cordis</code> 示例</a>允许 agent 检查当前 Cordis 进程，并在内存中挂载或卸载模型编写的临时插件（表4-10）。</p>
-<p><strong>表4-10 自指工具的五个动作</strong></p>
+<p><strong>表4-10 自指工具的七个动作</strong></p>
 <table>
 <thead>
 <tr>
@@ -1923,8 +1932,16 @@
 </thead>
 <tbody>
 <tr>
-<td><code>cordis_inspect</code></td>
-<td>只读查看当前插件和注册项</td>
+<td><code>cordis_inspect_list</code></td>
+<td>列出当前插件树里可查验的对象（提供方与注册项）</td>
+</tr>
+<tr>
+<td><code>cordis_inspect_query</code></td>
+<td>按指定方法细查某个注册项</td>
+</tr>
+<tr>
+<td><code>cordis_inspect_self</code></td>
+<td>照镜子：查看当前挂着的插件和它们的包</td>
 </tr>
 <tr>
 <td><code>cordis_define</code></td>
@@ -2047,7 +2064,7 @@
 <tr>
 <td>Profile 与配置导出测试</td>
 <td><strong>本次实际跑通</strong></td>
-<td><code>profile.spec.ts</code> 与 <code>config-dump.spec.ts</code> 共 20 个测试通过</td>
+<td><code>profile.spec.ts</code> 与 <code>config-dump.spec.ts</code> 共 20 个测试通过（基线时的数字；上游现已增至 45 个）</td>
 </tr>
 <tr>
 <td>Cordis 生命周期行为</td>

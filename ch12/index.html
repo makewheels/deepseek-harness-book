@@ -1557,7 +1557,7 @@
 <li>改装是<strong>活的</strong>。dsh 持续监视你的 <code>cordis.patch.yml</code>，改动会自动重新组合；改坏了也不怕，最后一棵健康的树继续运行。</li>
 </ul>
 <h2 id="dsh-plugin">路线二：新配方，从 dsh plugin 开始<a class="headerlink" href="#dsh-plugin" title="Permanent link">&para;</a></h2>
-<p>随发行版交付的模板只有两个：<code>web</code>（base + web-app 两层）和 <code>headless</code>（base + headless 两层），首次使用自动初始化。除此之外任何名字，都得通过 <code>dsh plugin</code> 命令创建：</p>
+<p>随发行版交付的模板现有五个：<code>web</code>（base + web-app 两层）、<code>headless</code>（base + headless 两层），外加三个给程序调用的（<code>acp</code>、<code>sdk</code>、<code>sdk-minimal</code>），首次使用都会自动初始化。除此之外任何名字，都得通过 <code>dsh plugin</code> 命令创建：</p>
 <div class="highlight"><pre><span></span><code>dsh<span class="w"> </span>plugin<span class="w"> </span>--profile<span class="w"> </span>myagent<span class="w"> </span>add<span class="w"> </span>&lt;包名&gt;
 </code></pre></div>
 <p>这一条命令背后依次发生三件事（表12-6）：</p>
@@ -1585,10 +1585,10 @@
 </tbody>
 </table>
 <p>对账这一步有个聪明之处：<strong>一个包是不是组合包，由它自己的清单声明决定，而不是由它放在哪决定</strong>。所以同一条命令既能装官方组合包、第三方组合包，也能装普通插件——对账步骤自动分流。普通插件只是装进来，之后你在自己的 <code>cordis.patch.yml</code> 里用名字引用它。甚至 <code>update</code> 一个包，如果新版本新增了 <code>dsh.bundle</code> 声明，它也会被自动激活为一层。</p>
-<p>官方组合包名字（<code>dsh-base</code> 们）先从 dsh 安装目录解析，再找 profile 自己的目录——<strong>出厂件永远优先于外购件</strong>。profile 名字本身也有规矩：带斜杠、带点、或者叫 <code>node_modules</code> 的名字会被直接拒绝。</p>
+<p>官方组合包名字（<code>dsh-base</code> 们）先从 dsh 安装目录解析，再找 profile 自己的目录——<strong>出厂件永远优先于外购件</strong>。profile 名字本身也有规矩：空名字、带斜杠或反斜杠、恰好叫 <code>.</code> 或 <code>..</code>、或者叫 <code>node_modules</code> 的名字会被直接拒绝。</p>
 <p>新配方能干什么？两个方向：只叠 <code>dsh-base</code> 加 <code>dsh-headless</code>，得到一台精简无头车；或者装一个第三方组合包，叠出官方没有的表层。<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/bundle/README.zh.md">组合包总览</a>说得很直白：领域包可以携带自己的可选 profile 层，装上即叠。</p>
 <h2 id="_3">三个出厂组合包<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>无论轻改装还是新配方，都得先认识三个官方组合包（表12-7）：</p>
+<p>无论轻改装还是新配方，都得先认识三个主角官方组合包（表12-7）。本书写作后上游又添了三个给程序调用的：<code>dsh-acp-app</code>（ACP 自动化应用）、<code>dsh-sdk-app</code>（JSON-RPC SDK 运行时）、<code>dsh-sdk-minimal</code>（不含 base 的极简双工具组合）。</p>
 <p><strong>表12-7 三个官方组合包</strong></p>
 <table>
 <thead>
@@ -1647,7 +1647,7 @@
 <p>还有一个信任事实要心里有数：<strong>preset 就是组装，一个 preset 的权限恰好等于它引用的插件</strong>。用户自己写的 preset 与 shell 访问同级——名单里标注信任级别（随部署交付的是 <code>system</code>，你自己写的是 <code>user</code>），是为了让界面如实呈现这个差别，而不是替你做隔离。</p>
 <p>Web profile 的默认 preset 是 <code>standard</code>，而<strong>默认 preset 本身是一项用户设置</strong>：把 <code>agent-presets.default</code> 改成别的名字，新值作用于此后创建的会话，运行中的会话留在原处方上——没有人会被中途换车。</p>
 <h2 id="_4">四台出厂车型<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<p>官方 dsh 随附哪些 preset？<a href="https://github.com/deepseek-ai/deepseek-harness/tree/master/apps/cli/config/agent-presets">一个目录一个 preset</a>，目录列表就是清单（表12-9）：</p>
+<p>官方 dsh 随附哪些 preset？<a href="https://github.com/deepseek-ai/deepseek-harness/tree/master/packages/preset/agent-presets/presets">一个目录一个 preset</a>，目录列表就是清单（表12-9）：</p>
 <p><strong>表12-9 四台出厂车型</strong></p>
 <table>
 <thead>
@@ -1664,7 +1664,7 @@
 <td>功能完整的编码 agent：文件编辑、shell、检索、技能、计划、目标、子代理、工作流</td>
 </tr>
 <tr>
-<td><code>code</code></td>
+<td><code>ptc</code></td>
 <td>PTC 模式</td>
 <td>标准能力全在，但工具经 Code Mode SDK 呈现——模型写一段 TypeScript 程序组合多步操作，五轮往返变一轮</td>
 </tr>
@@ -1681,7 +1681,8 @@
 </tbody>
 </table>
 <p>每个 preset 目录里还有一份 <code>preset.yml</code>，只放展示文本：名字、描述、排序。它<strong>只</strong>管展示——preset 的 id 是目录名，信任级别取自所在目录，都写不进去，否则本地作品就能把自己伪装成随附车型。</p>
-<p>两个细节值得琢磨。第一，<code>code</code> 和 <code>cordis</code> 不是另起炉灶的实现——它们就是 <code>standard</code> 的完整副本加几行。官方刻意接受复制的成本，换来"每份组装一个文件读完"。第二，<strong>创作就是复制</strong>：新建自定义 preset 的唯一写入入口，是把某个既有 preset 整目录复制到 <code>$DSH_HOME/.agent-presets/</code> 下。复制不授予任何新能力——副本能做的超不过名单本来就有的；此后的一切，发生在你自己的文件里。复制也不允许占用已有名字，不覆写任何东西。</p>
+<p>两个细节值得琢磨。第一，<code>ptc</code> 和 <code>cordis</code> 不是另起炉灶的实现——它们就是 <code>standard</code> 的完整副本加几行。官方刻意接受复制的成本，换来"每份组装一个文件读完"。</p>
+<p>第二，<strong>创作就是复制</strong>：新建自定义 preset 的唯一写入入口，是把某个既有 preset 整目录复制到 <code>$DSH_HOME/.agent-presets/</code> 下。复制不授予任何新能力——副本能做的超不过名单本来就有的；此后的一切，发生在你自己的文件里。复制也不允许占用已有名字，不覆写任何东西。</p>
 <p>最后一条规则要记住：<strong>只有空白会话允许切换 preset</strong>。会话一旦跑过轮次，那段历史是在原 preset 的工具下产生的，中途换底盘会留下新组装无法执行的已记录调用——网关会直接拒绝。切换本身会记入会话日志，因为 preset 决定模型看到的工具和提示词，这正落在第 5 章那条"模型可见即已记录"的铁律里。</p>
 <h2 id="persona">persona：连身份一起换<a class="headerlink" href="#persona" title="Permanent link">&para;</a></h2>
 <p>preset 能换工具，那"agent 认为它是谁"能换吗？能——人设也是一个可组装的行。部署级本来有一份人设（进程唯一），<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/preset/persona/README.zh.md">persona 行</a>的作用，就是为某一个 agent 遮蔽它。</p>
@@ -1733,7 +1734,7 @@
 </tr>
 <tr>
 <td>stderr</td>
-<td>成功时保持干净；失败时写错误码和消息</td>
+<td>没有推理内容的成功运行保持干净；有推理内容时以 <code>dsh: reasoning:</code> 段流式写出；失败时写错误码和消息</td>
 </tr>
 <tr>
 <td>端口</td>
@@ -1745,7 +1746,7 @@
 </tr>
 </tbody>
 </table>
-<p>契约干净到这个地步，就可以放心把 dsh 塞进定时任务、CI 流水线或你自己的工具链。<a href="https://github.com/deepseek-ai/deepseek-harness/tree/master/examples">示例目录</a>里，<code>headless-agent</code> 演示机器可读输出，<code>jsonrpc-agent</code> 演示用官方 Python SDK 遥控。仓库根目录那份 BENCHMARK.md 说的跑基准方式，就是走这条路——后记细说。</p>
+<p>契约干净到这个地步，就可以放心把 dsh 塞进定时任务、CI 流水线或你自己的工具链。无头形态的本体是 <code>dsh-headless</code> 组合包；它曾经栖身的顶层示例目录已被上游退役（见第 3 章"样机车搬家了"）。仓库根目录那份 BENCHMARK.md 说的跑基准方式，就是走这条路——后记细说。</p>
 <h2 id="-dump-config">验货：--dump-config<a class="headerlink" href="#-dump-config" title="Permanent link">&para;</a></h2>
 <p>改装完怎么知道装成了什么样？不用启动：</p>
 <div class="highlight"><pre><span></span><code>dsh<span class="w"> </span>--profile<span class="w"> </span>web<span class="w"> </span>--dump-config
@@ -1782,7 +1783,7 @@
 验收：任选三个条目，能根据注释分别说出它来自哪一层（组合包层还是用户层）。</p>
 <p><strong>实验 12-2 ★★｜给 web 车加装提醒</strong>
 目标：体验只属于一次启动的 <code>--patch</code> 层。
-步骤：clone <a href="https://github.com/deepseek-ai/deepseek-harness">官方仓库</a>，运行 <code>dsh web --patch examples/web-schedule/cordis.yml</code>，在会话里用提醒工具设一个提醒。
+步骤：clone <a href="https://github.com/deepseek-ai/deepseek-harness">官方仓库</a>，运行 <code>dsh web --patch apps/cli/config/examples/schedule/cordis.yml</code>，在会话里用提醒工具设一个提醒。
 验收：到点提醒出现；去掉 <code>--patch</code> 重启，功能消失——原车毫发无损。</p>
 <p><strong>实验 12-3 ★★｜把默认车型换成 minimal</strong>
 目标：感受"默认 preset 是用户设置"。

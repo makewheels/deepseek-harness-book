@@ -13,16 +13,16 @@
   <text x="108" y="230" text-anchor="middle" font-size="13.5" fill="#5a6072">cli 与 web</text>
   <rect x="215" y="150" width="176" height="96" rx="12" fill="#fff8e1" stroke="#f9a825" stroke-width="1.8"/>
   <text x="303" y="182" text-anchor="middle" font-size="16" font-weight="bold" fill="#20242e">packages/</text>
-  <text x="303" y="208" text-anchor="middle" font-size="13.5" fill="#5a6072">约 50 个零件</text>
+  <text x="303" y="208" text-anchor="middle" font-size="13.5" fill="#5a6072">51 个零件组</text>
   <text x="303" y="230" text-anchor="middle" font-size="13.5" fill="#b26a00">本书主战场</text>
   <rect x="410" y="150" width="176" height="96" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
   <text x="498" y="182" text-anchor="middle" font-size="16" font-weight="bold" fill="#20242e">docs/</text>
   <text x="498" y="208" text-anchor="middle" font-size="13.5" fill="#5a6072">官方说明书</text>
   <text x="498" y="230" text-anchor="middle" font-size="13.5" fill="#5a6072">中英双语</text>
   <rect x="605" y="150" width="176" height="96" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
-  <text x="693" y="182" text-anchor="middle" font-size="16" font-weight="bold" fill="#20242e">examples/</text>
-  <text x="693" y="208" text-anchor="middle" font-size="13.5" fill="#5a6072">6 台样机车</text>
-  <text x="693" y="230" text-anchor="middle" font-size="13.5" fill="#5a6072">可直接运行</text>
+  <text x="693" y="182" text-anchor="middle" font-size="16" font-weight="bold" fill="#20242e">examples/（已退役）</text>
+  <text x="693" y="208" text-anchor="middle" font-size="13.5" fill="#5a6072">上游已整体退役</text>
+  <text x="693" y="230" text-anchor="middle" font-size="13.5" fill="#5a6072">示例搬进包与手册</text>
   <rect x="800" y="150" width="176" height="96" rx="12" fill="#eef1fb" stroke="#5c6bc0" stroke-width="1.6"/>
   <text x="888" y="182" text-anchor="middle" font-size="16" font-weight="bold" fill="#20242e">vendor/</text>
   <text x="888" y="208" text-anchor="middle" font-size="13.5" fill="#5a6072">Cordis 框架</text>

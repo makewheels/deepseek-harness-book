@@ -1386,7 +1386,7 @@
 <p>带作用域注册引出两个机制。一是<strong>遮蔽（shadowing）</strong>：agent 作用域里的工具若与全局工具同名，在这个 agent 里就顶替全局版本——好比连锁店挂了块同名招牌，进店的客人去的是分店。二是<strong>掩码过滤</strong>（<code>restrict</code>）：给某个 agent 发一张允许／拒绝清单，把一批全局工具直接藏起来。</p>
 <blockquote>
 <p><strong>注意</strong>
-官方明确提醒：掩码过滤管的是<strong>可见性</strong>，不是<strong>权限</strong>——藏起来的工具模型调不到，但这不是安全边界。真正的准入，靠的是下面的关卡。</p>
+官方术语表把这条界线分得很清：掩码过滤管的是<strong>可见性</strong>，不是<strong>权限</strong>——藏起来的工具模型调不到，但这不是安全边界。真正的准入，靠的是下面的关卡。</p>
 </blockquote>
 <p>顺带一提：注册表还决定工具以什么方式呈现给模型。除了逐个调用的原生方式，还有一种 Code Mode——模型写一小段程序批量调用工具，子调用照样要走完整条流水线。它是可选配置，不影响本章主线。</p>
 <h2 id="_3">动手之前，先记账<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
@@ -1415,7 +1415,7 @@
 </tbody>
 </table>
 <h2 id="1pre-execute">关卡①：pre-execute<a class="headerlink" href="#1pre-execute" title="Permanent link">&para;</a></h2>
-<p>第一道关卡是瀑布式的（第 5 章把它比作"传令"）：三类负责人依次过手，每人都要给出明确意见（<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/tool-execution-pipeline.zh.md">流水线文档</a>）：</p>
+<p>第一道关卡是瀑布式的：三类负责人依次过手，每人都要给出明确意见（<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/tool-execution-pipeline.zh.md">流水线文档</a>）：</p>
 <p><strong>表6-3 关卡①的三类负责人</strong></p>
 <table>
 <thead>
